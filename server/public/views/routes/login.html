@@ -1,6 +1,6 @@
 <h1 class='text-center'>Mind Depot Login</h1>
 
-<form ng-controller='mainController'>
+<form>
     <div class="form-group">
         <label for="username">Username:</label>
         <input ng-model="username" type="text" name="username" id="username" class="form-control" />
@@ -10,6 +10,6 @@
         <input ng-model="password" type="password" name="password" id="password" class="form-control" />
     </div>
     <div>
-        <input ng-click="login()" type="submit" value="Log In" class="btn btn-success" />
+        <input ng-click="login()" type="submit" value="Log In" class="btn btn-success" onclick = "location.href = '#!/home'"/>
     </div>
 </form>

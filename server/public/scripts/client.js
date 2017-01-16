@@ -13,14 +13,20 @@ myApp.config(['$routeProvider', function($routeProvider) {
         .when('/login', {
             templateUrl: '../views/routes/login.html',
             controller: 'loginController'
-        }).otherwise({
-            redirectTo: 'login'
-    })
+        })
+        .when('/home', {
+        templateUrl: '../views/routes/home.html',
+        controller: 'homeController'
+})
 }]); //end my app config
 
 
 
 //****Controllers****//
+
+myApp.controller ('homeController', ['$scope', '$http', function ($scope, $http){
+  console.log('In home contoller');
+}]);//end home controller
 
 myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
     console.log('IN NG');
@@ -29,7 +35,7 @@ myApp.controller('loginController', ['$scope', '$http', function($scope, $http) 
 
 myApp.controller('registerController', ['$scope', '$http', function($scope, $http) {
     console.log('IN register controller');
-    $scope.register = function() {
+    $scope.registerUser = function() {
         var user = {
             username: $scope.username,
             password: $scope.password
@@ -37,12 +43,12 @@ myApp.controller('registerController', ['$scope', '$http', function($scope, $htt
 
         $http({
             method: 'POST',
-            url: '/register',
+            url: '/',
             data: user
         }).then(function successCallback(response) {
           console.log(response);
         }, function errorCallback(error) {
-            if (verbose) console.log('error occurred!');
+            console.log('error occurred!');
         }); //end http post
     }; //end register function
 

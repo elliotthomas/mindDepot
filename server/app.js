@@ -4,26 +4,20 @@ var path = require('path');
 var session = require('express-session');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var passport = require('./strategies/userStrategy');
+
 
 //require routers
-var userRouter = require ('./routes/user.js')
+
+
 
 
 //middleware
 app.use(bodyParser.json());
 app.use(express.static(path.resolve('./server/public')));
 
-app.use(session({
-   secret: 'secret',
-   key: 'user',
-   resave: 'true',
-   saveUninitialized: false,
-   cookie: { maxage: 60000, secure: false }
-}));
-
 //Routers
-app.use('/user', userRouter);
+
+
 
 
 // server index file
