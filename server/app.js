@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 var passport = require('./strategies/userStrategy');
 
 //require routers
-var 
 var userRouter = require ('./routes/user.js')
 
 
@@ -22,6 +21,10 @@ app.use(session({
    saveUninitialized: false,
    cookie: { maxage: 60000, secure: false }
 }));
+
+//Routers
+app.use('/user', userRouter);
+
 
 // server index file
 app.get('/info', function(req, res) {
