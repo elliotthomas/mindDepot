@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src= "vendors/angular.min.js"></script>
+    <script type="text/javascript" src= "vendors/angular-route.min.js"></script>
+    <script type="text/javascript" src= "scripts/client.js"></script>
+    <link rel="stylesheet" href="/vendors/bootstrap.min.css">
+    <title>Mind Depot</title>
+  </head>
+  <body ng-app = 'myApp'>
+  <div class="container">
+    <h1 class ='text-center'>Mind Depot Login</h1>
+
+    <form ng-controller = 'mainController'>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input ng-model="username" type="text" name="username" id="username" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input ng-model="password" type="password" name="password" id="password" class="form-control"/>
+      </div>
+      <div>
+        <input ng-click="login()" type="submit" value="Log In" class="btn btn-success"/>
+        <a href="/register">Register</a>
+      </div>
+    </form>
+
+    <main ng-view></main>
+  </div>
+  </body>
+</html>
