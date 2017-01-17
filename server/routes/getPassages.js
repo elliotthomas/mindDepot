@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var path = require('path');
 var Passages = require('../models/passages.js');
 
 router.get('/', function(req, res) {
@@ -12,3 +13,5 @@ router.get('/', function(req, res) {
     }
   });
 }); // end get
+
+module.exports = router;

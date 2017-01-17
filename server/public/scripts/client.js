@@ -24,13 +24,28 @@ myApp.config(['$routeProvider', function($routeProvider) {
         })
 }]); //end my app config
 
-
-
 //****Controllers****//
 
 myApp.controller ('homeController', ['$scope', '$http', function ($scope, $http){
   console.log('In home contoller');
-  
+
+  var getPassages = function (){
+    console.log('In get passages function');
+    $http({
+      method: 'GET',
+      url:'/getPassages'
+    }).then(function(response) {
+      console.log('Passages back from DB ->', response.data);
+      $scope.passages = response.data;
+    });//end http get call
+
+    $scope.init = function (){
+      getPassages();
+    };//end init function
+
+
+  };//end get passage function
+
 }]);//end home controller
 
 myApp.controller ('addPassageController', ['$scope', '$http', function ($scope, $http){
