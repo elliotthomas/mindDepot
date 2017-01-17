@@ -41,6 +41,11 @@ myApp.controller ('homeController', ['$scope', '$http', function ($scope, $http)
     });//end http get call
   };//end get passages function
 
+  $scope.toPractice = function (id){
+    console.log('ID number of click', id);
+
+  };//end practice function
+
     $scope.init = function (){
       $scope.getPassages();
     };//end init function
