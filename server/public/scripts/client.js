@@ -37,6 +37,7 @@ myApp.controller ('homeController', ['$scope', '$http', function ($scope, $http)
     }).then(function(response) {
       console.log('Passages back from DB ->', response.data);
       $scope.passages = response.data;
+      console.log('scope passages', $scope.passages);
     });//end http get call
   };//end get passages function
 

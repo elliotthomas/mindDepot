@@ -1,7 +1,10 @@
 <div class="container" ng-init = 'init()'>
-  <div class="row">
-    
-  </div>
+    <div ng-repeat = 'passage in passages'>
+      <div class="panel panel-default text-center">
+      <strong>{{passage.title}}</strong>
+      <p>{{passage.author}}</p>
+      </div>
+    </div>
   <div class="footer">
 
   </div>
