@@ -22,11 +22,29 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../views/routes/addPassage.html',
         controller: 'addPassageController'
         })
+        .when('/practice', {
+        templateUrl: '../views/routes/practice.html',
+        controller: 'practiceController'
+        })
+        .when('/recite', {
+        templateUrl: '../views/routes/recite.html',
+        controller: 'reciteController'
+        })
 }]); //end my app config
+
+//****Factory****//
+
+myApp.factory('passageFactory', function(){
+  var factory = {};
+  factory.passageID;
+
+
+  return factory
+});//end factory
 
 //****Controllers****//
 
-myApp.controller ('homeController', ['$scope', '$http', function ($scope, $http){
+myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$location', function ($scope, passageFactory, $http, $location){
   console.log('In home contoller');
 
   $scope.getPassages = function (){
@@ -43,7 +61,8 @@ myApp.controller ('homeController', ['$scope', '$http', function ($scope, $http)
 
   $scope.toPractice = function (id){
     console.log('ID number of click', id);
-
+    passageFactory.passageID = id
+    $location.path('/practice')
   };//end practice function
 
     $scope.init = function (){
@@ -73,10 +92,27 @@ $scope.addPassage = function (){
 };//end add passage function
 }]);//end home controller
 
+myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$location', function($scope, $http, passageFactory, $location) {
+    console.log('In Practice Controller');
+
+    $scope.toRecite = function () {
+      $location.path ('/recite')
+    };//end to recite
+
+    $scope.toWrite = function () {
+      $location.path ('/write')
+    };//end to recite
+
+    $scope.toWordByWord = function () {
+      $location.path ('/wordByWord')
+    };//end to recite
+
+}]); //end practice controlller
+
 myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
     console.log('In Login Controller');
 
-}]); //end main controlller
+}]); //end login controlller
 
 myApp.controller('registerController', ['$scope', '$http', function($scope, $http) {
     console.log('IN register controller');
