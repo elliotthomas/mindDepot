@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var PassageSchema = new Schema ({
   title: {type: String, required: true},
   author: {type: String, required: true},
-  sourceURL: {type: String, required: false},
+  sourceUrl: {type: String, required: false},
   passage: {type: String, required: true}
 });
 

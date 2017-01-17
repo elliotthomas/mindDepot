@@ -4,13 +4,18 @@ var path = require('path');
 var Passage = require('../models/passages.js');
 
 router.post('/', function(req, res){
+  var title = req.body.title;
+  var author = req.body.author;
+  var sourceUrl = req.body.sourceUrl;
+  var passage = req.body.passage;
 
   var newPassage = new Passage ({
-    description: description,
-    placer: placer,
-    img_url: img_url
+    title: title,
+    author: author,
+    sourceUrl: sourceUrl,
+    passage: passage
   });
-  newItem.save(function(err){
+  newPassage.save(function(err){
     if(err){
       console.log(err);
       res.sendStatus(500);

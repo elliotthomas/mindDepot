@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 
 //require routers
-
+var addPassageRouter = require ('./routes/addPassage.js')
 
 
 
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.resolve('./server/public')));
 
 //Routers
-
+app.use('/addPassage', addPassageRouter)
 
 
 

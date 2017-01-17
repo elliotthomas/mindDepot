@@ -30,6 +30,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
 
 myApp.controller ('homeController', ['$scope', '$http', function ($scope, $http){
   console.log('In home contoller');
+  
 }]);//end home controller
 
 myApp.controller ('addPassageController', ['$scope', '$http', function ($scope, $http){
@@ -45,7 +46,7 @@ $scope.addPassage = function (){
 
   $http ({
     method: 'POST',
-    url: '/',
+    url: '/addPassage',
     data: passage
   }).then (function (response){
     console.log('response ->', response);
