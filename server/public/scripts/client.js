@@ -17,7 +17,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
         .when('/home', {
         templateUrl: '../views/routes/home.html',
         controller: 'homeController'
-})
+        })
+        .when('/addPassage', {
+        templateUrl: '../views/routes/addPassage.html',
+        controller: 'addPassageController'
+        })
 }]); //end my app config
 
 
@@ -28,8 +32,29 @@ myApp.controller ('homeController', ['$scope', '$http', function ($scope, $http)
   console.log('In home contoller');
 }]);//end home controller
 
+myApp.controller ('addPassageController', ['$scope', '$http', function ($scope, $http){
+  console.log('In add passage contoller');
+
+$scope.addPassage = function (){
+  var passage = {
+    title: $scope.title,
+    author: $scope.author,
+    sourceUrl: $scope.sourceUrl,
+    passage: $scope.passage
+  };//end passage object
+
+  $http ({
+    method: 'POST',
+    url: '/',
+    data: passage
+  }).then (function (response){
+    console.log('response ->', response);
+  });
+};//end add passage function
+}]);//end home controller
+
 myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
-    console.log('IN NG');
+    console.log('In Login Controller');
 
 }]); //end main controlller
 

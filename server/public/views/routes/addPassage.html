@@ -1,0 +1,23 @@
+<h1 class='text-center'>Mind Depot Login</h1>
+
+<form>
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input ng-model="title" type="text" name="title" id="title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="author">Author:</label>
+        <input ng-model="author" type="text" name="author" id="author" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="sourceUrl">Source URL:</label>
+        <input ng-model="sourceUrl" type="text" name="sourceUrl" id="sourceUrl" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="passage">Passage:</label>
+        <input ng-model="passage" type="text" name="passage" id="passage" class="form-control" />
+    </div>
+    <div>
+        <input ng-click="addPassage()" type="submit" value="Add Passage" class="btn btn-success" onclick = "location.href = '#!/home'"/>
+    </div>
+</form>
