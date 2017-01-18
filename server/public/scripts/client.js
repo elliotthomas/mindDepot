@@ -114,6 +114,7 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory', funct
     console.log('id from factory ->', passageFactory.passageID );
 
     var id = passageFactory.passageID;
+    var counter = 0;
 
     $http ({
       method: 'GET',
@@ -122,6 +123,14 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory', funct
       console.log('response ->', response.data);
       $scope.passageByID = response.data;
     });//end http
+
+    $scope.increment = function () {
+      var id = passageFactory.passageID;
+      counter++;
+      console.log('total counts ->', counter);
+      console.log('id in increment function ->', id);
+
+    };//end increment function
 
 }]); //end recite controlller
 
