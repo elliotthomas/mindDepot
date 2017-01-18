@@ -37,6 +37,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
 myApp.factory('passageFactory', function(){
   var factory = {};
   factory.passageID;
+  factory.counter;
 
 
   return factory
@@ -75,6 +76,8 @@ myApp.controller ('addPassageController', ['$scope', '$http', function ($scope, 
   console.log('In add passage contoller');
 
 $scope.addPassage = function (){
+  var passage = $scope.passage
+
   var passage = {
     title: $scope.title,
     author: $scope.author,
@@ -114,23 +117,49 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory', funct
     console.log('id from factory ->', passageFactory.passageID );
 
     var id = passageFactory.passageID;
-    var counter = 0;
+
+    $scope.getCounter = function (){
 
     $http ({
       method: 'GET',
       url: '/getPassageByID/' + id
     }).then (function (response){
-      console.log('response ->', response.data);
-      $scope.passageByID = response.data;
+      console.log('response ->', response.data[0].passage);
+      $scope.passageByID = response.data[0].passage;
+      $scope.counter = response.data[0].recited;
+      passageFactory.counter = response.data[0].recited
     });//end http
+
+  };//end get counter
 
     $scope.increment = function () {
       var id = passageFactory.passageID;
-      counter++;
-      console.log('total counts ->', counter);
+
       console.log('id in increment function ->', id);
 
+      var counter = passageFactory.counter
+
+      counter++;
+
+      var counterToSend = {
+        counter: counter,
+        idToSend: id
+      };//end counter var
+
+      console.log('counterToSend ->', counterToSend);
+
+      $http ({
+        method: 'PUT',
+        url: '/addCounter',
+        data: counterToSend
+      }).then (function (response){
+        console.log('response ->', response);
+      });
+
+      $scope.getCounter();
+
     };//end increment function
+
 
 }]); //end recite controlller
 

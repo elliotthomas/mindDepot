@@ -1,12 +1,13 @@
-<div class="container">
-    <div ng-repeat = 'text in passageByID' class="text-center">
-        <p>{{text.passage}}</p>
+<div class="container" ng-init = 'getCounter()'>
+    <div class="text-center">
+        <p>{{passageByID}}</p>
+        <strong>{{counter}}</strong>
     </div>
     <div>
         <input ng-click="increment()" type="submit" value="Recited" class="btn btn-success center-block"/>
     </div>
     <div >
-      
+
     </div>
 </div>
 <div class="footer">

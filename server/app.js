@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var addPassageRouter = require ('./routes/addPassage.js');
 var getPassageRouter = require ('./routes/getPassages.js');
 var getPassageByIDRouter = require ('./routes/getPassageByID.js');
+var addCounterRouter = require ('./routes/addCounter.js')
 
 
 
@@ -21,6 +22,7 @@ app.use(express.static(path.resolve('./server/public')));
 app.use('/addPassage', addPassageRouter);
 app.use('/getPassages', getPassageRouter);
 app.use('/getPassageByID', getPassageByIDRouter);
+app.use('/addCounter', addCounterRouter);
 
 
 

@@ -13,7 +13,8 @@ router.post('/', function(req, res){
     title: title,
     author: author,
     sourceUrl: sourceUrl,
-    passage: passage
+    passage: passage,
+    recited: 0
   });
   newPassage.save(function(err){
     if(err){
