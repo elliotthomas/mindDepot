@@ -76,7 +76,9 @@ myApp.controller ('addPassageController', ['$scope', '$http', function ($scope, 
   console.log('In add passage contoller');
 
 $scope.addPassage = function (){
-  var passage = $scope.passage
+  var passage = $scope.passage.split('\n');
+
+  console.log('each line in an array', passage);
 
   var passage = {
     title: $scope.title,
