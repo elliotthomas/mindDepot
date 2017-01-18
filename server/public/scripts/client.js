@@ -30,6 +30,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../views/routes/recite.html',
         controller: 'reciteController'
         })
+        .when('/wordByWord', {
+        templateUrl: '../views/routes/wordByWord.html',
+        controller: 'wordByWordController'
+        })
 }]); //end my app config
 
 //****Factory****//
@@ -37,7 +41,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
 myApp.factory('passageFactory', function(){
   var factory = {};
   factory.passageID;
+  factory.passageByID;
+  factory.authorByID;
+  factory.titleByID;
+  factory.sourceUrl;
   factory.counter;
+
 
 
   return factory
@@ -63,6 +72,19 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
   $scope.toPractice = function (id){
     console.log('ID number of click', id);
     passageFactory.passageID = id
+
+    $http ({
+      method: 'GET',
+      url: '/getPassageByID/' + id
+    }).then (function (response){
+      console.log('response ->', response.data[0].passage);
+      passageFactory.passageByID = response.data[0].passage;
+      passageFactory.authorByID = response.data[0].author;
+      passageFactory.titleByID = response.data[0].title;
+      passageFactory.sourceUrl = response.data[0].sourceUrl;
+      passageFactory.counter = response.data[0].recited;
+    });//end http
+
     $location.path('/practice')
   };//end practice function
 
@@ -106,11 +128,11 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
 
     $scope.toWrite = function () {
       $location.path ('/write')
-    };//end to recite
+    };//end to write
 
     $scope.toWordByWord = function () {
       $location.path ('/wordByWord')
-    };//end to recite
+    };//end to word by word
 
 }]); //end practice controlller
 
@@ -118,16 +140,18 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory', funct
     console.log('In Recite Controller');
     console.log('id from factory ->', passageFactory.passageID );
 
-    var id = passageFactory.passageID;
 
     $scope.getCounter = function (){
+
+      $scope.passageByID = passageFactory.passageByID;
+
+      var id = passageFactory.passageID;
 
     $http ({
       method: 'GET',
       url: '/getPassageByID/' + id
     }).then (function (response){
       console.log('response ->', response.data[0].passage);
-      $scope.passageByID = response.data[0].passage;
       $scope.counter = response.data[0].recited;
       passageFactory.counter = response.data[0].recited
     });//end http
@@ -164,6 +188,11 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory', funct
 
 
 }]); //end recite controlller
+
+myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
+    console.log('In Login Controller');
+
+}]); //end word by word controlller
 
 myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
     console.log('In Login Controller');
