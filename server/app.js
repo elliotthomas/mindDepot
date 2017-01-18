@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 //require routers
 var addPassageRouter = require ('./routes/addPassage.js');
 var getPassageRouter = require ('./routes/getPassages.js');
+var getPassageByIDRouter = require ('./routes/getPassageByID.js');
 
 
 
@@ -19,6 +20,7 @@ app.use(express.static(path.resolve('./server/public')));
 //Routers
 app.use('/addPassage', addPassageRouter);
 app.use('/getPassages', getPassageRouter);
+app.use('/getPassageByID', getPassageByIDRouter);
 
 
 

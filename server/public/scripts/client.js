@@ -109,6 +109,22 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
 
 }]); //end practice controlller
 
+myApp.controller('reciteController', ['$scope', '$http', 'passageFactory', function($scope, $http, passageFactory) {
+    console.log('In Recite Controller');
+    console.log('id from factory ->', passageFactory.passageID );
+
+    var id = passageFactory.passageID;
+
+    $http ({
+      method: 'GET',
+      url: '/getPassageByID/' + id
+    }).then (function (response){
+      console.log('response ->', response.data);
+      $scope.passageByID = response.data;
+    });//end http
+
+}]); //end recite controlller
+
 myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
     console.log('In Login Controller');
 
