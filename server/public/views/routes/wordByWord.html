@@ -1,12 +1,9 @@
-<div class="container" ng-init = 'getCounter()'>
-    <div class = "angular-with-newlines">
-        {{passageByID}}
+<div class="container" ng-init = 'showOneWord()'>
+    <div class = "angular-with-newlines" >
+      {{text}}
     </div>
     <div>
-        <input ng-click="increment()" type="submit" value="Recited" class="btn btn-success center-block"/>
-    </div>
-    <div class = 'text-center'>
-      <strong>{{counter}}</strong>
+        <input ng-click="addWord()" type="submit" value="Add Word" class="btn btn-success center-block"/>
     </div>
 </div>
 <div class="footer">

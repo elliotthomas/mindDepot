@@ -189,10 +189,33 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory', funct
 
 }]); //end recite controlller
 
-myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
-    console.log('In Login Controller');
+myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', function($scope, $http, passageFactory) {
+    console.log('In Word by Word Controller');
+    var passage = passageFactory.passageByID
+    var index = 1;
+
+    $scope.showOneWord = function () {
+      var splitPassage = passage.split(" ")
+      $scope.text = splitPassage[0];
+    }
+
+    $scope.addWord = function () {
+        var splitPassage = passage.split(" ")
+        console.log('in add word ->', splitPassage);
+
+        $scope.text = (splitPassage[index] + ' ');
+        index++;
+      };//end add word
+
+
+
 
 }]); //end word by word controlller
+
+myApp.controller('writeController', ['$scope', '$http', function($scope, $http) {
+    console.log('In write Controller');
+
+}]); //end login controlller
 
 myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
     console.log('In Login Controller');
