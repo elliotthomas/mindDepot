@@ -1,6 +1,6 @@
 console.log('IN JS');
 
-var myApp = angular.module('myApp', ['ngRoute', 'ngSanitize']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngSanitize', 'rzModule']);
 
 //****CONFIG for ROUTERS****//
 
@@ -45,6 +45,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
         .when('/lineByLine', {
         templateUrl: '../views/routes/lineByLine.html',
         controller: 'lineByLineController'
+        })
+        .when('/slider', {
+        templateUrl: '../views/routes/slider.html',
+        controller: 'sliderController'
         })
 }]); //end my app config
 
@@ -152,7 +156,11 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
 
     $scope.toLinebyLine = function () {
       $location.path ('/lineByLine')
-    };//end to passageinfo
+    };//end to line by line
+
+    $scope.toSlider = function () {
+      $location.path ('/slider')
+    };//end to slider
 
 }]); //end practice controlller
 
@@ -288,6 +296,22 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
   };//end show passage info
 
 }]); //end passage info controlller
+
+myApp.controller('sliderController', ['$scope', '$http', 'passageFactory', function($scope, $http, passageFactory) {
+    console.log('In Slider Controller');
+
+    $scope.wordSlider = 100;
+    var currentValue = $scope.wordSlider;
+    $scope.passageByID = passageFactory.passageByID;
+
+    if (currentValue == 100) {
+      
+    }
+
+
+
+
+}]); //end slider controlller
 
 myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
     console.log('In Login Controller');

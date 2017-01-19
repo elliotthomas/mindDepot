@@ -14,6 +14,7 @@
     "angular": "^1.6.1",
     "angular-route": "^1.6.1",
     "angular-sanitize": "^1.6.1",
+    "angularjs-slider": "^6.0.0",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
