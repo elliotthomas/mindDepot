@@ -1,0 +1,11 @@
+<form>
+<div class="form-group">
+    <label for="passage">Passage:</label>
+    <textarea ng-model="passageFromUser" type="text" class="form-control" rows = '20'></textarea>
+</div>
+<div>
+    <input ng-click="compare()" type="submit" value="Compare to Original Text" class="btn btn-success"/>
+</div>
+</form>
+<div ng-bind-html = 'outputText' class = "angular-with-newlines">
+</div>
