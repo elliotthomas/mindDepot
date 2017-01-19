@@ -42,6 +42,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../views/routes/passageInfo.html',
         controller: 'passageInfoController'
         })
+        .when('/lineByLine', {
+        templateUrl: '../views/routes/lineByLine.html',
+        controller: 'lineByLineController'
+        })
 }]); //end my app config
 
 //****Factory****//
@@ -146,6 +150,10 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
       $location.path ('/passageInfo')
     };//end to passageinfo
 
+    $scope.toLinebyLine = function () {
+      $location.path ('/lineByLine')
+    };//end to passageinfo
+
 }]); //end practice controlller
 
 myApp.controller('reciteController', ['$scope', '$http', 'passageFactory', function($scope, $http, passageFactory) {
@@ -215,14 +223,45 @@ myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', f
         var splitPassage = passage.split(" ")
         console.log('in add word ->', splitPassage);
 
-        $scope.text = (splitPassage[index] + ' ');
+        $scope.text += (splitPassage[index] + ' ');
         index++;
+        if (index > splitPassage.length){
+           index = 1;
+           $scope.text = splitPassage[0];
+         }
       };//end add word
 
-
-
-
 }]); //end word by word controlller
+
+myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', function($scope, $http, passageFactory) {
+    console.log('In Line by Line Controller');
+    var passage = passageFactory.passageByID
+    var index = 1;
+
+    $scope.showOneLine = function () {
+      var splitPassage = passage.split("\n")
+      $scope.text = splitPassage[0];
+    }
+
+    $scope.addLine = function () {
+        var splitPassage = passage.split("\n")
+        console.log('in add line ->', splitPassage);
+        for (var i = 0; i < splitPassage.length; i++) {
+          splitPassage[i] = splitPassage[i] + '<br />'
+        }
+        console.log('split with line break', splitPassage);
+
+        $scope.text += (splitPassage[index] + ' ');
+        index++;
+        if (index > splitPassage.length){
+           index = 1;
+           $scope.text = splitPassage[0];
+         }
+      };//end add line
+
+}]); //end line by line controlller
+
+
 
 myApp.controller('writeController', ['$scope', '$http','passageFactory', function($scope, $http, passageFactory) {
     console.log('In write Controller');
