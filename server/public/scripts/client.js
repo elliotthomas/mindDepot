@@ -38,6 +38,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../views/routes/write.html',
         controller: 'writeController'
         })
+        .when('/passageInfo', {
+        templateUrl: '../views/routes/passageInfo.html',
+        controller: 'passageInfoController'
+        })
 }]); //end my app config
 
 //****Factory****//
@@ -138,6 +142,10 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
       $location.path ('/wordByWord')
     };//end to word by word
 
+    $scope.toPassageInfo = function () {
+      $location.path ('/passageInfo')
+    };//end to passageinfo
+
 }]); //end practice controlller
 
 myApp.controller('reciteController', ['$scope', '$http', 'passageFactory', function($scope, $http, passageFactory) {
@@ -227,6 +235,19 @@ myApp.controller('writeController', ['$scope', '$http','passageFactory', functio
 
 
 }]); //end write controlller
+
+myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', function($scope, $http, passageFactory) {
+    console.log('In Passage Info Controller');
+
+  $scope.showPassageInfo = function (){
+
+    $scope.titleInfo = passageFactory.titleByID;
+    $scope.authorInfo = passageFactory.authorByID;
+    $scope.sourceUrlInfo = passageFactory.sourceUrl;
+
+  };//end show passage info
+
+}]); //end passage info controlller
 
 myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
     console.log('In Login Controller');
