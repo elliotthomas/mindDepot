@@ -162,6 +162,19 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
       $location.path ('/slider')
     };//end to slider
 
+    $scope.deletePassage = function () {
+      var id = passageFactory.passageID
+      console.log('id from factory ->', id);
+
+      $http ({
+      method: 'DELETE',
+      url: '/deletePassage' + id
+    }).then (function (response){
+      console.log('response from delete ->', response);
+    });
+
+    };//end delete passage
+
 }]); //end practice controlller
 
 myApp.controller('reciteController', ['$scope', '$http', 'passageFactory', function($scope, $http, passageFactory) {
@@ -300,13 +313,37 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
 myApp.controller('sliderController', ['$scope', '$http', 'passageFactory', function($scope, $http, passageFactory) {
     console.log('In Slider Controller');
 
-    $scope.wordSlider = 100;
-    var currentValue = $scope.wordSlider;
-    $scope.passageByID = passageFactory.passageByID;
 
-    if (currentValue == 100) {
-      
+
+
+
+$scope.slider = {
+  value: 10,
+  options: {
+    floor: 0,
+    ceil: 10,
+    translate: function(value) {
+      console.log(value);
+      if(value == 10){
+        $scope.passageByID = passageFactory.passageByID;
+      } else {
+        console.log('in else stmt');
+      var passageByIDSplit = passageFactory.passageByID.split('\n');
+      var passageArray = passageByIDSplit.map(function(line){
+          return line.split (' ');
+        });
+        console.log(passageArray);
+      for (var i = 0; i < passageArray.length; i++) {
+        var endIndex = Math.floor((value/10) * passageArray[i].length);
+        console.log(endIndex);
+        $scope.passageByID = passageArray[i].slice(0,endIndex)
+      }
+
+      }
     }
+  }
+};
+    console.log('in slider change');
 
 
 
