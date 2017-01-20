@@ -47,10 +47,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../views/routes/lineByLine.html',
         controller: 'lineByLineController'
         })
-        .when('/slider', {
-        templateUrl: '../views/routes/slider.html',
-        controller: 'sliderController'
-        })
         .when('/fillInBlank', {
         templateUrl: '../views/routes/fillInBlank.html',
         controller: 'fillInBlankController'
@@ -153,7 +149,7 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
 
     $scope.toDepot = function () {
       $location.path ('/depot')
-    };//end to slider
+    };//end to to depot
 
 
 
@@ -284,13 +280,10 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
       $location.path ('/lineByLine')
     };//end to line by line
 
-    $scope.toSlider = function () {
-      $location.path ('/slider')
-    };//end to slider
 
     $scope.tofillInBlank = function () {
       $location.path ('/fillInBlank')
-    };//end to slider
+    };//end to fill in blank
 
     $scope.addToDepot = function () {
 
@@ -445,6 +438,11 @@ myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootS
       $scope.outputText = diffString(passageUser, passageOriginal)
     };//end compare
 
+    $scope.reset = function (){
+      $scope.outputText = '';
+      $scope.passageFromUser = '';
+    };
+
 
 }]); //end write controlller
 
@@ -486,44 +484,6 @@ $scope.deletePassage = function () {
 };//end delete passage
 
 }]); //end passage info controlller
-
-myApp.controller('sliderController', ['$scope', '$http', 'passageFactory', '$rootScope', function($scope, $http, passageFactory, $rootScope) {
-    console.log('In Slider Controller');
-    $rootScope.hideIt = true;
-    $rootScope.hideBack = true;
-
-$scope.slider = {
-  value: 10,
-  options: {
-    floor: 0,
-    ceil: 10,
-    translate: function(value) {
-      console.log(value);
-      if(value == 10){
-        $scope.passageByID = passageFactory.passageByID;
-      } else {
-        console.log('in else stmt');
-      var passageByIDSplit = passageFactory.passageByID.split('\n');
-      var passageArray = passageByIDSplit.map(function(line){
-          return line.split (' ');
-        });
-        console.log(passageArray);
-      for (var i = 0; i < passageArray.length; i++) {
-        var endIndex = Math.floor((value/10) * passageArray[i].length);
-        console.log(endIndex);
-        $scope.passageByID = passageArray[i].slice(0,endIndex)
-      }
-
-      }
-    }
-  }
-};
-    console.log('in slider change');
-
-
-
-
-}]); //end slider controlller
 
 myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', '$rootScope', function($scope, $http, passageFactory, $rootScope) {
     console.log('In Fill in Blank Controller');

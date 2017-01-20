@@ -25,12 +25,20 @@ ul {
 }
 
 .img-author{
-  width: 150px;
+  width: 80px;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
 h2 {
+  text-decoration: underline;
+}
+
+.navbar-default {
+  background-color: #8B0000;
+}
+
+h3 {
   text-decoration: underline;
 }
