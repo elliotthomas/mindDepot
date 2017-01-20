@@ -12,6 +12,7 @@ var getPassageRouter = require ('./routes/getPassages.js');
 var getPassageByIDRouter = require ('./routes/getPassageByID.js');
 var addCounterRouter = require ('./routes/addCounter.js')
 var deletePassageRouter = require ('./routes/deletePassage.js')
+var addToDepotRouter = require('./routes/addToDepot.js')
 
 
 
@@ -25,6 +26,7 @@ app.use('/getPassages', getPassageRouter);
 app.use('/getPassageByID', getPassageByIDRouter);
 app.use('/addCounter', addCounterRouter);
 app.use('/deletePassage', deletePassageRouter);
+app.use('/addToDepot', addToDepotRouter);
 
 
 // server index file

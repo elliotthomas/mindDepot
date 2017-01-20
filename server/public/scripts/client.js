@@ -72,7 +72,7 @@ myApp.factory('passageFactory', function(){
   factory.titleByID;
   factory.sourceUrl;
   factory.counter;
-  factory.depot;
+
 
 
 
@@ -107,7 +107,6 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
         }
       });//end for each
 
-      passageFactory.depot = toDepot;
       $scope.passages = practice;
 
 
@@ -141,7 +140,54 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
       $scope.getPassages();
     };//end init function
 
+    $scope.toDepot = function () {
+      $location.path ('/depot')
+    };//end to slider
+
+
+
 }]);//end home controller
+
+
+myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$location', function($scope, $http, passageFactory,$location) {
+    console.log('In Depot Controller');
+
+    $scope.getPassages = function (){
+      console.log('In get passages function');
+      $http({
+        method: 'GET',
+        url:'/getPassages'
+      }).then(function(response) {
+        console.log('Passages back from DB ->', response.data);
+        var toDepot = [];
+        var practice = [];
+        var responses = response.data;
+
+        responses.forEach(function(passage){
+          if (passage.depot === false) {
+            practice.push(passage)
+          } else {
+            toDepot.push(passage)
+          }
+        });//end for each
+
+        $scope.passages = toDepot;
+
+      });//end http get call
+    };//end get passages function
+
+
+    $scope.toHome = function () {
+      $location.path ('/home')
+    };//end to passageinfo
+
+    $scope.init = function (){
+      $scope.getPassages();
+    };//end init function
+
+
+}]); //end depot controlller
+
 
 myApp.controller ('addPassageController', ['$scope', '$http', function ($scope, $http){
   console.log('In add passage contoller');
@@ -212,7 +258,30 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
 
     };//end delete passage
 
-    
+    $scope.addToDepot = function () {
+
+      var id = passageFactory.passageID
+
+      var addToDepot = {
+        idToSend: id
+      };
+
+      $http ({
+        method: 'PUT',
+        url: '/addToDepot',
+        data: addToDepot
+      }).then (function (response){
+        console.log('response ->', response);
+      });
+
+      $location.path ('/depot')
+
+
+    };//end add to depot function
+
+
+
+
 
 }]); //end practice controlller
 
@@ -398,19 +467,6 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
 
 }]); //end fill in blank controlller
 
-myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$location', function($scope, $http, passageFactory,$location) {
-    console.log('In Depot Controller');
-
-    $scope.depotArray = passageFactory.depot
-
-    $scope.toHome = function () {
-      $location.path ('/home')
-    };//end to passageinfo
-
-
-
-
-}]); //end depot controlller
 
 myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
     console.log('In Login Controller');
