@@ -190,12 +190,15 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
     };//end get passages function
 
     $scope.toPassageInfo= function(id){
+      console.log('in to passage info');
+      console.log('id is this ->', id);
+      passageFactory.passageID = id
 
       $http ({
       method: 'GET',
       url: '/getPassageByID/' + id
     }).then (function (response){
-      console.log('response ->', response.data[0].passage);
+      console.log('response ->', response.data[0].title);
       passageFactory.passageByID = response.data[0].passage;
       passageFactory.authorByID = response.data[0].author;
       passageFactory.titleByID = response.data[0].title;
@@ -205,6 +208,8 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
       passageFactory.depot = response.data[0].depot;
     });//end http
 
+    console.log('author ->', passageFactory.titleByID);
+
     $location.path ('/passageInfo')
 
   };//end to passage info
@@ -213,10 +218,6 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
 
     $scope.toHome = function () {
       $location.path ('/home')
-    };//end to home
-
-    $scope.toPassageInfo = function () {
-      $location.path ('/passageInfo')
     };//end to home
 
 
@@ -451,6 +452,8 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
     console.log('In Passage Info Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
+
+    console.log('author->', passageFactory.titleByID);
 
   $scope.showPassageInfo = function (){
 
