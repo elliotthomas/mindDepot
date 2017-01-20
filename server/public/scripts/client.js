@@ -251,12 +251,14 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
 
       $http ({
       method: 'DELETE',
-      url: '/deletePassage' + id
+      url: '/deletePassage/' + id
     }).then (function (response){
       console.log('response from delete ->', response);
     });
 
-    };//end delete passage
+    $location.path ('/home')
+    
+  };//end delete passage
 
     $scope.addToDepot = function () {
 
@@ -278,6 +280,9 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
 
 
     };//end add to depot function
+
+    $scope.title = passageFactory.titleByID
+    $scope.author = passageFactory.authorByID
 
 
 
