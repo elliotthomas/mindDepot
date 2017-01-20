@@ -1,3 +1,25 @@
 .angular-with-newlines {
     white-space: pre-line;
-};
+}
+
+.img-gif {
+  width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navbar-brand{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin:0 auto;
+}
+.navbar-toggle {
+    z-index:3;
+}
+
+ul {
+  list-style-type: none;
+}

@@ -2,6 +2,7 @@ console.log('IN JS');
 
 var myApp = angular.module('myApp', ['ngRoute', 'ngSanitize', 'rzModule']);
 
+
 //****CONFIG for ROUTERS****//
 
 myApp.config(['$routeProvider', function($routeProvider) {
@@ -58,6 +59,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../views/routes/depot.html',
         controller: 'depotController'
         })
+        .when('/splash', {
+        templateUrl: '../views/routes/splash.html',
+        controller: 'splashController'
+        })
 }]); //end my app config
 
 
@@ -87,6 +92,7 @@ myApp.factory('passageFactory', function(){
 
 myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$location', function ($scope, passageFactory, $http, $location){
   console.log('In home contoller');
+  $scope.mainScreen = true;
 
   $scope.getPassages = function (){
     console.log('In get passages function');
@@ -214,7 +220,7 @@ $scope.addPassage = function (){
 };//end add passage function
 }]);//end home controller
 
-myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$location', function($scope, $http, passageFactory, $location) {
+myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$location', '$timeout', function($scope, $http, passageFactory, $location, $timeout) {
     console.log('In Practice Controller');
 
     $scope.toRecite = function () {
@@ -257,7 +263,7 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
     });
 
     $location.path ('/home')
-    
+
   };//end delete passage
 
     $scope.addToDepot = function () {
@@ -276,13 +282,17 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
         console.log('response ->', response);
       });
 
-      $location.path ('/depot')
+
+
+      $location.path ('/splash')
+
 
 
     };//end add to depot function
 
     $scope.title = passageFactory.titleByID
     $scope.author = passageFactory.authorByID
+
 
 
 
@@ -471,6 +481,15 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
 
 
 }]); //end fill in blank controlller
+
+myApp.controller('splashController', ['$scope', '$http', '$location', '$timeout', function($scope, $http, $location, $timeout) {
+    console.log('In Splash Controller');
+
+    $timeout(function () {
+       $location.path ('/depot')
+   }, 1000);
+
+}]); //end splash controlller
 
 
 myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
