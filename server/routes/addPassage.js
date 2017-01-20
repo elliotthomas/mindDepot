@@ -14,7 +14,8 @@ router.post('/', function(req, res){
     author: author,
     sourceUrl: sourceUrl,
     passage: passage,
-    recited: 0
+    recited: 0,
+    depot: false
   });
   newPassage.save(function(err){
     if(err){

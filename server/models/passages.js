@@ -6,7 +6,9 @@ var PassageSchema = new Schema ({
   author: {type: String, required: true},
   sourceUrl: {type: String, required: false},
   passage: {type: String, required: true},
-  recited: {type: Number, required: false}
+  recited: {type: Number, required: false},
+  depot: {type: Boolean, require:false}
+
 });
 
 var Passages = mongoose.model('passages', PassageSchema);

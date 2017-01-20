@@ -1,11 +1,11 @@
-<div class="container" ng-init = 'init()'>
-    <div ng-repeat = 'passage in passages'>
+<div class="container">
+    <div ng-repeat = 'passage in depotArray'>
       <div ng-click = 'toPractice(passage._id)' class="panel panel-default text-center">
       <strong>{{passage.title}}</strong>
       <p>{{passage.author}}</p>
       </div>
     </div>
-  <div ng-click = 'toDepot' class="panel panel-default text-center">
-    <strong>TO THE DEPOT</strong>
+  <div ng-click = 'toHome' class="panel panel-default text-center">
+    <strong>Passages to Practice</strong>
   </div>
 </div>

@@ -50,7 +50,17 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../views/routes/slider.html',
         controller: 'sliderController'
         })
+        .when('/fillInBlank', {
+        templateUrl: '../views/routes/fillInBlank.html',
+        controller: 'fillInBlankController'
+        })
+        .when('/depot', {
+        templateUrl: '../views/routes/depot.html',
+        controller: 'depotController'
+        })
 }]); //end my app config
+
+
 
 //****Factory****//
 
@@ -62,11 +72,16 @@ myApp.factory('passageFactory', function(){
   factory.titleByID;
   factory.sourceUrl;
   factory.counter;
+  factory.depot;
 
 
 
   return factory
 });//end factory
+
+
+
+
 
 //****Controllers****//
 
@@ -80,8 +95,26 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
       url:'/getPassages'
     }).then(function(response) {
       console.log('Passages back from DB ->', response.data);
-      $scope.passages = response.data;
-      console.log('scope passages', $scope.passages);
+      var toDepot = [];
+      var practice = [];
+      var responses = response.data;
+
+      responses.forEach(function(passage){
+        if (passage.depot === false) {
+          practice.push(passage)
+        } else {
+          toDepot.push(passage)
+        }
+      });//end for each
+
+      passageFactory.depot = toDepot;
+      $scope.passages = practice;
+
+
+
+      console.log('practice after for each', practice);
+
+
     });//end http get call
   };//end get passages function
 
@@ -162,6 +195,10 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
       $location.path ('/slider')
     };//end to slider
 
+    $scope.tofillInBlank = function () {
+      $location.path ('/fillInBlank')
+    };//end to slider
+
     $scope.deletePassage = function () {
       var id = passageFactory.passageID
       console.log('id from factory ->', id);
@@ -174,6 +211,8 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
     });
 
     };//end delete passage
+
+    
 
 }]); //end practice controlller
 
@@ -313,10 +352,6 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
 myApp.controller('sliderController', ['$scope', '$http', 'passageFactory', function($scope, $http, passageFactory) {
     console.log('In Slider Controller');
 
-
-
-
-
 $scope.slider = {
   value: 10,
   options: {
@@ -349,6 +384,33 @@ $scope.slider = {
 
 
 }]); //end slider controlller
+
+myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', function($scope, $http, passageFactory) {
+    console.log('In Fill in Blank Controller');
+
+    var passage = passageFactory.passageByID.split(' ')
+
+    var passageWord = passage[Math.floor(Math.random()*passage.length)];
+
+
+    console.log('one word in passage ->', passageWord);
+
+
+}]); //end fill in blank controlller
+
+myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$location', function($scope, $http, passageFactory,$location) {
+    console.log('In Depot Controller');
+
+    $scope.depotArray = passageFactory.depot
+
+    $scope.toHome = function () {
+      $location.path ('/home')
+    };//end to passageinfo
+
+
+
+
+}]); //end depot controlller
 
 myApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
     console.log('In Login Controller');
