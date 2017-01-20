@@ -2,7 +2,7 @@
   <div class= 'text-center'>
     <h3>Passages Memorized:</h3>
   <div ng-repeat = 'passage in passages'>
-      <div ng-click = 'toPractice(passage._id)' class="panel panel-default text-center">
+      <div ng-click = 'toPassageInfo(passage._id)' class="panel panel-default text-center">
       <strong>{{passage.title}}</strong>
       <p>{{passage.author}}</p>
       </div>

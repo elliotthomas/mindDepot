@@ -27,15 +27,16 @@
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
+        <li ng-show= 'hideBack'><a href="#!/practice">Back</a></li>
         <li><a href="#!/home">Home</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#!addpassage">Add Passage</a></li>
+      <li><a href="#!addPassage">Add Passage</a></li>
     </ul>
   </div>
   </nav>
-  <div class="text-center" ng-hide='mainScreen'>
-    <h2>Welcome to Mind Depot,Name!</h2>
+  <div class="text-center" ng-hide='hideIt'>
+    <h1>Welcome to Mind Depot,Name!</h1>
     <ul>
       <li><a href="#!/home">Practice passage</a></li>
       <li><a href="#!/depot">The Depot</a></li>

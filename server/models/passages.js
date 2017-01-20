@@ -5,6 +5,7 @@ var PassageSchema = new Schema ({
   title: {type: String, required: true},
   author: {type: String, required: true},
   sourceUrl: {type: String, required: false},
+  imageUrl: {type: String, required: false},
   passage: {type: String, required: true},
   recited: {type: Number, required: false},
   depot: {type: Boolean, require:false}

@@ -8,11 +8,15 @@ router.post('/', function(req, res){
   var author = req.body.author;
   var sourceUrl = req.body.sourceUrl;
   var passage = req.body.passage;
+  var imageUrl = req.body.imageUrl;
+
+  console.log('image url', imageUrl);
 
   var newPassage = new Passage ({
     title: title,
     author: author,
     sourceUrl: sourceUrl,
+    imageUrl: imageUrl,
     passage: passage,
     recited: 0,
     depot: false
