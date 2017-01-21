@@ -517,12 +517,30 @@ myApp.controller('loginController', ['$scope', '$http', '$rootScope', function($
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
 
+    $scope.login = function() {
+    console.log($scope.username, $scope.password);
+
+    var toSend = {
+      username: $scope.username,
+      password: $scope.password
+    };
+
+    $http({
+      method: 'POST',
+      url: '/login',
+      data: toSend
+    }).then(function(response) {
+      console.log('login success');
+    });
+  };
+
 }]); //end login controlller
 
-myApp.controller('registerController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+myApp.controller('registerController', ['$scope', '$http', '$rootScope', '$location', function($scope, $http, $rootScope, $location) {
     console.log('IN register controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
+    
     $scope.registerUser = function() {
         var user = {
             username: $scope.username,
@@ -531,10 +549,11 @@ myApp.controller('registerController', ['$scope', '$http', '$rootScope', functio
 
         $http({
             method: 'POST',
-            url: '/',
+            url: '/register',
             data: user
         }).then(function successCallback(response) {
           console.log(response);
+          $location.path ('/login')
         }, function errorCallback(error) {
             console.log('error occurred!');
         }); //end http post
