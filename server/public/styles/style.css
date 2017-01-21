@@ -1,5 +1,23 @@
+@font-face {
+  font-family: 'myFont';
+  src: url('/bestFont.woff2') format ('woff2'),
+        url('/bestFont.woff') format ('woff');
+}
+
+@font-face {
+  font-family: 'myFontTwo';
+  src: url('/bestFontTwo.woff2') format ('woff2'),
+        url('/bestFontTwo.woff') format ('woff');
+}
+
+
 .angular-with-newlines {
     white-space: pre-line;
+}
+
+body{
+  background-color: #FFFFFF;
+  font-family: 'myFont', 'myFontTwo', 'sans-serif';
 }
 
 .img-gif {
@@ -41,4 +59,9 @@ h2 {
 
 h3 {
   text-decoration: underline;
+}
+
+.bottom {
+  border-style: solid;
+  background:#bfbfbf;
 }
