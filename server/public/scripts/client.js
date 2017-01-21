@@ -1,6 +1,6 @@
 console.log('IN JS');
 
-var myApp = angular.module('myApp', ['ngRoute', 'ngSanitize', 'rzModule']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngSanitize']);
 
 
 //****CONFIG for ROUTERS****//

@@ -3,24 +3,16 @@
     <h3>Passages to Practice</h3>
   </div>
     <div ng-repeat = 'passage in passages'>
-      <div ng-click = 'toPractice(passage._id)' class="panel panel-default text-center">
-      <strong>{{passage.title}}</strong>
-      <p>{{passage.author}}</p>
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+      <div class="btn-group" role="group">
+        <button ng-click = 'toPractice(passage._id)'  type="button" class="btn btn-default"><strong>{{passage.title}}</strong> <p>{{passage.author}}</p></button>
       </div>
     </div>
-  <div ng-click = 'toDepot()' class="panel panel-default text-center">
-    <strong>THE DEPOT</strong>
-  </div>
+    </div>
 
   <div class="btn-group btn-group-justified" role="group" aria-label="...">
   <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default">Left</button>
-  </div>
-  <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default">Middle</button>
-  </div>
-  <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default">Right</button>
+    <button ng-click = 'toDepot()' type="button" class="btn btn-default home-depot">The Depot <span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span></button>
   </div>
 </div>
 
