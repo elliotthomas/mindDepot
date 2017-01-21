@@ -512,7 +512,7 @@ myApp.controller('splashController', ['$scope', '$http', '$location', '$timeout'
 }]); //end splash controlller
 
 
-myApp.controller('loginController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+myApp.controller('loginController', ['$scope', '$http', '$rootScope','$location', function($scope, $http, $rootScope, $location) {
     console.log('In Login Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
@@ -530,7 +530,7 @@ myApp.controller('loginController', ['$scope', '$http', '$rootScope', function($
       url: '/login',
       data: toSend
     }).then(function(response) {
-      console.log('login success');
+      $location.path ('/home')
     });
   };
 
@@ -540,7 +540,7 @@ myApp.controller('registerController', ['$scope', '$http', '$rootScope', '$locat
     console.log('IN register controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
-    
+
     $scope.registerUser = function() {
         var user = {
             username: $scope.username,

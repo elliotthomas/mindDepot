@@ -32,6 +32,35 @@
   font-size: 35px;
 }
 
+.loginRegister a {
+  font-family: 'myFontThree', sans-serif;
+  color: #8B0000;
+  text-decoration: underline;
+  font-size: 10px;
+}
+
+form {
+  width: 250px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-success {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background: #8B0000;
+  border-color: #8B0000;
+}
+
+.btn-success:active:focus {
+  background: #8B0000;
+  border-color: #8B0000;
+  box-shadow: none;
+}
+
+
 .img-gif {
   width: 300px;
   display: block;
@@ -73,6 +102,10 @@ ul {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+h1 {
+  font-family: 'myFontThree', sans-serif;
 }
 
 h2 {
