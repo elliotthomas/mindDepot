@@ -1,13 +1,19 @@
 @font-face {
   font-family: 'myFont';
-  src: url('/bestFont.woff2') format ('woff2'),
-        url('/bestFont.woff') format ('woff');
+  src: url('bestFont.woff2'),
+        url('bestFont.woff');
 }
 
 @font-face {
   font-family: 'myFontTwo';
-  src: url('/bestFontTwo.woff2') format ('woff2'),
-        url('/bestFontTwo.woff') format ('woff');
+  src: url('bestFontTwo.woff2'),
+        url('bestFontTwo.woff');
+}
+
+@font-face {
+  font-family: 'myFontThree';
+  src: url('bestFontThree.woff2'),
+        url('bestFontThree.woff');
 }
 
 
@@ -15,9 +21,15 @@
     white-space: pre-line;
 }
 
-body{
-  background-color: #FFFFFF;
-  font-family: 'myFont', 'myFontTwo', 'sans-serif';
+#welcome {
+  font-family: 'myFontThree', sans-serif;
+  font-size: 44px;
+}
+
+.list {
+  font-family: 'myFontThree', sans-serif;
+  color: black;
+  font-size: 35px;
 }
 
 .img-gif {
@@ -25,6 +37,20 @@ body{
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.my-navbar .navbar-brand {
+  color: black;
+  font-size: 50px;
+}
+
+.navbar-default .navbar-nav>li>a{
+  color:black;
+}
+
+.list a {
+  text-decoration: underline;
+  color: #8B0000;
 }
 
 .navbar-brand{
@@ -53,8 +79,11 @@ h2 {
   text-decoration: underline;
 }
 
-.navbar-default {
-  background-color: #8B0000;
+
+
+.navbar {
+  font-family: 'myFontThree', sans-serif;
+  background: #8B0000;
 }
 
 h3 {
