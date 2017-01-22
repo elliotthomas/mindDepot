@@ -97,6 +97,8 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
   $rootScope.hideBack = false;
   $rootScope.hideNav = false;
   $rootScope.hideFooter = false;
+  $rootScope.hideAddToDepot = true;
+  $rootScope.hideInfo = true;
 
   $scope.getPassages = function (){
     console.log('In get passages function');
@@ -167,6 +169,8 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
     $rootScope.hideBack = false;
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
+    $rootScope.hideAddToDepot = true;
+    $rootScope.hideInfo = true;
 
     $scope.getPassages = function (){
       console.log('In get passages function');

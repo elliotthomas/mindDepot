@@ -21,6 +21,7 @@ html {
   min-height: 100%;
 }
 body {
+  padding-top: 60px;
   margin-bottom: 60px;
   background-color: #e5e5e5;
 }
@@ -49,20 +50,32 @@ ul {
 }
 
 
+
 .angular-with-newlines {
     white-space: pre-line;
 }
 
-#welcome {
-  font-family: 'myFontThree', sans-serif;
-  font-size: 44px;
-}
 
 .depot-passage {
   padding-top: 15px;
   font-family: 'myFontThree', sans-serif;
-  font-size: 10x;
-  color: #cccccc;
+  font-size: 14px;
+}
+
+h1.header-text {
+  margin-top: 0px;
+  font-size: 60px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.depot-passage.middle {
+  padding-top: 0px;
+  color: white;
+}
+
+.depot-passage.head a:link {
+  color: white;
 }
 
 .depot-passage a:link {
@@ -73,8 +86,8 @@ ul {
   color: white;
 }
 
-.depot-passage:focus {
-  color: white;
+.depot-passage.head:focus {
+  color: black;
 }
 
 .list {
@@ -112,30 +125,12 @@ ul {
   margin-right: auto;
 }
 
-.my-navbar .navbar-brand {
-  color: black;
-  font-size: 50px;
-}
 
 .navbar-default .navbar-nav>li>a{
   color:black;
 }
 
-.list a {
-  text-decoration: underline;
-  color: #8B0000;
-}
 
-.navbar-brand{
-    position: absolute;
-    width: 100%;
-    left: 0;
-    text-align: center;
-    margin:0 auto;
-}
-.navbar-toggle {
-    z-index:3;
-}
 
 .img-author{
   width: 80px;
@@ -165,4 +160,12 @@ ul {
   width: 100%;
   height: 60px;
   background-color: #808080;
+}
+
+nav.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #8B0000;
 }
