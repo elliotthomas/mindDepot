@@ -59,6 +59,9 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../views/routes/splash.html',
         controller: 'splashController'
         })
+        .otherwise({
+			  redirectTo: '/login'
+		    });
 }]); //end my app config
 
 
@@ -92,6 +95,8 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
   console.log('In home contoller');
   $rootScope.hideIt = true;
   $rootScope.hideBack = false;
+  $rootScope.hideNav = false;
+  $rootScope.hideFooter = false;
 
   $scope.getPassages = function (){
     console.log('In get passages function');
@@ -160,6 +165,8 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
     console.log('In Depot Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
+    $rootScope.hideNav = false;
+    $rootScope.hideFooter = false;
 
     $scope.getPassages = function (){
       console.log('In get passages function');
@@ -225,10 +232,12 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
 }]); //end depot controlller
 
 
-myApp.controller ('addPassageController', ['$scope', '$http','$rootScope', function ($scope, $http, $rootScope){
+myApp.controller ('addPassageController', ['$scope', '$http','$rootScope', '$location', function ($scope, $http, $rootScope, $location){
   console.log('In add passage contoller');
   $rootScope.hideIt = true;
   $rootScope.hideBack = false;
+  $rootScope.hideNav = false;
+  $rootScope.hideFooter = false;
 
 $scope.addPassage = function (){
   var passage = $scope.passage.split('\n');
@@ -250,6 +259,9 @@ $scope.addPassage = function (){
   }).then (function (response){
     console.log('response ->', response);
   });
+
+  $location.path ('/home')
+
 };//end add passage function
 }]);//end add passage controller
 
@@ -257,6 +269,8 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
     console.log('In Practice Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
+    $rootScope.hideNav = false;
+    $rootScope.hideFooter = false;
     $scope.title = passageFactory.titleByID
     $scope.author = passageFactory.authorByID
 
@@ -317,6 +331,8 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory','$root
     console.log('In Recite Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
+    $rootScope.hideNav = false;
+    $rootScope.hideFooter = false;
     console.log('id from factory ->', passageFactory.passageID );
 
 
@@ -372,6 +388,8 @@ myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '
     console.log('In Word by Word Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
+    $rootScope.hideNav = false;
+    $rootScope.hideFooter = false;
     var passage = passageFactory.passageByID
     var index = 1;
 
@@ -398,6 +416,8 @@ myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '
     console.log('In Line by Line Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
+    $rootScope.hideNav = false;
+    $rootScope.hideFooter = false;
     var passage = passageFactory.passageByID
     var index = 1;
 
@@ -431,6 +451,8 @@ myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootS
     console.log('In write Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
+    $rootScope.hideNav = false;
+    $rootScope.hideFooter = false;
 
     $scope.compare = function(){
       var passageOriginal = passageFactory.passageByID
@@ -450,6 +472,8 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
     console.log('In Passage Info Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
+    $rootScope.hideNav = false;
+    $rootScope.hideFooter = false;
 
     console.log('author->', passageFactory.titleByID);
 
@@ -489,6 +513,8 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     console.log('In Fill in Blank Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
+    $rootScope.hideNav = false;
+    $rootScope.hideFooter = false;
 
     var passage = passageFactory.passageByID.split(' ')
 
@@ -504,6 +530,8 @@ myApp.controller('splashController', ['$scope', '$http', '$location', '$timeout'
     console.log('In Splash Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
+    $rootScope.hideNav = true;
+    $rootScope.hideFooter = true;
 
     $timeout(function () {
        $location.path ('/depot')
@@ -516,6 +544,8 @@ myApp.controller('loginController', ['$scope', '$http', '$rootScope','$location'
     console.log('In Login Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
+    $rootScope.hideNav = true;
+    $rootScope.hideFooter = true;
 
     $scope.login = function() {
     console.log($scope.username, $scope.password);
@@ -540,6 +570,8 @@ myApp.controller('registerController', ['$scope', '$http', '$rootScope', '$locat
     console.log('IN register controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
+    $rootScope.hideNav = true;
+    $rootScope.hideFooter = true;
 
     $scope.registerUser = function() {
         var user = {

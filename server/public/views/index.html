@@ -15,42 +15,58 @@
 </head>
 
 <body ng-app='myApp'>
-  <div class="container">
-  <nav class="my-navbar navbar navbar-default" role="navigation">
+  <nav ng-hide = 'hideNav' class="my-navbar navbar navbar-default" role="navigation">
+    <div class="container-fluid">
   <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
     <a ng-hide = 'fullBrand' class="navbar-brand" href="#">MIND DEPOT</a>
-    <a ng-show = 'initialBrand' class="navbar-brand" href="#">MD</a>
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
         <li ng-show= 'hideBack'><a href="#!/practice">Back</a></li>
-        <li ng-show = 'hideHome'><a href="#!/home"><span class = 'glyphicon glyphicon-home'></span></a></li>
-        <li ng-show = 'hideAdd'><a href="#!addPassage"><span class = 'glyphicon glyphicon-plus-sign'></span></a></li>
+        <li><a href="#!/home"><span class = 'glyphicon glyphicon-home'></span></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li ng-show ='hideRegister'><a href="#!register">Register</a></li>
-      <li ng-show ='hideLogin'><a href="#!login">Login</a></li>
+      <li><a href="#!addPassage"><span class = 'glyphicon glyphicon-plus-sign'></span></a></li>
       <li ng-show ='hideLogout'><a href="#!addPassage">Log Out</a></li>
     </ul>
   </div>
+</div>
   </nav>
+  <div class="container-fluid">
   <div class="text-center" ng-hide='hideIt'>
     <ul class = 'list'>
       <li><a href="#!/register">Register</a></li>
       <li><a href="#!/login">Login</a></li>
     </ul>
-  </div>
+</div>
 </div>
 
 
 
+<main ng-view></main>
 
-    <main ng-view></main>
+<footer ng-hide = 'hideFooter' class = 'footer'>
+  <div class="container-fluid">
+
+  <div class = 'row'>
+    <a href="#!home">
+    <div class="col-md-6 col-xs-6 text-center depot-passage">
+      <a href="#!home">
+      <span class="glyphicon glyphicon-list"></span>
+      <p>Passages</p>
+      </a>
+    </div>
+    <div class="col-md-6 col-xs-6 text-center depot-passage">
+      <a href="#!depot">
+      <span class="glyphicon glyphicon-lock"></span>
+      <p>The Depot</p>
+    </a>
+    </div>
+
+  </div>
+  </div>
+</footer>
+
 
 </body>
 
