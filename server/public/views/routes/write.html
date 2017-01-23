@@ -1,19 +1,18 @@
+<div ng-bind-html = 'outputText' class = "angular-with-newlines">
+</div>
+<div ng-hide = 'hideText' class="form-group write">
+    <textarea ng-model="passageFromUser" type="text" class="form-control" rows = '20' placeholder="See if you can write passage. Remember to include puncation and line breaks"></textarea>
+</div>
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
 <div class="btn-group" role="group">
-  <button ng-click = 'toPractice()'type="button" class="btn btn-default">Pracitce</button>
+  <button ng-click = 'compare()'  type="button" class="btn btn-default write">
+    <span class="glyphicon glyphicon-tasks"></span>
+    <p>Compare to Original Passage</p>
+  </button>
 </div>
 </div>
-<form>
-<div class="form-group">
-    <label for="passage">Passage:</label>
-    <textarea ng-model="passageFromUser" type="text" class="form-control" rows = '20'></textarea>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+<div class="btn-group" role="group">
+  <button ng-click = 'reset()'  type="button" class="btn btn-default write">Reset</button>
 </div>
-<div>
-    <input ng-click="compare()" type="submit" value="Compare to Original Text" class="btn btn-success"/>
-</div>
-<div>
-    <input ng-click="reset()" type="submit" value="Reset" class="btn btn-danger"/>
-</div>
-</form>
-<div ng-bind-html = 'outputText' class = "angular-with-newlines">
 </div>

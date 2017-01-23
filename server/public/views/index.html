@@ -45,6 +45,45 @@
             </div>
     </nav>
 
+    <nav ng-show='hideNavTwo' class='navbar-fixed-top header-two'>
+        <div class="container-fluid">
+
+            <div class='row'>
+                <a href="#!home">
+                    <div class="col-md-4 col-xs-4 text-center depot-passage head">
+
+                        <a href="#!home">
+                            <span class='glyphicon glyphicon-home'></span>
+                            <p>Home</p>
+                        </a>
+
+                    </div>
+
+                    <div class="col-md-4 col-xs-4 text-center depot-passage middle">
+                        <h1 class='header-text'>MD</h1>
+                    </div>
+
+                    <div class="col-md-4 col-xs-4 text-center depot-passage head">
+
+                        <a href="#!addPassage">
+                            <span class='glyphicon glyphicon-plus-sign'></span>
+                            <p>Add Passage</p>
+                        </a>
+
+
+                    </div>
+            </div>
+    </nav>
+
+
+
+
+
+
+
+
+
+
 
     <main ng-view></main>
 
@@ -59,9 +98,13 @@
                             <span class="glyphicon glyphicon-list"></span>
                             <p>Passages</p>
                         </a>
-                        <a ng-hide='hideInfo' href="#!passageInfo">
+                        <a ng-hide='hideInfo' href="#!depotInfo">
                             <span class="glyphicon glyphicon-info-sign"></span>
                             <p>Info</p>
+                        </a>
+                        <a ng-hide='practiceInfo' href="#!practice">
+                            <span class="glyphicon glyphicon-list"></span>
+                            <p>Practice</p>
                         </a>
                     </div>
                     <div class="col-md-4 col-xs-4 text-center depot-passage" id='logout'>

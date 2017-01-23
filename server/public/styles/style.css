@@ -16,6 +16,11 @@
         url('bestFontThree.woff');
 }
 
+::-webkit-input-placeholder {
+  font-family: 'Courier New', monospace, sans-serif;
+}
+
+
 html {
   position: relative;
   min-height: 100%;
@@ -33,13 +38,18 @@ body {
   margin-right: auto;
 }
 
+.form-group.write {
+  margin-bottom: 0px;
+}
+
 h1 {
   font-family: 'myFontThree', sans-serif;
   font-size: 70px;
 }
 
 h2 {
-  text-decoration: underline;
+  font-family: 'myFontThree', sans-serif;
+  font-size: 44px;
 }
 
 h3 {
@@ -50,6 +60,36 @@ ul {
   list-style-type: none;
 }
 
+.form-group.add {
+  margin-bottom: 0px;
+}
+
+button.btn.btn-default.write {
+  background-color: green;
+  width: 250px;
+
+}
+
+button.btn.btn-default.save {
+  height: 45px;
+}
+
+p {
+  font-family: 'myFontThree', sans-serif;
+  margin-bottom: 0px;
+  font-size: 12px;
+}
+
+.title p {
+  font-family: 'myFontThree', sans-serif;
+  font-size: 26px;
+
+}
+
+.title {
+  font-size: 26px;
+  text-decoration: underline;
+}
 
 
 .angular-with-newlines {
@@ -169,4 +209,12 @@ nav.header {
   width: 100%;
   height: 60px;
   background-color: #8B0000;
+}
+
+nav.header-two {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #000000;
 }

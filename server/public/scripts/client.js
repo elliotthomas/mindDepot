@@ -97,12 +97,16 @@ myApp.factory('passageFactory', function(){
 
 myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$location', '$rootScope', function ($scope, passageFactory, $http, $location, $rootScope){
   console.log('In home contoller');
-  $rootScope.hideIt = true;
-  $rootScope.hideBack = false;
   $rootScope.hideNav = false;
   $rootScope.hideFooter = false;
   $rootScope.hideAddToDepot = true;
   $rootScope.hideInfo = true;
+  $rootScope.hidePassage = false;
+  $rootScope.hideDepot = false;
+  $rootScope.hideNavTwo = false;
+  $rootScope.practiceButton = false;
+  $rootScope.practiceInfo = true;
+
 
   $scope.getPassages = function (){
     console.log('In get passages function');
@@ -171,10 +175,14 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
     console.log('In Depot Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
-    $rootScope.hideNav = false;
+    $rootScope.hideNav = true;
     $rootScope.hideFooter = false;
     $rootScope.hideAddToDepot = true;
     $rootScope.hideInfo = true;
+    $rootScope.hidePassage = false;
+    $rootScope.hideDepot = false;
+    $rootScope.hideNavTwo = true;
+    $rootScope.practiceInfo = true;
 
     $scope.getPassages = function (){
       console.log('In get passages function');
@@ -200,7 +208,7 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
       });//end http get call
     };//end get passages function
 
-    $scope.toPassageInfo= function(id){
+    $scope.toDepotInfo= function(id){
       console.log('in to passage info');
       console.log('id is this ->', id);
       passageFactory.passageID = id
@@ -221,7 +229,8 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
 
     console.log('author ->', passageFactory.titleByID);
 
-    $location.path ('/passageInfo')
+    $rootScope.practiceButton = true;
+    $location.path ('/depotInfo')
 
   };//end to passage info
 
@@ -239,8 +248,47 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
 
 }]); //end depot controlller
 
-myApp.controller('depotInfoController', ['$scope', '$http', '$location', '$timeout', '$rootScope', function($scope, $http, $location, $timeout, $rootScope) {
+myApp.controller('depotInfoController', ['$scope', '$http', '$location', '$timeout', '$rootScope', 'passageFactory', function($scope, $http, $location, $timeout, $rootScope, $passageFactory) {
     console.log('In Depot Info Controller');
+    $rootScope.hideNav = false;
+    $rootScope.hideFooter = false;
+    $rootScope.hideAddToDepot = true;
+    $rootScope.hideInfo = true;
+    $rootScope.hidePassage = false;
+    $rootScope.hideDepot = false;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceInfo = true;
+
+    $scope.toPractice = function () {
+      $location.path ('/practice')
+    };//end to write
+
+    $scope.toPassageInfo = function () {
+      $location.path ('/passageInfo')
+    };//end to write
+
+
+
+    $scope.deletePassage = function () {
+        var id = passageFactory.passageID
+        console.log('id from factory ->', id);
+
+        $http ({
+        method: 'DELETE',
+        url: '/deletePassage/' + id
+      }).then (function (response){
+        console.log('response from delete ->', response);
+      });
+
+      console.log('passage facory true or false', passageFactory.depot );
+
+      if (passageFactory.depot == false){
+        $location.path ('/home')
+      } else {
+        $location.path ('/depot')
+      }
+
+    };//end delete passage
 
 
 }]); //end depot info controlller
@@ -252,6 +300,13 @@ myApp.controller ('addPassageController', ['$scope', '$http','$rootScope', '$loc
   $rootScope.hideBack = false;
   $rootScope.hideNav = false;
   $rootScope.hideFooter = false;
+  $rootScope.hideInfo = true;
+  $rootScope.hideAddToDepot = true;
+  $rootScope.hidePassage = false;
+  $rootScope.hideDepot = false;
+  $rootScope.hideNavTwo = false;
+  $rootScope.practiceButton = false;
+  $rootScope.practiceInfo = true;
 
 $scope.addPassage = function (){
   var passage = $scope.passage.split('\n');
@@ -282,9 +337,17 @@ $scope.addPassage = function (){
 myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$location', '$timeout', '$rootScope', function($scope, $http, passageFactory, $location, $timeout, $rootScope) {
     console.log('In Practice Controller');
     $rootScope.hideIt = true;
-    $rootScope.hideBack = false;
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
+    $rootScope.hideInfo = false;
+    $rootScope.hideAddToDepot = false;
+    $rootScope.hidePassage = true;
+    $rootScope.hideDepot = true;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
+    $rootScope.practiceInfo = true;
+
+
     $scope.title = passageFactory.titleByID
     $scope.author = passageFactory.authorByID
 
@@ -313,30 +376,6 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
       $location.path ('/fillInBlank')
     };//end to fill in blank
 
-    $scope.addToDepot = function () {
-
-      var id = passageFactory.passageID
-
-      var addToDepot = {
-        idToSend: id
-      };
-
-      $http ({
-        method: 'PUT',
-        url: '/addToDepot',
-        data: addToDepot
-      }).then (function (response){
-        console.log('response ->', response);
-      });
-
-
-
-      $location.path ('/splash')
-
-
-
-    };//end add to depot function
-
 }]); //end practice controlller
 
 
@@ -347,6 +386,14 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory','$root
     $rootScope.hideBack = true;
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
+    $rootScope.hideInfo = true;
+    $rootScope.hideAddToDepot = false;
+    $rootScope.hidePassage = true;
+    $rootScope.hideDepot = true;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
+    $rootScope.practiceInfo = false;
+
     console.log('id from factory ->', passageFactory.passageID );
 
     $scope.toPractice = function () {
@@ -408,6 +455,14 @@ myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '
     $rootScope.hideBack = true;
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
+    $rootScope.hideInfo = true;
+    $rootScope.hideAddToDepot = false;
+    $rootScope.hidePassage = true;
+    $rootScope.hideDepot = true;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
+    $rootScope.practiceInfo = false;
+
     var passage = passageFactory.passageByID
     var index = 1;
 
@@ -440,6 +495,14 @@ myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '
     $rootScope.hideBack = true;
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
+    $rootScope.hideInfo = true;
+    $rootScope.hideAddToDepot = false;
+    $rootScope.hidePassage = true;
+    $rootScope.hideDepot = true;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
+    $rootScope.practiceInfo = false;
+
     var passage = passageFactory.passageByID
     var index = 1;
 
@@ -479,6 +542,14 @@ myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootS
     $rootScope.hideBack = true;
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
+    $rootScope.hideInfo = true;
+    $rootScope.hideAddToDepot = false;
+    $rootScope.hidePassage = true;
+    $rootScope.hideDepot = true;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
+    $rootScope.practiceInfo = false;
+
 
     $scope.toPractice = function () {
       $location.path ('/practice')
@@ -488,6 +559,7 @@ myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootS
       var passageOriginal = passageFactory.passageByID
       var passageUser = $scope.passageFromUser
       $scope.outputText = diffString(passageUser, passageOriginal)
+      $rootScope.hideText = true;
     };//end compare
 
     $scope.reset = function (){
@@ -504,6 +576,13 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
     $rootScope.hideBack = false;
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
+    $rootScope.hideInfo = true;
+    $rootScope.hideAddToDepot = true;
+    $rootScope.hidePassage = false;
+    $rootScope.hideDepot = false;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
+    $rootScope.practiceInfo = true;
 
     console.log('author->', passageFactory.titleByID);
 
@@ -516,27 +595,6 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
 
   };//end show passage info
 
-$scope.deletePassage = function () {
-    var id = passageFactory.passageID
-    console.log('id from factory ->', id);
-
-    $http ({
-    method: 'DELETE',
-    url: '/deletePassage/' + id
-  }).then (function (response){
-    console.log('response from delete ->', response);
-  });
-
-  console.log('passage facory true or false', passageFactory.depot );
-
-  if (passageFactory.depot == false){
-    $location.path ('/home')
-  } else {
-    $location.path ('/depot')
-  }
-
-};//end delete passage
-
 }]); //end passage info controlller
 
 myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
@@ -545,6 +603,13 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     $rootScope.hideBack = true;
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
+    $rootScope.hideInfo = true;
+    $rootScope.hideAddToDepot = false;
+    $rootScope.hidePassage = true;
+    $rootScope.hideDepot = true;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
+    $rootScope.practiceInfo = false;
 
     $scope.toPractice = function () {
       $location.path ('/practice')
@@ -560,12 +625,42 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
 
 }]); //end fill in blank controlller
 
-myApp.controller('splashController', ['$scope', '$http', '$location', '$timeout', '$rootScope', function($scope, $http, $location, $timeout, $rootScope) {
+myApp.controller('splashController', ['$scope', '$http', '$location', '$timeout', '$rootScope', 'passageFactory', function($scope, $http, $location, $timeout, $rootScope, passageFactory) {
     console.log('In Splash Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
     $rootScope.hideNav = true;
     $rootScope.hideFooter = true;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
+
+    $scope.init = function () {
+      addToDepot();
+    }
+
+  var addToDepot = function () {
+
+    console.log('in add to depot');
+
+      var id = passageFactory.passageID
+
+      var addToDepot = {
+        idToSend: id
+      };
+
+      $http ({
+        method: 'PUT',
+        url: '/addToDepot',
+        data: addToDepot
+      }).then (function (response){
+        console.log('response ->', response);
+      });
+
+    };//end add to depot function
+
+    $scope.init = function () {
+      addToDepot();
+    }
 
     $timeout(function () {
        $location.path ('/depot')
@@ -580,6 +675,8 @@ myApp.controller('loginController', ['$scope', '$http', '$rootScope','$location'
     $rootScope.hideBack = false;
     $rootScope.hideNav = true;
     $rootScope.hideFooter = true;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
 
     $scope.login = function() {
     console.log($scope.username, $scope.password);
@@ -606,6 +703,8 @@ myApp.controller('registerController', ['$scope', '$http', '$rootScope', '$locat
     $rootScope.hideBack = false;
     $rootScope.hideNav = true;
     $rootScope.hideFooter = true;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
 
     $scope.registerUser = function() {
         var user = {
