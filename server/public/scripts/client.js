@@ -63,6 +63,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../views/routes/depotInfo.html',
         controller: 'depotInfoController'
         })
+        .when('/splashTwo', {
+        templateUrl: '../views/routes/splashTwo.html',
+        controller: 'splashTwoController'
+        })
         .otherwise({
 			  redirectTo: '/login'
 		    });
@@ -155,7 +159,7 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
       passageFactory.depot = response.data[0].depot;
     });//end http
 
-    $location.path('/practice')
+    $location.path('/splashTwo')
   };//end practice function
 
     $scope.init = function (){
@@ -346,10 +350,8 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
     $rootScope.hideNavTwo = false;
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = true;
-
-
-    $scope.title = passageFactory.titleByID
-    $scope.author = passageFactory.authorByID
+    $rootScope.blackBack = true;
+    $rootScope.whiteBack = false;
 
     $scope.toRecite = function () {
       $location.path ('/recite')
@@ -375,6 +377,19 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
     $scope.tofillInBlank = function () {
       $location.path ('/fillInBlank')
     };//end to fill in blank
+
+    $scope.showPassageInfo = function (){
+
+      $scope.titleInfo = passageFactory.titleByID;
+      $scope.authorInfo = passageFactory.authorByID;
+      $scope.sourceUrlInfo = passageFactory.sourceUrl;
+      $scope.imageUrlInfo = passageFactory.imageUrl;
+
+    };//end show passage info
+
+
+
+    $scope.showPassageInfo();
 
 }]); //end practice controlller
 
@@ -502,6 +517,7 @@ myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '
     $rootScope.hideNavTwo = false;
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = false;
+    $rootScope.blackBack = true;
 
     var passage = passageFactory.passageByID
     var index = 1;
@@ -558,7 +574,8 @@ myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootS
     $scope.compare = function(){
       var passageOriginal = passageFactory.passageByID
       var passageUser = $scope.passageFromUser
-      $scope.outputText = diffString(passageUser, passageOriginal)
+      console.log('diffstring', diffString(passageUser, passageOriginal));
+      $scope.outputText = diffString(passageUser, passageOriginal);
       $rootScope.hideText = true;
     };//end compare
 
@@ -597,7 +614,7 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
 
 }]); //end passage info controlller
 
-myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', '$sce', function($scope, $http, passageFactory, $rootScope, $location, $sce) {
+myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
     console.log('In Fill in Blank Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
@@ -613,9 +630,8 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
 
     console.log('passageByID', passageFactory.passageByID);
 
-    $scope.$sce = $sce;
 
-    $scope.passageQuestions = passageFactory.passageByID;
+    $scope.passageQuestions = [passageFactory.passageByID]
 
     var randomIntFromInterval = function (min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
@@ -635,9 +651,13 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
         }
     };
     init();
-    $scopereset = function () {
+    $scope.reset = function () {
         init();
     };
+
+    var thing = '<h1>' + $scope.passageArry + '</h1>'
+
+    console.log('passage', thing);
 
 }]); //end fill in blank controlller
 
@@ -649,6 +669,7 @@ myApp.controller('splashController', ['$scope', '$http', '$location', '$timeout'
     $rootScope.hideFooter = true;
     $rootScope.hideNavTwo = false;
     $rootScope.practiceButton = false;
+
 
     $scope.init = function () {
       addToDepot();
@@ -680,6 +701,24 @@ myApp.controller('splashController', ['$scope', '$http', '$location', '$timeout'
 
     $timeout(function () {
        $location.path ('/depot')
+   }, 1000);
+
+}]); //end splash controlller
+
+myApp.controller('splashTwoController', ['$scope', '$http', '$location', '$timeout', '$rootScope', 'passageFactory', function($scope, $http, $location, $timeout, $rootScope, passageFactory) {
+    console.log('In Splash Controller');
+    $rootScope.hideIt = true;
+    $rootScope.hideBack = false;
+    $rootScope.hideNav = true;
+    $rootScope.hideFooter = true;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
+    $rootScope.blackBack = true;
+    $rootScope.whiteBack = false;
+
+
+    $timeout(function () {
+       $location.path ('/practice')
    }, 1000);
 
 }]); //end splash controlller

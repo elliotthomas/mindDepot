@@ -1,18 +1,17 @@
+<div>
+    <button ng-click="reset()" type="submit" class="btn btn-large btn-block btn-danger"/>
+    <span class="glyphicon glyphicon-repeat"></span>
+    <p>Reset</p>
+   </button>
+</div>
+<div>
+    <button ng-click="compare()" type="submit" class="btn btn-large btn-block btn-primary"/>
+    <span class="glyphicon glyphicon-tasks"></span>
+    <p>Compare</p>
+   </button>
+</div>
 <div ng-bind-html = 'outputText' class = "angular-with-newlines">
 </div>
 <div ng-hide = 'hideText' class="form-group write">
     <textarea ng-model="passageFromUser" type="text" class="form-control" rows = '20' placeholder="See if you can write passage. Remember to include puncation and line breaks"></textarea>
-</div>
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
-<div class="btn-group" role="group">
-  <button ng-click = 'compare()'  type="button" class="btn btn-default write">
-    <span class="glyphicon glyphicon-tasks"></span>
-    <p>Compare to Original Passage</p>
-  </button>
-</div>
-</div>
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
-<div class="btn-group" role="group">
-  <button ng-click = 'reset()'  type="button" class="btn btn-default write">Reset</button>
-</div>
 </div>

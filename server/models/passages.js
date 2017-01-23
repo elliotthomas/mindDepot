@@ -8,7 +8,8 @@ var PassageSchema = new Schema ({
   imageUrl: {type: String, required: false},
   passage: {type: String, required: true},
   recited: {type: Number, required: false},
-  depot: {type: Boolean, require:false}
+  depot: {type: Boolean, require:false},
+  
 
 });
 

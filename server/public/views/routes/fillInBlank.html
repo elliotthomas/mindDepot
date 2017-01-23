@@ -1,10 +1,28 @@
 <span ng-repeat="passage in passageArry track by $index"
       ng-class="{'blank':$index== randomWordNumber}">
-    <span ng-if="$index!= randomWordNumber" ng-bind-html="$sce.trustAsHtml(passage)"></span>
+    <span ng-if="$index!= randomWordNumber" ng-bind-html = 'passage' class = "angular-with-newlines"></span>
 </span>
 
 <div>
-<input type="text" ng-model="guess"/>
-<input type="button" ng-click="guessIt()" value="Guess"/>
-<input type="button" ng-click="reset()" value="Reset"/>
+
+<div class="form-group">
+    <input ng-model="guess" type="text" class="form-control" placeholder="Guess The Word" />
+</div>
+
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+<div class="btn-group" role="group">
+  <button ng-click = 'guessIt ()'  type="text" class="btn btn-default save">
+    <span class = 'glyphicon glyphicon-question-sign'></span>
+    <p>Guess</p>
+  </button>
+</div>
+</div>
+
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+<div class="btn-group" role="group">
+  <button ng-click = 'reset ()'  type="text" class="btn btn-default save">
+    <span class = 	'glyphicon glyphicon-repeat'></span>
+    <p>Reset</p>
+  </button>
+</div>
 </div>

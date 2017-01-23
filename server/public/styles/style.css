@@ -20,6 +20,11 @@
   font-family: 'Courier New', monospace, sans-serif;
 }
 
+.blank {
+    border-bottom: 2px solid black;
+    width: 40px;
+    display: inline-block;
+}
 
 html {
   position: relative;
@@ -91,8 +96,20 @@ p {
 }
 
 
+
+
 .angular-with-newlines {
     white-space: pre-line;
+    font-family: 'myFontThree';
+    font-size: 22px;
+}
+
+.angular-with-newlines del {
+  color: red;
+}
+
+.angular-with-newlines ins {
+  color: green;
 }
 
 
@@ -169,6 +186,14 @@ h1.header-text {
   margin-right: auto;
 }
 
+.img-gif-head {
+  width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  mix-blend-mode: multiply;
+}
+
 
 .navbar-default .navbar-nav>li>a{
   color:black;
@@ -220,4 +245,8 @@ nav.header-two {
   width: 100%;
   height: 60px;
   background-color: #000000;
+}
+
+input.btn.btn-large.btn-block.btn-primary {
+  margin-bottom: 20px;
 }
