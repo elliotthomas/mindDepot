@@ -1,7 +1,6 @@
 
 <div ng-init = 'showOneWord()'>
-    <div class = "angular-with-newlines" >
-      {{text}}
+    <div ng-bind-html = 'text' class = "angular-with-newlines" >
     </div>
     <div>
         <input ng-click="addWord()" type="submit" value="Add Word" class="btn btn-success center-block"/>

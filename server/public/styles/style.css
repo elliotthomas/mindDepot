@@ -88,7 +88,6 @@ p {
 
 .title {
   font-size: 26px;
-  text-decoration: underline;
 }
 
 
@@ -124,6 +123,10 @@ h1.header-text {
 }
 
 .depot-passage a:active {
+  color: white;
+}
+
+.depot-passage a:focus {
   color: white;
 }
 
