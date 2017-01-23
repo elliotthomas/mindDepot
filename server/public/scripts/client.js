@@ -248,7 +248,7 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
 
 }]); //end depot controlller
 
-myApp.controller('depotInfoController', ['$scope', '$http', '$location', '$timeout', '$rootScope', 'passageFactory', function($scope, $http, $location, $timeout, $rootScope, $passageFactory) {
+myApp.controller('depotInfoController', ['$scope', '$http', '$location', '$timeout', '$rootScope', 'passageFactory', function($scope, $http, $location, $timeout, $rootScope, passageFactory) {
     console.log('In Depot Info Controller');
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
