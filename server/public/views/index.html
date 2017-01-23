@@ -15,88 +15,74 @@
 </head>
 
 <body ng-app='myApp'>
-  <nav ng-hide = 'hideNav' class = 'navbar-fixed-top header'>
-  <div class="container-fluid">
+    <nav ng-hide='hideNav' class='navbar-fixed-top header'>
+        <div class="container-fluid">
 
-  <div class = 'row'>
-    <a href="#!home">
-    <div class="col-md-4 col-xs-4 text-center depot-passage head">
+            <div class='row'>
+                <a href="#!home">
+                    <div class="col-md-4 col-xs-4 text-center depot-passage head">
 
-      <a ng-show= 'hideBack' href="#!/practice">
-      <span class = '	glyphicon glyphicon-chevron-left'></span>
-      <p>Back</p>
-      </a>
+                        <a href="#!home">
+                            <span class='glyphicon glyphicon-home'></span>
+                            <p>Home</p>
+                        </a>
 
-      <a href="#!home">
-      <span class = 'glyphicon glyphicon-home'></span>
-      <p>Home</p>
-      </a>
+                    </div>
 
-    </div>
+                    <div class="col-md-4 col-xs-4 text-center depot-passage middle">
+                        <h1 class='header-text'>MD</h1>
+                    </div>
 
-    <div class="col-md-4 col-xs-4 text-center depot-passage middle">
-      <h1 class = 'header-text'>MD</h1>
-    </div>
+                    <div class="col-md-4 col-xs-4 text-center depot-passage head">
 
-<div class="col-md-4 col-xs-4 text-center depot-passage head">
-
-    <a href="#!addPassage">
-    <span class = 'glyphicon glyphicon-plus-sign'></span>
-    <p>Add Passage</p>
-    </a>
+                        <a href="#!addPassage">
+                            <span class='glyphicon glyphicon-plus-sign'></span>
+                            <p>Add Passage</p>
+                        </a>
 
 
-  </div>
-  </div>
-</nav>
+                    </div>
+            </div>
+    </nav>
 
 
+    <main ng-view></main>
 
 
+    <footer ng-hide='hideFooter' class='footer'>
+        <div class="container-fluid">
+
+            <div class='row'>
+                <a href="#!home">
+                    <div class="col-md-4 col-xs-4 text-center depot-passage">
+                        <a ng-hide='hidePassage' href="#!home">
+                            <span class="glyphicon glyphicon-list"></span>
+                            <p>Passages</p>
+                        </a>
+                        <a ng-hide='hideInfo' href="#!passageInfo">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            <p>Info</p>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-xs-4 text-center depot-passage" id='logout'>
+                        <a href="#!splash">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                            <p>Logout</p>
+                    </div>
+                    <div class="col-md-4 col-xs-4 text-center depot-passage">
+                        <a ng-hide='hideDepot' href="#!depot">
+                            <span class="glyphicon glyphicon-lock"></span>
+                            <p>The Depot</p>
+                        </a>
+                        <a ng-hide='hideAddToDepot' href="#!splash">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <p>Add to The Depot</p>
+                        </a>
 
 
-
-
-
-
-
-<main ng-view></main>
-
-
-<footer ng-hide = 'hideFooter' class = 'footer'>
-<div class="container-fluid">
-
-<div class = 'row'>
-  <a href="#!home">
-  <div class="col-md-4 col-xs-4 text-center depot-passage">
-    <a ng-hide = 'hidePassage' href="#!home">
-    <span class="glyphicon glyphicon-list"></span>
-    <p>Passages</p>
-    </a>
-    <a ng-hide = 'hideInfo' href="#!passageInfo">
-    <span class="glyphicon glyphicon-info-sign"></span>
-    <p>Info</p>
-    </a>
-  </div>
-  <div class="col-md-4 col-xs-4 text-center depot-passage" id= 'logout'>
-    <a href="#!splash">
-    <span class="glyphicon glyphicon-log-out"></span>
-    <p>Logout</p>
-  </div>
-  <div class="col-md-4 col-xs-4 text-center depot-passage">
-    <a ng-hide = 'hideDepot' href="#!depot">
-    <span class="glyphicon glyphicon-lock"></span>
-    <p>The Depot</p>
-  </a>
-    <a ng-hide = 'hideAddToDepot' href="#!splash">
-    <span class="glyphicon glyphicon-user"></span>
-    <p>Add to The Depot</p>
-  </a>
-
-
-</div>
-</div>
-</footer>
+                    </div>
+            </div>
+    </footer>
 
 
 </body>

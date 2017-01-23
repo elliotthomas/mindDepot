@@ -59,6 +59,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../views/routes/splash.html',
         controller: 'splashController'
         })
+        .when('/depotInfo', {
+        templateUrl: '../views/routes/depotInfo.html',
+        controller: 'depotInfoController'
+        })
         .otherwise({
 			  redirectTo: '/login'
 		    });
@@ -235,6 +239,12 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
 
 }]); //end depot controlller
 
+myApp.controller('depotInfoController', ['$scope', '$http', '$location', '$timeout', '$rootScope', function($scope, $http, $location, $timeout, $rootScope) {
+    console.log('In Depot Info Controller');
+
+
+}]); //end depot info controlller
+
 
 myApp.controller ('addPassageController', ['$scope', '$http','$rootScope', '$location', function ($scope, $http, $rootScope, $location){
   console.log('In add passage contoller');
@@ -331,13 +341,17 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
 
 
 
-myApp.controller('reciteController', ['$scope', '$http', 'passageFactory','$rootScope', function($scope, $http, passageFactory, $rootScope) {
+myApp.controller('reciteController', ['$scope', '$http', 'passageFactory','$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
     console.log('In Recite Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
     console.log('id from factory ->', passageFactory.passageID );
+
+    $scope.toPractice = function () {
+      $location.path ('/practice')
+    };//end to pracitce
 
 
     $scope.getCounter = function (){
@@ -388,7 +402,7 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory','$root
 
 }]); //end recite controlller
 
-myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '$rootScope', function($scope, $http, passageFactory, $rootScope) {
+myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
     console.log('In Word by Word Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
@@ -396,6 +410,10 @@ myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '
     $rootScope.hideFooter = false;
     var passage = passageFactory.passageByID
     var index = 1;
+
+    $scope.toPractice = function () {
+      $location.path ('/practice')
+    };//end to pracitce
 
     $scope.showOneWord = function () {
       var splitPassage = passage.split(" ")
@@ -416,7 +434,7 @@ myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '
 
 }]); //end word by word controlller
 
-myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '$rootScope', function($scope, $http, passageFactory, $rootScope) {
+myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
     console.log('In Line by Line Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
@@ -424,6 +442,10 @@ myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '
     $rootScope.hideFooter = false;
     var passage = passageFactory.passageByID
     var index = 1;
+
+    $scope.toPractice = function () {
+      $location.path ('/practice')
+    };//end to pracitce
 
     $scope.showOneLine = function () {
       var splitPassage = passage.split("\n")
@@ -451,12 +473,16 @@ myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '
 
 
 
-myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootScope', function($scope, $http, passageFactory, $rootScope) {
+myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
     console.log('In write Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
+
+    $scope.toPractice = function () {
+      $location.path ('/practice')
+    };//end to pracitce
 
     $scope.compare = function(){
       var passageOriginal = passageFactory.passageByID
@@ -513,12 +539,16 @@ $scope.deletePassage = function () {
 
 }]); //end passage info controlller
 
-myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', '$rootScope', function($scope, $http, passageFactory, $rootScope) {
+myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
     console.log('In Fill in Blank Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
+
+    $scope.toPractice = function () {
+      $location.path ('/practice')
+    };//end to pracitce
 
     var passage = passageFactory.passageByID.split(' ')
 
