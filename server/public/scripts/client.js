@@ -597,7 +597,7 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
 
 }]); //end passage info controlller
 
-myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
+myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', '$sce', function($scope, $http, passageFactory, $rootScope, $location, $sce) {
     console.log('In Fill in Blank Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
@@ -611,17 +611,33 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = false;
 
-    $scope.toPractice = function () {
-      $location.path ('/practice')
-    };//end to pracitce
+    console.log('passageByID', passageFactory.passageByID);
 
-    var passage = passageFactory.passageByID.split(' ')
+    $scope.$sce = $sce;
 
-    var passageWord = passage[Math.floor(Math.random()*passage.length)];
+    $scope.passageQuestions = passageFactory.passageByID;
 
-
-    console.log('one word in passage ->', passageWord);
-
+    var randomIntFromInterval = function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+    var init = function () {
+        $scope.randomQuestionNumber = randomIntFromInterval(0, $scope.passageQuestions.length - 1);
+        $scope.passageArry = $scope.passageQuestions[$scope.randomQuestionNumber].split(' ');
+        $scope.randomWordNumber = randomIntFromInterval(0, $scope.passageArry.length - 1);
+        $scope.guess = '';
+    };
+    $scope.guessIt = function () {
+        if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase()) {
+            alert('Correct!');
+        }
+        else {
+            alert('try again!');
+        }
+    };
+    init();
+    $scopereset = function () {
+        init();
+    };
 
 }]); //end fill in blank controlller
 
