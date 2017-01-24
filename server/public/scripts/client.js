@@ -68,7 +68,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         controller: 'splashTwoController'
         })
         .otherwise({
-			  redirectTo: '/login'
+			  redirectTo: '/splashTwo'
 		    });
 }]); //end my app config
 
@@ -99,7 +99,7 @@ myApp.factory('passageFactory', function(){
 
 //****Controllers****//
 
-myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$location', '$rootScope', function ($scope, passageFactory, $http, $location, $rootScope){
+myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$location', '$rootScope', '$timeout', function ($scope, passageFactory, $http, $location, $rootScope, $timeout){
   console.log('In home contoller');
   $rootScope.hideNav = false;
   $rootScope.hideFooter = false;
@@ -159,7 +159,10 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
       passageFactory.depot = response.data[0].depot;
     });//end http
 
-    $location.path('/splashTwo')
+
+    $timeout(function () {
+           $location.path ('/practice')
+       }, 10);
   };//end practice function
 
     $scope.init = function (){
@@ -718,8 +721,8 @@ myApp.controller('splashTwoController', ['$scope', '$http', '$location', '$timeo
 
 
     $timeout(function () {
-       $location.path ('/practice')
-   }, 1000);
+       $location.path ('/login')
+   }, 2000);
 
 }]); //end splash controlller
 
