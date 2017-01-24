@@ -197,6 +197,18 @@ input.btn.btn-secondary.btn-lg.practice-two {
   font-size: 14px;
 }
 
+.depot-passage.copyright {
+  font-family: 'myFontThree', sans-serif;
+  font-size: 14px;
+}
+
+button.btn.btn-default.add{
+  background-color: #e5e5e5;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+
 h1.header-text {
   margin-top: 0px;
   font-size: 60px;

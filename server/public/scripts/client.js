@@ -183,6 +183,10 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
       $location.path ('/depot')
     };//end to to depot
 
+    $scope.toAddPassage = function () {
+      $location.path ('/addPassage')
+    };//end to to depot
+
 
 
 }]);//end home controller
