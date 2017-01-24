@@ -69,9 +69,7 @@ h6.box-three span {
 
 }
 
-h1 span {
 
-}
 
 .box-two {
   border: 2px solid #000;
@@ -204,11 +202,22 @@ h1.header-text {
   font-size: 60px;
   margin-bottom: 0px;
   text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .depot-passage.middle {
   padding-top: 0px;
   color: white;
+}
+
+.sameLine {
+  display: inline-flex !important;
+}
+
+.sameLine span {
+  position: relative;
+  top: 20px;
 }
 
 .depot-passage.head a:link {

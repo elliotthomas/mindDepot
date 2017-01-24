@@ -8,13 +8,17 @@ router.get('/', function(req, res) {
     if (err) {
       res.sendStatus(500);
     } else {
-      var objectToSend = []
+      var passageToSend = [];
+      var objectToSend = {
+        passageToSend: passageToSend,
+        userToSend: req.user
+      }
       var userIn = req.user.username;
       results.forEach(function (passage){
         console.log('passage user', passage.user);
         console.log('userIN', userIn);
         if (passage.user == userIn){
-          objectToSend.push (passage)
+          passageToSend.push (passage)
         } else {
           console.log("no user");
         }

@@ -90,7 +90,8 @@ myApp.factory('passageFactory', function(){
   factory.counter;
   factory.imageUrl;
   factory.depot;
-  factory.username;
+  factory.userFirstName;
+  factory.userLastName;
 
 
 
@@ -126,10 +127,11 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
       console.log('Passages back from DB ->', response);
       var toDepot = [];
       var practice = [];
-      var responses = response.data;
+      var responses = response.data.passageToSend;
       console.log('responses ->', responses);
       console.log('responses from');
-      passageFactory.username = response.data.user
+      passageFactory.userFirstName = response.data.userToSend.first_name;
+      passageFactory.userLastName = response.data.userToSend.last_name;
 
       responses.forEach(function(passage){
         if (passage.depot === false) {
@@ -208,7 +210,7 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
         console.log('Passages back from DB ->', response.data);
         var toDepot = [];
         var practice = [];
-        var responses = response.data;
+        var responses = response.data.passageToSend;
 
         responses.forEach(function(passage){
           if (passage.depot === false) {
@@ -745,7 +747,8 @@ myApp.controller('splashThreeController', ['$scope', '$http', '$location', '$tim
     $rootScope.blackBack = true;
     $rootScope.whiteBack = false;
 
-    $scope.user = passageFactory.username
+    $scope.userFirst = passageFactory.userFirstName.toUpperCase();
+    $scope.userLast = passageFactory.userLastName.toUpperCase();
 
       $http({
         method: 'GET',
@@ -805,7 +808,9 @@ myApp.controller('registerController', ['$scope', '$http', '$rootScope', '$locat
     $scope.registerUser = function() {
         var user = {
             username: $scope.username,
-            password: $scope.password
+            password: $scope.password,
+            first_name: $scope.first_name,
+            last_name: $scope.last_name
         }; //end user object
 
         $http({
