@@ -1,25 +1,25 @@
-<form>
-    <div class="form-group add">
+<div class="container">
+    <div class="form-group write">
         <input ng-model="title" type="text" name="title" id="title" class="form-control" placeholder="Title" />
     </div>
-    <div class="form-group add">
+    <div class="form-group write">
         <input ng-model="author" type="text" name="author" id="author" class="form-control" placeholder="Author" />
     </div>
-    <div class="form-group add">
+    <div class="form-group write">
         <input ng-model="imageUrl" type="text" name="imageUrl" id="imageUrl" class="form-control" placeholder="Author Image URL" />
     </div>
-    <div class="form-group add">
+    <div class="form-group write">
         <input ng-model="sourceUrl" type="text" name="sourceUrl" id="sourceUrl" class="form-control" placeholder="Source URL" />
     </div>
-    <div class="form-group add">
+    <div class="form-group write">
         <textarea ng-model="passage" type="text" name="passage" id="passage" class="form-control" rows = '20' placeholder="Add Passage To Memorize"></textarea>
     </div>
-    <div class="btn-group btn-group-justified" role="group" aria-label="...">
-    <div class="btn-group" role="group">
-      <button ng-click = 'addPassage()'  type="button" class="btn btn-default save">
-        <span class = 'glyphicon glyphicon-save'></span>
-        <p>Save Passage</p>
-      </button>
     </div>
+
+    <div>
+    <button ng-click="addPassage()" type="submit" class="btn btn-secondary btn-lg practice-one">
+    <span class ='glyphicon glyphicon-plus-sign'></span>
+    <p>Save Passage</p>
+    </button>
     </div>
 </form>

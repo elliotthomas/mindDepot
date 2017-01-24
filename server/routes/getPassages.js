@@ -4,12 +4,23 @@ var Passages = require('../models/passages.js');
 
 router.get('/', function(req, res) {
   console.log('get route hit dude');
-  console.log('req,user', req.user);
   Passages.find({}, function(err, results) {
     if (err) {
       res.sendStatus(500);
     } else {
-      res.send(results);
+      var objectToSend = []
+      var userIn = req.user.username;
+      results.forEach(function (passage){
+        console.log('passage user', passage.user);
+        console.log('userIN', userIn);
+        if (passage.user == userIn){
+          objectToSend.push (passage)
+        } else {
+          console.log("no user");
+        }
+      })
+      console.log('object to send', objectToSend);
+      res.send(objectToSend);
     }
   });
 }); // end get

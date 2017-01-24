@@ -16,6 +16,7 @@ var deletePassageRouter = require ('./routes/deletePassage.js');
 var addToDepotRouter = require('./routes/addToDepot.js');
 var registerRouter = require('./routes/register.js');
 var loginRouter = require('./routes/login.js');
+var logoutRouter = require('./routes/logout.js');
 
 
 
@@ -43,6 +44,7 @@ app.use('/deletePassage', deletePassageRouter);
 app.use('/addToDepot', addToDepotRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 
 
 

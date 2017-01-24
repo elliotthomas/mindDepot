@@ -9,8 +9,7 @@ var PassageSchema = new Schema ({
   passage: {type: String, required: true},
   recited: {type: Number, required: false},
   depot: {type: Boolean, require:false},
-  
-
+  user: {type: String, require: false}
 });
 
 var Passages = mongoose.model('passages', PassageSchema);

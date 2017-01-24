@@ -4,11 +4,13 @@ var path = require('path');
 var Passage = require('../models/passages.js');
 
 router.post('/', function(req, res){
+  console.log();
   var title = req.body.title;
   var author = req.body.author;
   var sourceUrl = req.body.sourceUrl;
   var passage = req.body.passage;
   var imageUrl = req.body.imageUrl;
+  var user = req.user.username;
 
   console.log('image url', imageUrl);
 
@@ -19,7 +21,8 @@ router.post('/', function(req, res){
     imageUrl: imageUrl,
     passage: passage,
     recited: 0,
-    depot: false
+    depot: false,
+    user: user
   });
   newPassage.save(function(err){
     if(err){

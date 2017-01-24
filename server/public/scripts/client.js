@@ -67,6 +67,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../views/routes/splashTwo.html',
         controller: 'splashTwoController'
         })
+        .when('/splashThree', {
+        templateUrl: '../views/routes/splashThree.html',
+        controller: 'splashThreeController'
+        })
         .otherwise({
 			  redirectTo: '/splashTwo'
 		    });
@@ -86,6 +90,7 @@ myApp.factory('passageFactory', function(){
   factory.counter;
   factory.imageUrl;
   factory.depot;
+  factory.username;
 
 
 
@@ -118,10 +123,13 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
       method: 'GET',
       url:'/getPassages'
     }).then(function(response) {
-      console.log('Passages back from DB ->', response.data);
+      console.log('Passages back from DB ->', response);
       var toDepot = [];
       var practice = [];
       var responses = response.data;
+      console.log('responses ->', responses);
+      console.log('responses from');
+      passageFactory.username = response.data.user
 
       responses.forEach(function(passage){
         if (passage.depot === false) {
@@ -648,6 +656,8 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
         $scope.guess = '';
     };
     $scope.guessIt = function () {
+      console.log('guess', $scope.guess.toLowerCase());
+      console.log('word', $scope.passageArry[$scope.randomWordNumber].toLowerCase() );
         if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase()) {
           alert('YES!')
         }
@@ -723,6 +733,36 @@ myApp.controller('splashTwoController', ['$scope', '$http', '$location', '$timeo
    }, 2000);
 
 }]); //end splash controlller
+
+myApp.controller('splashThreeController', ['$scope', '$http', '$location', '$timeout', '$rootScope', 'passageFactory', function($scope, $http, $location, $timeout, $rootScope, passageFactory) {
+    console.log('In Splash three Controller');
+    $rootScope.hideIt = true;
+    $rootScope.hideBack = false;
+    $rootScope.hideNav = true;
+    $rootScope.hideFooter = true;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
+    $rootScope.blackBack = true;
+    $rootScope.whiteBack = false;
+
+    $scope.user = passageFactory.username
+
+      $http({
+        method: 'GET',
+        url:'/logout/logout'
+      }).then(function(response) {
+        console.log('response to log out', response);
+
+      });//end http get call
+
+
+
+    $timeout(function () {
+       $location.path ('/login')
+   }, 2000);
+
+}]); //end splash three controlller
+
 
 
 myApp.controller('loginController', ['$scope', '$http', '$rootScope','$location', function($scope, $http, $rootScope, $location) {
