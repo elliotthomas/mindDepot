@@ -16,6 +16,12 @@
         url('bestFontThree.woff');
 }
 
+@font-face {
+  font-family: 'myFontFour';
+  src: url('bestFontFour.woff2'),
+        url('bestFontFour.woff');
+}
+
 ::-webkit-input-placeholder {
   font-family: 'Courier New', monospace, sans-serif;
 }
@@ -43,6 +49,10 @@ body {
   margin-right: auto;
 }
 
+button.btn.btn-default.practice-games {
+  font-family: 'myFontThree', sans-serif;
+}
+
 .form-group.write {
   margin-bottom: 0px;
 }
@@ -52,6 +62,30 @@ h1 {
   font-size: 70px;
 }
 
+
+
+h6.box-three span {
+    font-family: 'myFontThree', sans-serif;
+
+}
+
+h1 span {
+
+}
+
+.box-two {
+  border: 2px solid #000;
+  width: 350px;
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box-two h2 {
+  margin-top: 1px;
+}
+
 h2 {
   font-family: 'myFontThree', sans-serif;
   font-size: 44px;
@@ -59,6 +93,7 @@ h2 {
 
 h3 {
   text-decoration: underline;
+  font-family: 'myFontThree', sans-serif;
 }
 
 ul {
@@ -100,8 +135,8 @@ p {
 
 .angular-with-newlines {
     white-space: pre-line;
-    font-family: 'myFontThree';
-    font-size: 22px;
+    font-family: 'myFontFour', sans-serif;
+    font-size: 14px;
 }
 
 .angular-with-newlines del {
@@ -110,6 +145,51 @@ p {
 
 .angular-with-newlines ins {
   color: green;
+}
+
+input.btn.btn-secondary.btn-lg.login-register {
+  width:250px;
+  border-radius: 0px;
+  color: white;
+  background-color:#8B0000;
+  font-family: 'myFontThree', sans-serif;
+
+}
+
+input.btn.btn-secondary.btn-lg.practice-one {
+  width:250px;
+  border-radius: 0px;
+  color: white;
+  background-color:black;
+  font-family: 'myFontThree', sans-serif;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+button.btn.btn-secondary.btn-lg.practice-one {
+  width:250px;
+  border-radius: 0px;
+  color: white;
+  background-color:black;
+  font-family: 'myFontThree', sans-serif;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+input.btn.btn-secondary.btn-lg.practice-two {
+  width:250px;
+  border-radius: 0px;
+  color: white;
+  background-color:#8B0000;
+  font-family: 'myFontThree', sans-serif;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 
@@ -159,7 +239,7 @@ h1.header-text {
 
 .loginRegister a {
   font-family: 'myFontThree', sans-serif;
-  color: #8B0000;
+  color: black;
   text-decoration: underline;
   font-size: 10px;
 }
@@ -202,10 +282,11 @@ h1.header-text {
 
 
 .img-author{
-  width: 80px;
+  width: 120px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 2px;
 }
 
 .navbar {

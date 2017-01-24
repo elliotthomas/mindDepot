@@ -1,6 +1,6 @@
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
     <div class="btn-group practice-games" role="group">
-      <button ng-click = 'toRecite()'type="button" class="btn btn-default">Recite</button>
+      <button ng-click = 'toRecite()'type="button" class="btn btn-default practice-games">Recite</button>
     </div>
     <div class="btn-group" role="group">
       <button ng-click = 'toWrite()'type="button" class="btn btn-default practice-games">Write</button>
@@ -18,9 +18,11 @@
 
 <div ng-init = 'showPassageInfo()'>
   <div class="text-center">
-
-  <h2>Title</h2>{{titleInfo}}
-  <h2>Author</h2><strong>{{authorInfo}}</strong><img class = 'img-responsive img-rounded img-author' ng-src="{{imageUrlInfo}}" alt="Author of Passage">
-  <h2>Source URL</h2><a ng-href="{{sourceUrlInfo}}">{{sourceUrlInfo}}</a>
+  <h1 class ='box'><span>{{titleInfo}}</span></h1>
+  <div class = 'box-two'>
+    <h2>By: {{authorInfo}}</h2>
+    <img class = 'img-responsive img-rounded img-author' ng-src="{{imageUrlInfo}}" alt="Author of Passage"></img>
+  </div>
+  <h6 class = 'box-three'><span>SRC: <a ng-href="{{sourceUrlInfo}}">{{sourceUrlInfo}}</a></span></h6>
 </div>
 </div>

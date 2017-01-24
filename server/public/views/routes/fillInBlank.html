@@ -2,27 +2,15 @@
       ng-class="{'blank':$index== randomWordNumber}">
     <span ng-if="$index!= randomWordNumber" ng-bind-html = 'passage' class = "angular-with-newlines"></span>
 </span>
-
+<form class="loginRegister">
+<div class="input-group">
+   <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
+    <input ng-model="guess" type="text" class="form-control" />
+</div>
 <div>
-
-<div class="form-group">
-    <input ng-model="guess" type="text" class="form-control" placeholder="Guess The Word" />
+    <input ng-click="guessIt()" type="submit" value="Guess" class="btn btn-secondary btn-lg practice-one"/>
 </div>
-
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
-<div class="btn-group" role="group">
-  <button ng-click = 'guessIt ()'  type="text" class="btn btn-default save">
-    <span class = 'glyphicon glyphicon-question-sign'></span>
-    <p>Guess</p>
-  </button>
+<div>
+    <input ng-click="reset()" type="submit" value="Reset" class="btn btn-secondary btn-lg practice-two"/>
 </div>
-</div>
-
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
-<div class="btn-group" role="group">
-  <button ng-click = 'reset ()'  type="text" class="btn btn-default save">
-    <span class = 	'glyphicon glyphicon-repeat'></span>
-    <p>Reset</p>
-  </button>
-</div>
-</div>
+</form>

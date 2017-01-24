@@ -569,6 +569,7 @@ myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootS
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = false;
 
+    $scope.title = passageFactory.titleByID
 
     $scope.toPractice = function () {
       $location.path ('/practice')
@@ -585,6 +586,7 @@ myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootS
     $scope.reset = function (){
       $scope.outputText = '';
       $scope.passageFromUser = '';
+      $rootScope.hideText = false;
     };
 
 
@@ -647,7 +649,7 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     };
     $scope.guessIt = function () {
         if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase()) {
-            alert('Correct!');
+          alert('YES!')
         }
         else {
             alert('try again!');
@@ -657,10 +659,6 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     $scope.reset = function () {
         init();
     };
-
-    var thing = '<h1>' + $scope.passageArry + '</h1>'
-
-    console.log('passage', thing);
 
 }]); //end fill in blank controlller
 
