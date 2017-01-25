@@ -22,9 +22,17 @@
                 <a href="#!home">
                     <div class="col-md-4 col-xs-4 text-center depot-passage head">
 
-                      <a href="#!addPassage">
+                      <a ng-hide='hideAddPassage' href="#!addPassage">
                           <span class='glyphicon glyphicon-plus-sign'></span>
                           <p>Add Passage</p>
+                      </a>
+                      <a ng-hide='hideAddToDepot' href="#!splash">
+                          <span class="glyphicon glyphicon-user"></span>
+                          <p>Add to The Depot</p>
+                      </a>
+                      <a ng-hide='practiceInfo' href="#!practice">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                          <p>Back</p>
                       </a>
 
                     </div>
@@ -52,7 +60,7 @@
                 <a href="#!home">
                     <div class="col-md-4 col-xs-4 text-center depot-passage head">
 
-                      <a href="#!addPassage">
+                      <ahref="#!addPassage">
                           <span class='glyphicon glyphicon-plus-sign'></span>
                           <p>Add Passage</p>
                       </a>
@@ -102,28 +110,17 @@
                         <a ng-hide='hidePassage' href="#!home">
                             <span class="glyphicon glyphicon-list"></span>
                             <p>Passages</p>
-                        </a>
-                        <a ng-hide='hideInfo' href="#!depotInfo">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                            <p>Info</p>
-                        </a>
-                        <a ng-hide='practiceInfo' href="#!practice">
-                            <span class="glyphicon glyphicon-list"></span>
-                            <p>Practice</p>
-                        </a>
+                          </a>
+
                     </div>
                     <div class="col-md-4 col-xs-4 text-center depot-passage copyright">
-                            <p>MIND DEPOT</p>
-                            <span class="glyphicon glyphicon-copyright-mark">2017</span>
+                            <img src="./images/headTwo.jpg" alt="Pratice" class= 'img-responsive img-logo'>
+                            <p>MIND DEPOT 2017</p>
                     </div>
                     <div class="col-md-4 col-xs-4 text-center depot-passage">
                         <a ng-hide='hideDepot' href="#!depot">
                             <span class="glyphicon glyphicon-lock"></span>
                             <p>The Depot</p>
-                        </a>
-                        <a ng-hide='hideAddToDepot' href="#!splash">
-                            <span class="glyphicon glyphicon-user"></span>
-                            <p>Add to The Depot</p>
                         </a>
 
 

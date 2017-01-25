@@ -1,10 +1,12 @@
 <div ng-init = 'showPassageInfo()'>
-  <div class="text-center">
-  <h1 class ='box'><span>{{titleInfo}}</span></h1>
-  <div class = 'box-two'>
-    <h2>By: {{authorInfo}}</h2>
-    <img class = 'img-responsive img-rounded img-author' ng-src="{{imageUrlInfo}}" alt="Author of Passage"></img>
-  </div>
-  <h6 class = 'box-three'><span>SRC: <a ng-href="{{sourceUrlInfo}}">{{sourceUrlInfo}}</a></span></h6>
-</div>
-</div>
+    <div class="text-center">
+        <h3 class ='box'>{{titleInfo}}</h3>
+        <h5>{{authorInfo}}</h5>
+        <div class="angular-with-newlines info">
+          {{passageByID}}
+        </div>
+        <h6 class = 'box-three'><span>SRC: <a ng-href="{{sourceUrlInfo}}">{{sourceUrlInfo}}</a></span></h6>
+      </div>
+
+        <img class = 'img-responsive img-rounded img-author' border= '5' ng-src="{{imageUrlInfo}}" alt="Author of Passage"></img>
+      </div>

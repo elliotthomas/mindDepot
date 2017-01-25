@@ -288,6 +288,28 @@ myApp.controller('depotInfoController', ['$scope', '$http', '$location', '$timeo
       $location.path ('/passageInfo')
     };//end to write
 
+    $scope.returnToPractice = function () {
+
+      console.log('in return to practice');
+
+        var id = passageFactory.passageID
+
+        var addToDepot = {
+          idToSend: id
+        };
+
+        $http ({
+          method: 'PUT',
+          url: '/returnToPractice',
+          data: addToDepot
+        }).then (function (response){
+          console.log('response ->', response);
+        });
+
+        $location.path ('/home')
+
+      };//end add to depot function
+
 
 
     $scope.deletePassage = function () {
@@ -362,13 +384,14 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
     $rootScope.hideFooter = false;
     $rootScope.hideInfo = false;
     $rootScope.hideAddToDepot = false;
-    $rootScope.hidePassage = true;
-    $rootScope.hideDepot = true;
+    $rootScope.hidePassage = false;
+    $rootScope.hideDepot = false;
     $rootScope.hideNavTwo = false;
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = true;
     $rootScope.blackBack = true;
     $rootScope.whiteBack = false;
+    $rootScope.hideAddPassage = true;
 
     $scope.toRecite = function () {
       $location.path ('/recite')
@@ -401,6 +424,7 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
       $scope.authorInfo = passageFactory.authorByID;
       $scope.sourceUrlInfo = passageFactory.sourceUrl;
       $scope.imageUrlInfo = passageFactory.imageUrl;
+      $scope.passageByID = passageFactory.passageByID;
 
     };//end show passage info
 
@@ -419,12 +443,13 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory','$root
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
     $rootScope.hideInfo = true;
-    $rootScope.hideAddToDepot = false;
-    $rootScope.hidePassage = true;
-    $rootScope.hideDepot = true;
+    $rootScope.hideAddToDepot = true;
+    $rootScope.hidePassage = false;
+    $rootScope.hideDepot = false;
     $rootScope.hideNavTwo = false;
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = false;
+    $rootScope.hideAddPassage = true;
 
     console.log('id from factory ->', passageFactory.passageID );
 
@@ -436,6 +461,8 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory','$root
     $scope.getCounter = function (){
 
       $scope.passageByID = passageFactory.passageByID;
+      $scope.titleInfo = passageFactory.titleByID;
+      $scope.authorInfo = passageFactory.authorByID;
 
       var id = passageFactory.passageID;
 
@@ -488,12 +515,16 @@ myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
     $rootScope.hideInfo = true;
-    $rootScope.hideAddToDepot = false;
-    $rootScope.hidePassage = true;
-    $rootScope.hideDepot = true;
+    $rootScope.hideAddToDepot = true;
+    $rootScope.hidePassage = false;
+    $rootScope.hideDepot = false;
     $rootScope.hideNavTwo = false;
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = false;
+    $rootScope.hideAddPassage = true;
+
+    $scope.authorInfo = passageFactory.authorByID;
+    $scope.titleInfo = passageFactory.titleByID;
 
     var passage = passageFactory.passageByID
     var index = 1;
@@ -528,13 +559,17 @@ myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
     $rootScope.hideInfo = true;
-    $rootScope.hideAddToDepot = false;
-    $rootScope.hidePassage = true;
-    $rootScope.hideDepot = true;
+    $rootScope.hideAddToDepot = true;
+    $rootScope.hidePassage = false;
+    $rootScope.hideDepot = false;
     $rootScope.hideNavTwo = false;
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = false;
     $rootScope.blackBack = true;
+    $rootScope.hideAddPassage = true;
+
+    $scope.authorInfo = passageFactory.authorByID;
+    $scope.titleInfo = passageFactory.titleByID;
 
     var passage = passageFactory.passageByID
     var index = 1;
@@ -576,12 +611,13 @@ myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootS
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
     $rootScope.hideInfo = true;
-    $rootScope.hideAddToDepot = false;
-    $rootScope.hidePassage = true;
-    $rootScope.hideDepot = true;
+    $rootScope.hideAddToDepot = true;
+    $rootScope.hidePassage = false;
+    $rootScope.hideDepot = false;
     $rootScope.hideNavTwo = false;
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = false;
+    $rootScope.hideAddPassage = true;
 
     $scope.title = passageFactory.titleByID
 
@@ -628,6 +664,7 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
     $scope.authorInfo = passageFactory.authorByID;
     $scope.sourceUrlInfo = passageFactory.sourceUrl;
     $scope.imageUrlInfo = passageFactory.imageUrl;
+    $scope.passageByID= passageFactory.passageByID;
 
   };//end show passage info
 
@@ -640,14 +677,18 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
     $rootScope.hideInfo = true;
-    $rootScope.hideAddToDepot = false;
-    $rootScope.hidePassage = true;
+    $rootScope.hideAddToDepot = true;
+    $rootScope.hidePassage = false;
     $rootScope.hideDepot = true;
     $rootScope.hideNavTwo = false;
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = false;
+    $rootScope.hideAddPassage = true;
 
     console.log('passageByID', passageFactory.passageByID);
+
+    $scope.authorInfo = passageFactory.authorByID;
+    $scope.titleInfo = passageFactory.titleByID;
 
 
     $scope.passageQuestions = [passageFactory.passageByID]
@@ -718,7 +759,7 @@ myApp.controller('splashController', ['$scope', '$http', '$location', '$timeout'
 
     $timeout(function () {
        $location.path ('/depot')
-   }, 1000);
+   }, 1050);
 
 }]); //end splash controlller
 

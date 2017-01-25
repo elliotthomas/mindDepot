@@ -73,11 +73,17 @@ h6.box-three span {
 
 .box-two {
   border: 2px solid #000;
-  width: 350px;
   margin-top: 20px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100px;
+  height: 170px;
+}
+
+
 }
 
 .box-two h2 {
@@ -91,6 +97,13 @@ h2 {
 
 h3 {
   text-decoration: underline;
+  font-family: 'myFontThree', sans-serif;
+}
+
+h4 {
+  font-family: 'myFontThree', sans-serif;
+}
+h5 {
   font-family: 'myFontThree', sans-serif;
 }
 
@@ -128,13 +141,21 @@ p {
   font-size: 26px;
 }
 
+h2.box-around {
+  border: 2px solid #000;
+}
+
 
 
 
 .angular-with-newlines {
     white-space: pre-line;
     font-family: 'myFontFour', sans-serif;
-    font-size: 22px;
+    font-size: 18px;
+}
+
+.angular-with-newlines.info {
+  margin-top: -30px;
 }
 
 .angular-with-newlines del {
@@ -206,6 +227,10 @@ button.btn.btn-default.add{
   background-color: #e5e5e5;
   padding-top: 0px;
   padding-bottom: 0px;
+}
+
+button.btn.btn-default.add:hover {
+  background: white;
 }
 
 
@@ -295,6 +320,14 @@ h1.header-text {
   mix-blend-mode: multiply;
 }
 
+.img-logo {
+  mix-blend-mode: multiply;
+  width: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -5px
+}
 
 .navbar-default .navbar-nav>li>a{
   color:black;
@@ -303,11 +336,12 @@ h1.header-text {
 
 
 .img-author{
-  width: 120px;
+  width: 80px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2px;
+
 }
 
 .navbar {

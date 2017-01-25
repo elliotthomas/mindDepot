@@ -1,7 +1,10 @@
-<span ng-repeat="passage in passageArry track by $index"
-      ng-class="{'blank':$index== randomWordNumber}">
+<div class="text-center">
+    <h3 class ='box'>{{titleInfo}}</h3>
+    <h5>{{authorInfo}}</h5>
+<span ng-repeat="passage in passageArry track by $index" ng-class="{'blank':$index== randomWordNumber}">
     <span ng-if="$index!= randomWordNumber" ng-bind-html = 'passage' class = "angular-with-newlines"></span>
 </span>
+</div>
 <form class="loginRegister">
 <div class="input-group">
    <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>

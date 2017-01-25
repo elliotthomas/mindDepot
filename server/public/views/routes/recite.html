@@ -1,14 +1,17 @@
 <div ng-init = 'getCounter()'>
-    <div class = "angular-with-newlines">
+  <div>
+  <button ng-click="increment()" type="submit" value="Add Word" class="btn btn-secondary btn-lg practice-one">
+  <span class ='glyphicon glyphicon-plus-sign'></span>
+  <p>Recited</p>
+</button>
+<div class = 'text-center'>
+  <h2 class = 'box-around'><span>{{counter}}</span></h2>
+  <div class="text-center">
+      <h3 class ='box'>{{titleInfo}}</h3>
+      <h5>{{authorInfo}}</h5>
+      <div class="angular-with-newlines info">
         {{passageByID}}
+      </div>
     </div>
-    <div>
-        <input ng-click="increment()" type="submit" value="Recited" class="btn btn-success center-block"/>
-    </div>
-    <div class = 'text-center'>
-      <strong>{{counter}}</strong>
-    </div>
-</div>
-<div class="footer">
 
 </div>
