@@ -3,13 +3,14 @@
 
 <head>
     <meta charset="utf-8">
+    <script type="text/javascript" src="vendors/sweetalert.min.js"></script>
     <script type="text/javascript" src="vendors/angular.min.js"></script>
     <script type="text/javascript" src="vendors/angular-route.min.js"></script>
     <script type="text/javascript" src="vendors/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="scripts/jsDiff.js"></script>
     <script type="text/javascript" src="scripts/client.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/master.css">
+    <link rel="stylesheet" href="styles/sweetalert.css">
     <link rel="stylesheet" href="styles/style.css">
     <title>Mind Depot</title>
 </head>
@@ -22,6 +23,11 @@
                 <a href="#!home">
                     <div class="col-md-4 col-xs-4 text-center depot-passage head">
 
+                      <a ng-hide='hideUserInfo' href="#!userInfo">
+                          <span class='glyphicon glyphicon-user'></span>
+                          <p>User Stats</p>
+                      </a>
+
                       <a ng-hide='hideAddPassage' href="#!addPassage">
                           <span class='glyphicon glyphicon-plus-sign'></span>
                           <p>Add Passage</p>
@@ -31,6 +37,14 @@
                           <p>Add to The Depot</p>
                       </a>
                       <a ng-hide='practiceInfo' href="#!practice">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                          <p>Back</p>
+                      </a>
+                      <a ng-hide='depotInfo' href="#!depotInfo">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                          <p>Back</p>
+                      </a>
+                      <a ng-hide='depotBack' href="#!depot">
                           <span class="glyphicon glyphicon-chevron-left"></span>
                           <p>Back</p>
                       </a>
@@ -60,9 +74,27 @@
                 <a href="#!home">
                     <div class="col-md-4 col-xs-4 text-center depot-passage head">
 
-                      <ahref="#!addPassage">
+                      <a ng-hide='hideUserInfo' href="#!userInfo">
+                          <span class='glyphicon glyphicon-user'></span>
+                          <p>User Stats</p>
+                      </a>
+
+                      <a ng-hide = 'hideAddPassage' href="#!addPassage">
                           <span class='glyphicon glyphicon-plus-sign'></span>
                           <p>Add Passage</p>
+                      </a>
+
+                      <a ng-hide='depotInfo' href="#!depotInfo">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                          <p>Back</p>
+                      </a>
+                      <a ng-hide='depotBack' href="#!depot">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                          <p>Back</p>
+                      </a>
+                      <a ng-hide='userInfoBack' href="#!home">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                          <p>Back</p>
                       </a>
 
 

@@ -106,9 +106,14 @@ h4 {
 h5 {
   font-family: 'myFontThree', sans-serif;
 }
-
 ul {
+  font-size: 16px;
+  font-family: 'myFontFour', sans-serif;
   list-style-type: none;
+}
+
+ {
+  font-size: 20px;
 }
 
 .form-group.add {
@@ -142,7 +147,7 @@ p {
 }
 
 h2.box-around {
-  border: 2px solid #000;
+
 }
 
 
@@ -199,6 +204,10 @@ button.btn.btn-secondary.btn-lg.practice-one {
 
 }
 
+button.btn.btn-secondary.btn-lg.practice-one.delete {
+  background-color: #8B0000;
+}
+
 input.btn.btn-secondary.btn-lg.practice-two {
   width:250px;
   border-radius: 0px;
@@ -209,6 +218,15 @@ input.btn.btn-secondary.btn-lg.practice-two {
   margin-left: auto;
   margin-right: auto;
 
+}
+
+button.confirm {
+  background-color:#8B0000!important;
+  font-family: 'myFontThree', sans-serif;
+}
+
+div.sa-icon.sa-custom {
+  width: 300px!important;
 }
 
 

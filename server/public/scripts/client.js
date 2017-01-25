@@ -71,6 +71,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../views/routes/splashThree.html',
         controller: 'splashThreeController'
         })
+        .when('/userInfo', {
+        templateUrl: '../views/routes/userInfo.html',
+        controller: 'userInfoController'
+        })
         .otherwise({
 			  redirectTo: '/splashTwo'
 		    });
@@ -92,6 +96,8 @@ myApp.factory('passageFactory', function(){
   factory.depot;
   factory.userFirstName;
   factory.userLastName;
+  factory.depotPassages;
+  factory.practicePassages;
 
 
 
@@ -116,6 +122,10 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
   $rootScope.hideNavTwo = false;
   $rootScope.practiceButton = false;
   $rootScope.practiceInfo = true;
+  $rootScope.hideAddPassage = true;
+  $rootScope.depotInfo = true;
+  $rootScope.depotBack = true;
+  $rootScope.hideUserInfo = false;
 
 
   $scope.getPassages = function (){
@@ -130,8 +140,11 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
       var responses = response.data.passageToSend;
       console.log('responses ->', responses);
       console.log('responses from');
+      passageFactory.depotPassages = toDepot
+      passageFactory.practicePassages = practice;
       passageFactory.userFirstName = response.data.userToSend.first_name;
       passageFactory.userLastName = response.data.userToSend.last_name;
+
 
       responses.forEach(function(passage){
         if (passage.depot === false) {
@@ -142,6 +155,7 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
       });//end for each
 
       $scope.passages = practice;
+
 
 
 
@@ -204,6 +218,11 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
     $rootScope.hideDepot = false;
     $rootScope.hideNavTwo = true;
     $rootScope.practiceInfo = true;
+    $rootScope.depotBack = true;
+    $rootScope.hideAddPassage = true;
+    $rootScope.hideUserInfo = false;
+    $rootScope.depotInfo = true;
+    $rootScope.userInfoBack = true;
 
     $scope.getPassages = function (){
       console.log('In get passages function');
@@ -267,18 +286,26 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
     };//end init function
 
 
+
+
 }]); //end depot controlller
 
 myApp.controller('depotInfoController', ['$scope', '$http', '$location', '$timeout', '$rootScope', 'passageFactory', function($scope, $http, $location, $timeout, $rootScope, passageFactory) {
     console.log('In Depot Info Controller');
-    $rootScope.hideNav = false;
+    $rootScope.hideNav = true;
     $rootScope.hideFooter = false;
     $rootScope.hideAddToDepot = true;
     $rootScope.hideInfo = true;
     $rootScope.hidePassage = false;
     $rootScope.hideDepot = false;
-    $rootScope.hideNavTwo = false;
+    $rootScope.hideNavTwo = true;
     $rootScope.practiceInfo = true;
+    $rootScope.depotBack = false;
+    $rootScope.hideAddPassage = true;
+    $rootScope.depotInfo = true;
+    $rootScope.hideUserInfo = true;
+
+
 
     $scope.toPractice = function () {
       $location.path ('/practice')
@@ -350,6 +377,8 @@ myApp.controller ('addPassageController', ['$scope', '$http','$rootScope', '$loc
   $rootScope.hideNavTwo = false;
   $rootScope.practiceButton = false;
   $rootScope.practiceInfo = true;
+  $rootScope.hideUserInfo = false;
+  $rootScope.addPassageInfo = true;
 
 $scope.addPassage = function (){
   var passage = $scope.passage.split('\n');
@@ -392,6 +421,7 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
     $rootScope.blackBack = true;
     $rootScope.whiteBack = false;
     $rootScope.hideAddPassage = true;
+    $rootScope.hideUserInfo = true;
 
     $scope.toRecite = function () {
       $location.path ('/recite')
@@ -431,6 +461,27 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
 
 
     $scope.showPassageInfo();
+
+    $scope.deletePassage = function () {
+        var id = passageFactory.passageID
+        console.log('id from factory ->', id);
+
+        $http ({
+        method: 'DELETE',
+        url: '/deletePassage/' + id
+      }).then (function (response){
+        console.log('response from delete ->', response);
+      });
+
+      console.log('passage facory true or false', passageFactory.depot );
+
+      if (passageFactory.depot == false){
+        $location.path ('/home')
+      } else {
+        $location.path ('/depot')
+      }
+
+    };//end delete passage
 
 }]); //end practice controlller
 
@@ -646,15 +697,19 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
     console.log('In Passage Info Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
-    $rootScope.hideNav = false;
     $rootScope.hideFooter = false;
     $rootScope.hideInfo = true;
     $rootScope.hideAddToDepot = true;
     $rootScope.hidePassage = false;
     $rootScope.hideDepot = false;
-    $rootScope.hideNavTwo = false;
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = true;
+    $rootScope.hideAddPassage = true;
+    $rootScope.depotInfo = false;
+    $rootScope.depotBack = true;
+    $rootScope.hideNav = true;
+    $rootScope.hideNavTwo = true;
+    $rootScope.hideUserInfo = true;
 
     console.log('author->', passageFactory.titleByID);
 
@@ -670,6 +725,51 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
 
 }]); //end passage info controlller
 
+myApp.controller('userInfoController', ['$scope', '$http', 'passageFactory', '$location', '$rootScope', function($scope, $http, passageFactory, $location, $rootScope) {
+    console.log('In User Info Controller');
+    $rootScope.hideIt = true;
+    $rootScope.hideBack = false;
+    $rootScope.hideFooter = false;
+    $rootScope.hideInfo = true;
+    $rootScope.hideAddToDepot = true;
+    $rootScope.hidePassage = false;
+    $rootScope.hideDepot = false;
+    $rootScope.practiceButton = false;
+    $rootScope.practiceInfo = true;
+    $rootScope.hideAddPassage = true;
+    $rootScope.depotInfo = true;
+    $rootScope.depotBack = true;
+    $rootScope.hideNav = true;
+    $rootScope.hideNavTwo = true;
+    $rootScope.userInfoBack = false;
+    $rootScope.hideUserInfo = true;
+
+
+  var practices = passageFactory.practicePassages;
+  console.log('practices ->', practices);
+  var depots = passageFactory.depotPassages;
+  console.log('depots ->', depots);
+  var titlePracticePassages = [];
+  var titleDepotPassages = [];
+  $scope.practicePassages = titlePracticePassages
+  $scope.depotPassages = titleDepotPassages
+
+
+  practices.forEach(function(passage){
+    titlePracticePassages.push(passage.title)
+  });
+  depots.forEach(function(passage){
+    titleDepotPassages.push(passage.title)
+  });
+    $scope.userFirst = passageFactory.userFirstName.toUpperCase();
+    $scope.userLast = passageFactory.userLastName.toUpperCase();
+    $scope.numberOne = passageFactory.practicePassages.length;
+    $scope.numberTwo = passageFactory.depotPassages.length;
+
+
+
+}]); //end passage info controlller
+
 myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
     console.log('In Fill in Blank Controller');
     $rootScope.hideIt = true;
@@ -679,7 +779,7 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     $rootScope.hideInfo = true;
     $rootScope.hideAddToDepot = true;
     $rootScope.hidePassage = false;
-    $rootScope.hideDepot = true;
+    $rootScope.hideDepot = false;
     $rootScope.hideNavTwo = false;
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = false;
@@ -706,10 +806,13 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
       console.log('guess', $scope.guess.toLowerCase());
       console.log('word', $scope.passageArry[$scope.randomWordNumber].toLowerCase() );
         if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase()) {
-          alert('YES!')
+          swal("Good job!", "You Guessed Correctly!", "success");
         }
         else {
-            alert('try again!');
+          swal({
+            title: "Try Again!",
+            text: "You Guessed Incorrectly.",
+            imageUrl: "./images/headTwo.jpg" });
         }
     };
     init();

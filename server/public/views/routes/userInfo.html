@@ -1,0 +1,21 @@
+<div class="text-center">
+<h3 class ='box'>{{userFirst}} {{userLast}}</h3>
+</div>
+<div class="row">
+  <div class="col-md-6 col-xs-6 text-center">
+    <u><h4>Passages in Practice: <span class = 'number'>{{numberOne}}</span></h4></u>
+<div ng-repeat = 'title in practicePassages'>
+  <ul>
+    <li>{{title}}</li>
+  </ul>
+</div>
+</div>
+<div class="col-md-6 col-xs-6 text-center">
+  <u><h4>Passage Memorized: <span class = 'number'>{{numberTwo}}</span></h4></u>
+<div ng-repeat = 'title in depotPassages'>
+  <ul>
+    <li>{{title}}</li>
+  </ul>
+</div>
+</div>
+</div>
