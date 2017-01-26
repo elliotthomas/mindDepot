@@ -98,6 +98,7 @@ myApp.factory('passageFactory', function(){
   factory.userLastName;
   factory.depotPassages;
   factory.practicePassages;
+  factory.users;
 
 
 
@@ -135,6 +136,27 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
       url:'/getPassages'
     }).then(function(response) {
       console.log('Passages back from DB ->', response);
+
+      var otherUsers = response.data.memorized
+      console.log('other users', otherUsers);
+
+      var grouped = _.groupBy(otherUsers, 'user');
+      console.log('grouped', grouped);
+
+
+
+
+
+
+      // passageFactory.users = eachUser
+
+      // console.log('eachUser', eachUser);
+
+
+
+
+
+
       var toDepot = [];
       var practice = [];
       var responses = response.data.passageToSend;
@@ -233,6 +255,8 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
         console.log('Passages back from DB ->', response.data);
         var toDepot = [];
         var practice = [];
+        passageFactory.depotPassages = toDepot
+        passageFactory.practicePassages = practice;
         var responses = response.data.passageToSend;
 
         responses.forEach(function(passage){
@@ -744,6 +768,10 @@ myApp.controller('userInfoController', ['$scope', '$http', 'passageFactory', '$l
     $rootScope.userInfoBack = false;
     $rootScope.hideUserInfo = true;
 
+  var users = passageFactory.users
+
+
+
 
   var practices = passageFactory.practicePassages;
   console.log('practices ->', practices);
@@ -770,7 +798,7 @@ myApp.controller('userInfoController', ['$scope', '$http', 'passageFactory', '$l
 
 }]); //end passage info controlller
 
-myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
+myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', '$timeout', function($scope, $http, passageFactory, $rootScope, $location, $timeout) {
     console.log('In Fill in Blank Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
@@ -784,6 +812,7 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     $rootScope.practiceButton = false;
     $rootScope.practiceInfo = false;
     $rootScope.hideAddPassage = true;
+    var counter = 0;
 
     console.log('passageByID', passageFactory.passageByID);
 
@@ -804,16 +833,49 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     };
     $scope.guessIt = function () {
       console.log('guess', $scope.guess.toLowerCase());
-      console.log('word', $scope.passageArry[$scope.randomWordNumber].toLowerCase() );
-        if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase()) {
+      console.log('word', $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',','').replace(':',''));
+      if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',','').replace(':','').replace(';','')) {
           swal("Good job!", "You Guessed Correctly!", "success");
-        }
-        else {
+          counter = 0;
+          $scope.guess = '';
+          $scope.reset();
+        } else if (counter == 0) {
+          console.log('in else if');
           swal({
-            title: "Try Again!",
-            text: "You Guessed Incorrectly.",
+          title: "Try Again!",
+          text: "See Hint 1!",
+          imageUrl: "./images/headTwo.jpg" });
+          $scope.showHintOne = '<p>' + 'Hint: The First Letter in Word is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + '</u>' + '<p>'
+          $timeout(function (){
+            $scope.showHintOne = ''
+          }, 6000);
+          counter++;
+        } else if (counter == 1){
+          swal({
+          title: "Try Again!",
+          text: "See Hint 2!",
+          imageUrl: "./images/headTwo.jpg" });
+          $scope.showHintOne = '<p>' + 'Hint: The First Two Letters are' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + $scope.passageArry[$scope.randomWordNumber][1].toUpperCase() + '</u>' + '<p>'
+          $timeout(function (){
+            $scope.showHintOne = ''
+          }, 6000);
+          counter++;
+        } else {
+          swal({
+            title: "Sorry You Lose!",
+            text: "See Answer",
             imageUrl: "./images/headTwo.jpg" });
+            counter++;
+            $scope.showHintOne = '<p>' + 'The Answer is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber].toUpperCase()  + '</u>' + '<p>'
+            $timeout(function (){
+              $scope.showHintOne = ''
+            }, 6000);
+            counter = 0;
+            $scope.guess = '';
+            $scope.reset();
         }
+
+        console.log(counter);
     };
     init();
     $scope.reset = function () {
@@ -958,7 +1020,8 @@ myApp.controller('registerController', ['$scope', '$http', '$rootScope', '$locat
             username: $scope.username,
             password: $scope.password,
             first_name: $scope.first_name,
-            last_name: $scope.last_name
+            last_name: $scope.last_name,
+            depot: 0
         }; //end user object
 
         $http({

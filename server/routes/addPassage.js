@@ -11,6 +11,8 @@ router.post('/', function(req, res){
   var passage = req.body.passage;
   var imageUrl = req.body.imageUrl;
   var user = req.user.username;
+  var userFirstName = req.user.first_name;
+  var userLastName = req.user.last_name;
 
   console.log('image url', imageUrl);
 
@@ -22,7 +24,9 @@ router.post('/', function(req, res){
     passage: passage,
     recited: 0,
     depot: false,
-    user: user
+    user: user,
+    first_name: userFirstName,
+    last_name: userLastName
   });
   newPassage.save(function(err){
     if(err){

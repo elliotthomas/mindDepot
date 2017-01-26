@@ -112,8 +112,9 @@ ul {
   list-style-type: none;
 }
 
- {
+.hint p {
   font-size: 20px;
+  color: #8B0000;
 }
 
 .form-group.add {
@@ -156,7 +157,7 @@ h2.box-around {
 .angular-with-newlines {
     white-space: pre-line;
     font-family: 'myFontFour', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .angular-with-newlines.info {
@@ -201,7 +202,8 @@ button.btn.btn-secondary.btn-lg.practice-one {
   display: block;
   margin-left: auto;
   margin-right: auto;
-
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 button.btn.btn-secondary.btn-lg.practice-one.delete {

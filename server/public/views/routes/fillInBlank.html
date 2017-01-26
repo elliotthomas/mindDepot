@@ -4,6 +4,9 @@
 <span ng-repeat="passage in passageArry track by $index" ng-class="{'blank':$index== randomWordNumber}">
     <span ng-if="$index!= randomWordNumber" ng-bind-html = 'passage' class = "angular-with-newlines"></span>
 </span>
+<div ng-bind-html = 'showHintOne' class = 'hint'>
+
+</div>
 </div>
 <form class="loginRegister">
 <div class="input-group">

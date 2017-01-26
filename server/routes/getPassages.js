@@ -8,22 +8,35 @@ router.get('/', function(req, res) {
     if (err) {
       res.sendStatus(500);
     } else {
+      // console.log('req.body ->', results);
+      var memorized = [];
+      results.forEach(function (passage){
+        if (passage.depot == true){
+          memorized.push (passage)
+        } else{
+          return
+        }
+        })
+
+        
+
       var passageToSend = [];
       var objectToSend = {
         passageToSend: passageToSend,
-        userToSend: req.user
+        userToSend: req.user,
+        memorized: memorized
       }
       var userIn = req.user.username;
       results.forEach(function (passage){
-        console.log('passage user', passage.user);
-        console.log('userIN', userIn);
+        // console.log('passage user', passage.user);
+        // console.log('userIN', userIn);
         if (passage.user == userIn){
           passageToSend.push (passage)
         } else {
-          console.log("no user");
+          // console.log("no user");
         }
       })
-      console.log('object to send', objectToSend);
+      // console.log('object to send', objectToSend);
       res.send(objectToSend);
     }
   });
