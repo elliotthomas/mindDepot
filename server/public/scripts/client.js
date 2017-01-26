@@ -939,11 +939,17 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
         $scope.passageArry = $scope.passageQuestions[$scope.randomQuestionNumber].split(' ');
         $scope.randomWordNumber = randomIntFromInterval(0, $scope.passageArry.length - 1);
         $scope.guess = '';
+        var answer = $scope.passageArry[$scope.randomWordNumber].split('\n')
+        if (answer.length == 2) {
+          $scope.showHintOne = '<p>' + 'The Answer Contains Two Words' + '</p>'
+        } else {
+          $scope.showHintOne = ''
+        }
     };
     $scope.guessIt = function () {
       console.log('guess', $scope.guess.toLowerCase());
       console.log('word', $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',','').replace(':',''));
-      if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',','').replace(':','').replace(';','')) {
+      if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',','').replace(':','').replace(';','').replace('.', '').replace('-', '')) {
           swal("Good job!", "You Guessed Correctly!", "success");
           counter = 0;
           $scope.guess = '';
@@ -957,7 +963,7 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
           $scope.showHintOne = '<p>' + 'Hint: The First Letter in Word is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + '</u>' + '<p>'
           $timeout(function (){
             $scope.showHintOne = ''
-          }, 6000);
+          }, 20000);
           counter++;
         } else if (counter == 1){
           swal({
@@ -967,7 +973,7 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
           $scope.showHintOne = '<p>' + 'Hint: The First Two Letters are' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + $scope.passageArry[$scope.randomWordNumber][1].toUpperCase() + '</u>' + '<p>'
           $timeout(function (){
             $scope.showHintOne = ''
-          }, 6000);
+          }, 20000);
           counter++;
         } else {
           swal({
