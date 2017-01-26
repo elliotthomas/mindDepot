@@ -1,20 +1,27 @@
 <div class="container">
-    <div class="form-group write">
-        <input ng-model="title" type="text" name="title" id="title" class="form-control" placeholder="Title" />
+      <label class="has-float-label">
+        <input ng-model="title" class="form-control" type="text" placeholder="Title"/>
+        <span>Title</span>
+      </label>
+
+      <label class="has-float-label">
+        <input ng-model="author" class="form-control" type="text" placeholder="Author"/>
+        <span>Author</span>
+      </label>
+      <label class="has-float-label">
+        <input ng-model="imageUrl" class="form-control" type="text" placeholder="Author Image URL"/>
+        <span>Author Image URL</span>
+      </label>
+      <label class="has-float-label">
+        <input ng-model="sourceUrl" class="form-control" type="text" placeholder="Source URL"/>
+        <span>Source URL</span>
+      </label>
+      <label class="has-float-label">
+        <textarea ng-model="passage" class="form-control" type="text" rows= '15' placeholder="Add Passage To Memorize"/></textarea>
+        <span>Passage</span>
+      </label>
     </div>
-    <div class="form-group write">
-        <input ng-model="author" type="text" name="author" id="author" class="form-control" placeholder="Author" />
-    </div>
-    <div class="form-group write">
-        <input ng-model="imageUrl" type="text" name="imageUrl" id="imageUrl" class="form-control" placeholder="Author Image URL" />
-    </div>
-    <div class="form-group write">
-        <input ng-model="sourceUrl" type="text" name="sourceUrl" id="sourceUrl" class="form-control" placeholder="Source URL" />
-    </div>
-    <div class="form-group write">
-        <textarea ng-model="passage" type="text" name="passage" id="passage" class="form-control" rows = '20' placeholder="Add Passage To Memorize"></textarea>
-    </div>
-    </div>
+  </div>
 
     <div>
     <button ng-click="addPassage()" type="submit" class="btn btn-secondary btn-lg practice-one">

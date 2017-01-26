@@ -1,10 +1,11 @@
 <div ng-bind-html = 'outputText' class = "angular-with-newlines">
 </div>
-<div class="container">
+<div ng-hide = 'hideText' class="container">
 
-<div ng-hide = 'hideText' class="form-group write">
-    <textarea ng-model="passageFromUser" type="text" class="form-control text-area" rows = '15' placeholder="Write As Much Of {{title}} As You Remember, include All Line Breaks and Punctuaction..."></textarea>
-</div>
+<label class="has-float-label">
+    <textarea ng-model="passageFromUser" class="form-control" type="text" rows= '15' placeholder="Write {{title}}. Include all line breaks but punctuation is optional."/></textarea>
+    <span>Write</span>
+</label>
 </div>
 <div>
     <input ng-click="compare()" type="submit" value="Compare" class="btn btn-secondary btn-lg practice-one"/>

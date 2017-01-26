@@ -618,7 +618,6 @@ myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '
     };//end to pracitce
 
     $scope.showOneWord = function () {
-      var splitPassage = passage.split(" ")
       $scope.text = splitPassage[0];
     }
 
@@ -637,6 +636,8 @@ myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '
         $timeout.cancel(timer)
         speed = 1000;
         $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' +  'Second Per Word' + '</p>'
+        $scope.text = splitPassage[0];
+        index = 1;
       };
 
       $scope.slowDown = function (){
@@ -701,6 +702,7 @@ myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '
     var passage = passageFactory.passageByID
     var index = 1;
     var speed = 1000;
+    var splitPassage = passage.split("\n")
 
     if (speed == 1000) {
       $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Second Per Line' + '</p>'
@@ -713,13 +715,11 @@ myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '
     };//end to pracitce
 
     $scope.showOneLine = function () {
-      var splitPassage = passage.split("\n")
       splitPassage[0] = splitPassage[0] + '<br />'
       $scope.text = splitPassage[0];
     }
 
     $scope.addLine = function () {
-        var splitPassage = passage.split("\n")
         console.log('in add line ->', splitPassage);
         for (var i = 0; i < splitPassage.length; i++) {
           splitPassage[i] = splitPassage[i] + '<br />'
@@ -738,6 +738,8 @@ myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '
         $timeout.cancel(timer)
         speed = 1000;
         $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' +  'Second Per Line' + '</p>'
+        $scope.text = splitPassage[0];
+        index = 1;
       };
 
       $scope.slowDown = function (){
@@ -922,6 +924,8 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     $rootScope.practiceInfo = false;
     $rootScope.hideAddPassage = true;
     var counter = 0;
+    var correct = 0;
+    var incorrect = 0;
 
     console.log('passageByID', passageFactory.passageByID);
 
@@ -949,11 +953,12 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     $scope.guessIt = function () {
       console.log('guess', $scope.guess.toLowerCase());
       console.log('word', $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',','').replace(':',''));
-      if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',','').replace(':','').replace(';','').replace('.', '').replace('-', '')) {
+      if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',','').replace(':','').replace(';','').replace('.', '').replace('-', '').replace("'", "")) {
           swal("Good job!", "You Guessed Correctly!", "success");
           counter = 0;
           $scope.guess = '';
           $scope.reset();
+          correct++;
         } else if (counter == 0) {
           console.log('in else if');
           swal({
@@ -961,33 +966,29 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
           text: "See Hint 1!",
           imageUrl: "./images/headTwo.jpg" });
           $scope.showHintOne = '<p>' + 'Hint: The First Letter in Word is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + '</u>' + '<p>'
-          $timeout(function (){
-            $scope.showHintOne = ''
-          }, 20000);
           counter++;
+          incorrect++;
         } else if (counter == 1){
           swal({
           title: "Try Again!",
           text: "See Hint 2!",
           imageUrl: "./images/headTwo.jpg" });
           $scope.showHintOne = '<p>' + 'Hint: The First Two Letters are' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + $scope.passageArry[$scope.randomWordNumber][1].toUpperCase() + '</u>' + '<p>'
-          $timeout(function (){
-            $scope.showHintOne = ''
-          }, 20000);
           counter++;
+          incorrect++;
         } else {
           swal({
-            title: "Sorry You Lose!",
+            title: "Sorry, You Lose!",
             text: "See Answer",
             imageUrl: "./images/headTwo.jpg" });
             counter++;
             $scope.showHintOne = '<p>' + 'The Answer is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber].toUpperCase()  + '</u>' + '<p>'
-            $timeout(function (){
-              $scope.showHintOne = ''
-            }, 20000);
             counter = 0;
             $scope.guess = '';
-            $scope.reset();
+            incorrect++;
+            $timeout(function () {
+               $scope.reset();
+           }, 5000);
         }
 
         console.log(counter);

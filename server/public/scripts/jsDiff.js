@@ -20,8 +20,8 @@ function escape(s) {
 }
 
 function diffString( o, n ) {
-  o = o.replace(/\s+$/, '');
-  n = n.replace(/\s+$/, '');
+  o = o.replace(/\s+$/, '').toLowerCase();
+  n = n.replace(/\s+$/, '').toLowerCase().replace('\n', ' ').replace(',','').replace(':','').replace(';','').replace('.', '').replace('-', '');
 
   var out = diff(o == "" ? [] : o.split(/\s+/), n == "" ? [] : n.split(/\s+/) );
   var str = "";
