@@ -1,8 +1,23 @@
-<div>
-<button ng-click="addWord()" type="submit" value="Add Word" class="btn btn-secondary btn-lg practice-one">
-<span class ='glyphicon glyphicon-plus-sign'></span>
-<p>Add Word</p>
-</button>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <div class="btn-group practice-games" role="group">
+      <button ng-click = 'addWord()'type="button" class="btn btn-default practice-games"><span class = 'glyphicon glyphicon-plus'></span><p>Add Word</p></button>
+    </div>
+    <div class="btn-group" role="group">
+      <button ng-click = 'slowDown()'type="button" class="btn btn-default practice-games"><span class = 'glyphicon glyphicon-fast-backward'></span><p>Slow Down</p></button>
+    </div>
+    <div class="btn-group" role="group">
+      <button ng-click = 'addTimedWord()' type="button" class="btn btn-default practice-games"><span class = 'glyphicon glyphicon-time'></span><p>Start</p></button>
+    </div>
+    <div class="btn-group" role="group">
+      <button ng-click = 'speedUp()'type="button" class="btn btn-default practice-games"><span class = 'glyphicon glyphicon-fast-forward'></span><p>Speed Up</p></button>
+    </div>
+    <div class="btn-group" role="group">
+      <button ng-click = 'stop()'type="button" class="btn btn-default practice-games"><span class = '	glyphicon glyphicon-ban-circle'></span><p>Stop</p></button>
+    </div>
+</div>
+
+<div class = 'text-center' ng-bind-html = 'speedOutput'>
+
 </div>
 <div ng-init = 'showOneWord()'>
   <div class="text-center">

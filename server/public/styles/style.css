@@ -42,6 +42,10 @@ body {
   background-color: #e5e5e5;
 }
 
+p.seconds {
+  font-size: 15px;
+}
+
 .loginRegister {
   width: 250px;
   display: block;
@@ -204,6 +208,10 @@ button.btn.btn-secondary.btn-lg.practice-one {
   margin-right: auto;
   padding-top: 0px;
   padding-bottom: 0px;
+}
+
+button.btn.btn-secondary.btn-lg.practice-one.word {
+  display: inline-block;
 }
 
 button.btn.btn-secondary.btn-lg.practice-one.delete {

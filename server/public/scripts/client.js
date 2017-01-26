@@ -208,7 +208,7 @@ myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$loca
 
     $timeout(function () {
            $location.path ('/practice')
-       }, 10);
+       }, 30);
   };//end practice function
 
     $scope.init = function (){
@@ -583,7 +583,7 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory','$root
 
 }]); //end recite controlller
 
-myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
+myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', '$timeout', function($scope, $http, passageFactory, $rootScope, $location, $timeout) {
     console.log('In Word by Word Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
@@ -603,6 +603,15 @@ myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '
 
     var passage = passageFactory.passageByID
     var index = 1;
+    var timer;
+    var splitPassage = passage.split(" ")
+    var speed = 1000;
+
+    if (speed == 1000) {
+      $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Second Per Word' + '</p>'
+    } else {
+      $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Seconds Per Word' + '</p>'
+    }
 
     $scope.toPractice = function () {
       $location.path ('/practice')
@@ -614,7 +623,6 @@ myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '
     }
 
     $scope.addWord = function () {
-        var splitPassage = passage.split(" ")
         console.log('in add word ->', splitPassage);
 
         $scope.text += (splitPassage[index] + ' ');
@@ -625,9 +633,53 @@ myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '
          }
       };//end add word
 
+      $scope.stop = function (){
+        $timeout.cancel(timer)
+        speed = 1000;
+        $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' +  'Second Per Word' + '</p>'
+      };
+
+      $scope.slowDown = function (){
+        speed = speed + 100;
+        console.log('speed->', speed);
+        if (speed == 1000) {
+          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' +  'Second Per Word' + '</p>'
+        } else {
+          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Seconds Per Word' + '</p>'
+        }
+      }
+
+      $scope.speedUp = function (){
+        speed = speed - 100;
+        console.log('speed->', speed);
+        if (speed == 1000) {
+          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Second Per Word' + '</p>'
+        } else {
+          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Seconds Per Word' + '</p>'
+        }
+      }
+
+      $scope.addTimedWord = function (){
+
+        timer = $timeout(function (){
+        addWordTimeout();
+      }, speed);
+      }
+
+      var addWordTimeout = function () {
+        var splitPassage = passage.split(" ")
+        $scope.text += (splitPassage[index] + ' ');
+        index++;
+        if (index > splitPassage.length){
+           index = 1;
+           $scope.text = splitPassage[0];
+         }
+         $scope.addTimedWord();
+      }
+
 }]); //end word by word controlller
 
-myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
+myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', '$timeout', function($scope, $http, passageFactory, $rootScope, $location, $timeout) {
     console.log('In Line by Line Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
@@ -648,6 +700,13 @@ myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '
 
     var passage = passageFactory.passageByID
     var index = 1;
+    var speed = 1000;
+
+    if (speed == 1000) {
+      $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Second Per Line' + '</p>'
+    } else {
+      $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Seconds Per Line' + '</p>'
+    }
 
     $scope.toPractice = function () {
       $location.path ('/practice')
@@ -674,6 +733,56 @@ myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '
            $scope.text = splitPassage[0];
          }
       };//end add line
+
+      $scope.stop = function (){
+        $timeout.cancel(timer)
+        speed = 1000;
+        $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' +  'Second Per Line' + '</p>'
+      };
+
+      $scope.slowDown = function (){
+        speed = speed + 100;
+        console.log('speed->', speed);
+        if (speed == 1000) {
+          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' +  'Second Per Line' + '</p>'
+        } else {
+          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Seconds Per Line' + '</p>'
+        }
+      }
+
+      $scope.speedUp = function (){
+        speed = speed - 100;
+        console.log('speed->', speed);
+        if (speed == 1000) {
+          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Second Per Line' + '</p>'
+        } else {
+          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Seconds Per Line' + '</p>'
+        }
+      }
+
+      $scope.addTimedLine = function (){
+
+        timer = $timeout(function (){
+        addLineTimeout();
+      }, speed);
+      }
+
+      var addLineTimeout = function () {
+        var splitPassage = passage.split("\n")
+        console.log('in add line ->', splitPassage);
+        for (var i = 0; i < splitPassage.length; i++) {
+          splitPassage[i] = splitPassage[i] + '<br />'
+        }
+        console.log('split with line break', splitPassage);
+
+        $scope.text += (splitPassage[index] + ' ');
+        index++;
+        if (index > splitPassage.length){
+           index = 1;
+           $scope.text = splitPassage[0];
+         }
+         $scope.addTimedLine();
+       }
 
 }]); //end line by line controlller
 
@@ -869,7 +978,7 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
             $scope.showHintOne = '<p>' + 'The Answer is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber].toUpperCase()  + '</u>' + '<p>'
             $timeout(function (){
               $scope.showHintOne = ''
-            }, 6000);
+            }, 20000);
             counter = 0;
             $scope.guess = '';
             $scope.reset();
