@@ -1,9 +1,15 @@
+<div class="text-center">
+    <h3 class ='box'>{{titleInfo}}</h3>
+    <h5>{{authorInfo}}</h5>
+</div>
+<div class="text-center">
 <div ng-bind-html = 'outputText' class = "angular-with-newlines">
+</div>
 </div>
 <div ng-hide = 'hideText' class="container">
 
 <label class="has-float-label">
-    <textarea ng-model="passageFromUser" class="form-control" type="text" rows= '15' placeholder="Write {{title}}. Include all line breaks but punctuation is optional."/></textarea>
+    <textarea ng-model="passageFromUser" class="form-control" type="text" rows= '15' placeholder="Write {{title}}. Include Punctuation and Line Breaks."/></textarea>
     <span>Write</span>
 </label>
 </div>

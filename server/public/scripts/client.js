@@ -806,6 +806,8 @@ myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootS
     $rootScope.hideAddPassage = true;
 
     $scope.title = passageFactory.titleByID
+    $scope.titleInfo = passageFactory.titleByID
+    $scope.authorInfo = passageFactory.authorByID
 
     $scope.toPractice = function () {
       $location.path ('/practice')
@@ -977,6 +979,7 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
           imageUrl: "./images/headTwo.jpg" });
           $scope.showHintOne = '<p>' + 'Hint: The First Letter in Word is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + '</u>' + '<p>'
           counter++;
+          $scope.guess = '';
           incorrect++;
         } else if (counter == 1){
           swal({
@@ -985,6 +988,7 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
           imageUrl: "./images/headTwo.jpg" });
           $scope.showHintOne = '<p>' + 'Hint: The First Two Letters are' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + $scope.passageArry[$scope.randomWordNumber][1].toUpperCase() + '</u>' + '<p>'
           counter++;
+          $scope.guess = '';
           incorrect++;
         } else {
           swal({
