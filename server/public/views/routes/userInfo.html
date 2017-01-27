@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-6 col-xs-6 text-center">
     <u><h4>Passages in Practice: <span class = 'number'>{{numberOne}}</span></h4></u>
-<div ng-repeat = 'title in practicePassages'>
+<div ng-repeat = 'title in practicePassages track by $index'>
   <ul>
     <li>{{title}}</li>
   </ul>
@@ -12,7 +12,7 @@
 </div>
 <div class="col-md-6 col-xs-6 text-center">
   <u><h4>Passage Memorized: <span class = 'number'>{{numberTwo}}</span></h4></u>
-<div ng-repeat = 'title in depotPassages'>
+<div ng-repeat = 'title in depotPassages track by $index'>
   <ul>
     <li>{{title}}</li>
   </ul>

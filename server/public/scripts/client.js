@@ -890,8 +890,8 @@ myApp.controller('userInfoController', ['$scope', '$http', 'passageFactory', '$l
   console.log('depots ->', depots);
   var titlePracticePassages = [];
   var titleDepotPassages = [];
-  $scope.practicePassages = titlePracticePassages
-  $scope.depotPassages = titleDepotPassages
+  $scope.practicePassages = titlePracticePassages;
+  $scope.depotPassages = titleDepotPassages;
 
 
   practices.forEach(function(passage){
@@ -926,6 +926,15 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     var counter = 0;
     var correct = 0;
     var incorrect = 0;
+    var total = correct + incorrect
+    console.log('total', total);
+
+    var percentage = (correct/total) * 100
+
+    $scope.show = '<p>' + correct + '/' + total + '</p>'
+
+
+    $scope.showPercentage = '<p>' + percentage + '%' + '</p>'
 
     console.log('passageByID', passageFactory.passageByID);
 
@@ -943,17 +952,18 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
         $scope.passageArry = $scope.passageQuestions[$scope.randomQuestionNumber].split(' ');
         $scope.randomWordNumber = randomIntFromInterval(0, $scope.passageArry.length - 1);
         $scope.guess = '';
-        var answer = $scope.passageArry[$scope.randomWordNumber].split('\n')
+        var answer = $scope.passageArry[$scope.randomWordNumber].replace(' ', '').split('\n')
         if (answer.length == 2) {
           $scope.showHintOne = '<p>' + 'The Answer Contains Two Words' + '</p>'
+          answer
         } else {
           $scope.showHintOne = ''
         }
     };
     $scope.guessIt = function () {
       console.log('guess', $scope.guess.toLowerCase());
-      console.log('word', $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',','').replace(':',''));
-      if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',','').replace(':','').replace(';','').replace('.', '').replace('-', '').replace("'", "")) {
+      console.log('word', $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',','').replace(':','').replace(';','').replace('.','').replace('-','').replace('!',''))
+      if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n',' ').replace(',','').replace(':','').replace(';','').replace('.','').replace('-','').replace('!','')) {
           swal("Good job!", "You Guessed Correctly!", "success");
           counter = 0;
           $scope.guess = '';
@@ -995,6 +1005,7 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     };
     init();
     $scope.reset = function () {
+      counter = 0;
         init();
     };
 

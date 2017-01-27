@@ -296,7 +296,11 @@ h1.header-text {
 }
 
 .depot-passage a:focus {
-  color: white;
+  color: black;
+}
+
+.depot-passage.red a:focus {
+  color: #8B0000;
 }
 
 .depot-passage.head:focus {
