@@ -1,5 +1,5 @@
 <div class="text-center">
-<h3 class ='box'>{{userFirst}} {{userLast}}</h3>
+<h2 class ='box'>{{userFirst}} {{userLast}}</h2>
 </div>
 <div class="row">
   <div class="col-md-6 col-xs-6 text-center">
@@ -11,11 +11,48 @@
 </div>
 </div>
 <div class="col-md-6 col-xs-6 text-center">
-  <u><h4>Passage Memorized: <span class = 'number'>{{numberTwo}}</span></h4></u>
+  <u><h4>Passages Memorized (In the Depot): <span class = 'number'>{{numberTwo}}</span></h4></u>
 <div ng-repeat = 'title in depotPassages track by $index'>
   <ul>
     <li>{{title}}</li>
   </ul>
 </div>
 </div>
+</div>
+
+<div class="text-center">
+<h3 class ='box'>Fill In the Blank Stats</h3>
+</div>
+<div class="row">
+  <div class="col-md-4 text-center">
+    <h4>Total Passages</h4>
+    <div ng-bind-html = 'showTotal'>
+
+    </div>
+    <div ng-bind-html = 'showTotalPercentage'>
+
+    </div>
+
+
+  </div>
+  <div class="col-md-4 text-center">
+    <h4>Passages in Practice</h4>
+    <div ng-bind-html = 'showPractice'>
+
+    </div>
+    <div ng-bind-html = 'showPracticePercentage'>
+
+    </div>
+
+  </div>
+  <div class="col-md-4 text-center">
+    <h4>Passages in Depot</h4>
+    <div ng-bind-html = 'showDepot'>
+
+    </div>
+    <div ng-bind-html = 'showDepotPercentage'>
+
+    </div>
+
+  </div>
 </div>

@@ -883,6 +883,45 @@ myApp.controller('userInfoController', ['$scope', '$http', 'passageFactory', '$l
 
     var users = passageFactory.users
 
+    $http({
+        method: 'GET',
+        url: '/getPassages'
+    }).then(function(response) {
+        console.log('Passages back from DB ->', response);
+        var passages = response.data.passageToSend
+        var correct = 0;
+        var total = 0;
+        var correctDepot = 0;
+        var totalDepot = 0;
+        var correctPractice = 0;
+        var totalPractice = 0;
+
+        for (var i = 0; i < passages.length; i++) {
+          correct += passages[i].correct
+          total += passages[i].total
+          if (passages[i].depot == true){
+            correctDepot += passages[i].correct
+            totalDepot += passages[i].total
+          } else {
+            correctPractice += passages[i].correct
+            totalPractice += passages[i].total
+          }
+
+        }
+
+        $scope.showTotal = '<p>' + correct + '/' + total + '</p>'
+        $scope.showPractice = '<p>' + correctPractice + '/' + totalPractice + '</p>'
+        $scope.showDepot = '<p>' + correctDepot + '/' + totalDepot + '</p>'
+
+        $scope.showTotalPercentage = '<p>' + Math.round((correct/total) * 100)  + '%' + '</p>'
+        $scope.showPracticePercentage = '<p>' + Math.round((correctPractice/totalPractice) * 100)  + '%' + '</p>'
+        $scope.showDepotPercentage = '<p>' + Math.round((correctDepot/totalDepot) * 100)  + '%' + '</p>'
+
+      });
+
+
+
+
 
 
 
@@ -926,8 +965,8 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     $rootScope.practiceInfo = false;
     $rootScope.hideAddPassage = true;
     var counter = 0;
-    var correct = 0;
-    var total = 0;
+    var correct;
+    var total;
     var id = passageFactory.passageID
     console.log('total', total);
 
@@ -950,14 +989,17 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
         return Math.floor(Math.random() * (max - min + 1) + min);
     };
     var init = function() {
-
+        console.log('in init');
       $http({
           method: 'GET',
           url: '/getPassageByID/' + id
       }).then(function(response) {
-          console.log('response ->', response);
-
-      });
+          console.log('response ->', response.data[0].correct, response.data[0].total );
+          correct = response.data[0].correct;
+          total = response.data[0].total;
+          $scope.show = '<p>' + correct + '/' + total + '</p>'
+          $scope.showPercentage = '<p>' + Math.round((correct/total) * 100)  + '%' + '</p>'
+      }); //end http
 
         $scope.randomQuestionNumber = randomIntFromInterval(0, $scope.passageQuestions.length - 1);
         $scope.passageArry = $scope.passageQuestions[$scope.randomQuestionNumber].split(' ');
@@ -979,21 +1021,8 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
             counter = 0;
             correct++;
             total++;
-
-            var objectToSend = {
-              correct: correct,
-              total: total,
-              id: id
-              }
-
-            $http({
-                method: 'PUT',
-                url: '/addStats',
-                data: objectToSend
-            }).then(function(response) {
-                console.log('response ->', response);
-            });
-
+            $scope.show = '<p>' + correct + '/' + total + '</p>'
+            $scope.showPercentage = '<p>' + Math.round((correct/total) * 100)  + '%' + '</p>'
             $scope.guess = '';
             $scope.reset();
         } else if (counter == 0) {
@@ -1003,23 +1032,10 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
                 text: "See Hint 1!",
                 imageUrl: "./images/headTwo.jpg"
             });
-
-            var objectToSend = {
-              correct: correct,
-              total: total,
-              id: id
-              }
-
-            $http({
-                method: 'PUT',
-                url: '/addStats',
-                data: objectToSend
-            }).then(function(response) {
-                console.log('response ->', response);
-            });
-
             total++;
             counter++;
+            $scope.show = '<p>' + correct + '/' + total + '</p>'
+            $scope.showPercentage = '<p>' + Math.round((correct/total) * 100)  + '%' + '</p>'
             $scope.showHintOne = '<p>' + 'Hint: The First Letter in Word is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + '</u>' + '<p>'
             $scope.guess = '';
         } else if (counter == 1) {
@@ -1030,6 +1046,9 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
             });
             counter++;
             total++;
+            $scope.show = '<p>' + correct + '/' + total + '</p>'
+            $scope.showPercentage = '<p>' + Math.round((correct/total) * 100)  + '%' + '</p>'
+
             $scope.showHintOne = '<p>' + 'Hint: The First Two Letters are' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + $scope.passageArry[$scope.randomWordNumber][1].toUpperCase() + '</u>' + '<p>'
 
             $scope.guess = '';
@@ -1043,16 +1062,51 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
             $scope.showHintOne = '<p>' + 'The Answer is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber].toUpperCase() + '</u>' + '<p>'
             counter = 0;
             $scope.guess = '';
-            incorrect++;
+            total++;
+            $scope.show = '<p>' + correct + '/' + total + '</p>'
+            $scope.showPercentage = '<p>' + Math.round((correct/total) * 100) + '%' + '</p>'
             $timeout(function() {
                 $scope.reset();
             }, 5000);
         }
 
-        console.log(counter);
+        var objectToSend = {
+          correct: correct,
+          total: total,
+          id: id
+          }
+
+          console.log('object to send ->', objectToSend);
+
+        $http({
+            method: 'PUT',
+            url: '/addStats',
+            data: objectToSend
+        }).then(function(response) {
+            console.log('response ->', response);
+        });
+
+
+
+
+
+
     };
     init();
     $scope.reset = function() {
+      var objectToSend = {
+        correct: correct,
+        total: total,
+        id: id
+        }
+
+      $http({
+          method: 'PUT',
+          url: '/addStats',
+          data: objectToSend
+      }).then(function(response) {
+          console.log('response ->', response);
+      });
         counter = 0;
         init();
     };

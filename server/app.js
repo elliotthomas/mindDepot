@@ -18,6 +18,7 @@ var registerRouter = require('./routes/register.js');
 var loginRouter = require('./routes/login.js');
 var logoutRouter = require('./routes/logout.js');
 var returnToPracticeRouter = require('./routes/returnToPractice.js');
+var addStatsRouter = require('./routes/addStats.js');
 
 
 
@@ -47,6 +48,7 @@ app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/returnToPractice', returnToPracticeRouter);
+app.use('/addStats', addStatsRouter);
 
 
 
