@@ -11,7 +11,9 @@ var PassageSchema = new Schema ({
   depot: {type: Boolean, require:false},
   user: {type: String, require: false},
   first_name: {type: String, require: false},
-  last_name: {type: String, require: false}
+  last_name: {type: String, require: false},
+  correct: {type: Number, required: false},
+  total: {type: Number, required: false}
 });
 
 var Passages = mongoose.model('passages', PassageSchema);

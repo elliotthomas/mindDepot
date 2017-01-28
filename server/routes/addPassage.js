@@ -26,7 +26,9 @@ router.post('/', function(req, res){
     depot: false,
     user: user,
     first_name: userFirstName,
-    last_name: userLastName
+    last_name: userLastName,
+    correct: 0,
+    total: 0
   });
   newPassage.save(function(err){
     if(err){

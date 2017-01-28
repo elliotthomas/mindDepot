@@ -16,95 +16,95 @@ myApp.config(['$routeProvider', function($routeProvider) {
             controller: 'loginController'
         })
         .when('/home', {
-        templateUrl: '../views/routes/home.html',
-        controller: 'homeController'
+            templateUrl: '../views/routes/home.html',
+            controller: 'homeController'
         })
         .when('/addPassage', {
-        templateUrl: '../views/routes/addPassage.html',
-        controller: 'addPassageController'
+            templateUrl: '../views/routes/addPassage.html',
+            controller: 'addPassageController'
         })
         .when('/practice', {
-        templateUrl: '../views/routes/practice.html',
-        controller: 'practiceController'
+            templateUrl: '../views/routes/practice.html',
+            controller: 'practiceController'
         })
         .when('/recite', {
-        templateUrl: '../views/routes/recite.html',
-        controller: 'reciteController'
+            templateUrl: '../views/routes/recite.html',
+            controller: 'reciteController'
         })
         .when('/wordByWord', {
-        templateUrl: '../views/routes/wordByWord.html',
-        controller: 'wordByWordController'
+            templateUrl: '../views/routes/wordByWord.html',
+            controller: 'wordByWordController'
         })
         .when('/write', {
-        templateUrl: '../views/routes/write.html',
-        controller: 'writeController'
+            templateUrl: '../views/routes/write.html',
+            controller: 'writeController'
         })
         .when('/passageInfo', {
-        templateUrl: '../views/routes/passageInfo.html',
-        controller: 'passageInfoController'
+            templateUrl: '../views/routes/passageInfo.html',
+            controller: 'passageInfoController'
         })
         .when('/lineByLine', {
-        templateUrl: '../views/routes/lineByLine.html',
-        controller: 'lineByLineController'
+            templateUrl: '../views/routes/lineByLine.html',
+            controller: 'lineByLineController'
         })
         .when('/fillInBlank', {
-        templateUrl: '../views/routes/fillInBlank.html',
-        controller: 'fillInBlankController'
+            templateUrl: '../views/routes/fillInBlank.html',
+            controller: 'fillInBlankController'
         })
         .when('/depot', {
-        templateUrl: '../views/routes/depot.html',
-        controller: 'depotController'
+            templateUrl: '../views/routes/depot.html',
+            controller: 'depotController'
         })
         .when('/splash', {
-        templateUrl: '../views/routes/splash.html',
-        controller: 'splashController'
+            templateUrl: '../views/routes/splash.html',
+            controller: 'splashController'
         })
         .when('/depotInfo', {
-        templateUrl: '../views/routes/depotInfo.html',
-        controller: 'depotInfoController'
+            templateUrl: '../views/routes/depotInfo.html',
+            controller: 'depotInfoController'
         })
         .when('/splashTwo', {
-        templateUrl: '../views/routes/splashTwo.html',
-        controller: 'splashTwoController'
+            templateUrl: '../views/routes/splashTwo.html',
+            controller: 'splashTwoController'
         })
         .when('/splashThree', {
-        templateUrl: '../views/routes/splashThree.html',
-        controller: 'splashThreeController'
+            templateUrl: '../views/routes/splashThree.html',
+            controller: 'splashThreeController'
         })
         .when('/userInfo', {
-        templateUrl: '../views/routes/userInfo.html',
-        controller: 'userInfoController'
+            templateUrl: '../views/routes/userInfo.html',
+            controller: 'userInfoController'
         })
         .otherwise({
-			  redirectTo: '/splashTwo'
-		    });
+            redirectTo: '/splashTwo'
+        });
 }]); //end my app config
 
 
 
 //****Factory****//
 
-myApp.factory('passageFactory', function(){
-  var factory = {};
-  factory.passageID;
-  factory.passageByID;
-  factory.authorByID;
-  factory.titleByID;
-  factory.sourceUrl;
-  factory.counter;
-  factory.imageUrl;
-  factory.depot;
-  factory.userFirstName;
-  factory.userLastName;
-  factory.depotPassages;
-  factory.practicePassages;
-  factory.users;
+myApp.factory('passageFactory', function() {
+    var factory = {};
+    factory.passageID;
+    factory.passageByID;
+    factory.authorByID;
+    factory.titleByID;
+    factory.sourceUrl;
+    factory.counter;
+    factory.imageUrl;
+    factory.depot;
+    factory.userFirstName;
+    factory.userLastName;
+    factory.depotPassages;
+    factory.practicePassages;
+    factory.users;
 
 
 
 
-  return factory
-});//end factory
+    return factory
+}); //end factory
 
 
 
@@ -112,123 +112,123 @@ myApp.factory('passageFactory', function(){
 
 //****Controllers****//
 
-myApp.controller ('homeController', ['$scope', 'passageFactory', '$http', '$location', '$rootScope', '$timeout', function ($scope, passageFactory, $http, $location, $rootScope, $timeout){
-  console.log('In home contoller');
-  $rootScope.hideNav = false;
-  $rootScope.hideFooter = false;
-  $rootScope.hideAddToDepot = true;
-  $rootScope.hideInfo = true;
-  $rootScope.hidePassage = false;
-  $rootScope.hideDepot = false;
-  $rootScope.hideNavTwo = false;
-  $rootScope.practiceButton = false;
-  $rootScope.practiceInfo = true;
-  $rootScope.hideAddPassage = true;
-  $rootScope.depotInfo = true;
-  $rootScope.depotBack = true;
-  $rootScope.hideUserInfo = false;
+myApp.controller('homeController', ['$scope', 'passageFactory', '$http', '$location', '$rootScope', '$timeout', function($scope, passageFactory, $http, $location, $rootScope, $timeout) {
+    console.log('In home contoller');
+    $rootScope.hideNav = false;
+    $rootScope.hideFooter = false;
+    $rootScope.hideAddToDepot = true;
+    $rootScope.hideInfo = true;
+    $rootScope.hidePassage = false;
+    $rootScope.hideDepot = false;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
+    $rootScope.practiceInfo = true;
+    $rootScope.hideAddPassage = true;
+    $rootScope.depotInfo = true;
+    $rootScope.depotBack = true;
+    $rootScope.hideUserInfo = false;
 
 
-  $scope.getPassages = function (){
-    console.log('In get passages function');
-    $http({
-      method: 'GET',
-      url:'/getPassages'
-    }).then(function(response) {
-      console.log('Passages back from DB ->', response);
+    $scope.getPassages = function() {
+        console.log('In get passages function');
+        $http({
+            method: 'GET',
+            url: '/getPassages'
+        }).then(function(response) {
+            console.log('Passages back from DB ->', response);
 
-      var otherUsers = response.data.memorized
-      console.log('other users', otherUsers);
+            var otherUsers = response.data.memorized
+            console.log('other users', otherUsers);
 
-      var grouped = _.groupBy(otherUsers, 'user');
-      console.log('grouped', grouped);
-
-
-
-
-
-
-      // passageFactory.users = eachUser
-
-      // console.log('eachUser', eachUser);
+            var grouped = _.groupBy(otherUsers, 'user');
+            console.log('grouped', grouped);
 
 
 
 
 
 
-      var toDepot = [];
-      var practice = [];
-      var responses = response.data.passageToSend;
-      console.log('responses ->', responses);
-      console.log('responses from');
-      passageFactory.depotPassages = toDepot
-      passageFactory.practicePassages = practice;
-      passageFactory.userFirstName = response.data.userToSend.first_name;
-      passageFactory.userLastName = response.data.userToSend.last_name;
+            // passageFactory.users = eachUser
 
-
-      responses.forEach(function(passage){
-        if (passage.depot === false) {
-          practice.push(passage)
-        } else {
-          toDepot.push(passage)
-        }
-      });//end for each
-
-      $scope.passages = practice;
+            // console.log('eachUser', eachUser);
 
 
 
 
-      console.log('practice after for each', practice);
 
 
-    });//end http get call
-  };//end get passages function
-
-  $scope.toPractice = function (id){
-    console.log('ID number of click', id);
-    passageFactory.passageID = id
-
-    $http ({
-      method: 'GET',
-      url: '/getPassageByID/' + id
-    }).then (function (response){
-      console.log('response ->', response.data[0].passage);
-      passageFactory.passageByID = response.data[0].passage;
-      passageFactory.authorByID = response.data[0].author;
-      passageFactory.titleByID = response.data[0].title;
-      passageFactory.sourceUrl = response.data[0].sourceUrl;
-      passageFactory.counter = response.data[0].recited;
-      passageFactory.imageUrl = response.data[0].imageUrl;
-      passageFactory.depot = response.data[0].depot;
-    });//end http
+            var toDepot = [];
+            var practice = [];
+            var responses = response.data.passageToSend;
+            console.log('responses ->', responses);
+            console.log('responses from');
+            passageFactory.depotPassages = toDepot
+            passageFactory.practicePassages = practice;
+            passageFactory.userFirstName = response.data.userToSend.first_name;
+            passageFactory.userLastName = response.data.userToSend.last_name;
 
 
-    $timeout(function () {
-           $location.path ('/practice')
-       }, 30);
-  };//end practice function
+            responses.forEach(function(passage) {
+                if (passage.depot === false) {
+                    practice.push(passage)
+                } else {
+                    toDepot.push(passage)
+                }
+            }); //end for each
 
-    $scope.init = function (){
-      $scope.getPassages();
-    };//end init function
-
-    $scope.toDepot = function () {
-      $location.path ('/depot')
-    };//end to to depot
-
-    $scope.toAddPassage = function () {
-      $location.path ('/addPassage')
-    };//end to to depot
+            $scope.passages = practice;
 
 
 
-}]);//end home controller
+
+            console.log('practice after for each', practice);
 
 
-myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$location', '$rootScope', function($scope, $http, passageFactory,$location,$rootScope) {
+        }); //end http get call
+    }; //end get passages function
+
+    $scope.toPractice = function(id) {
+        console.log('ID number of click', id);
+        passageFactory.passageID = id
+
+        $http({
+            method: 'GET',
+            url: '/getPassageByID/' + id
+        }).then(function(response) {
+            console.log('response ->', response.data[0].passage);
+            passageFactory.passageByID = response.data[0].passage;
+            passageFactory.authorByID = response.data[0].author;
+            passageFactory.titleByID = response.data[0].title;
+            passageFactory.sourceUrl = response.data[0].sourceUrl;
+            passageFactory.counter = response.data[0].recited;
+            passageFactory.imageUrl = response.data[0].imageUrl;
+            passageFactory.depot = response.data[0].depot;
+        }); //end http
+
+
+        $timeout(function() {
+            $location.path('/practice')
+        }, 30);
+    }; //end practice function
+
+    $scope.init = function() {
+        $scope.getPassages();
+    }; //end init function
+
+    $scope.toDepot = function() {
+        $location.path('/depot')
+    }; //end to to depot
+
+    $scope.toAddPassage = function() {
+        $location.path('/addPassage')
+    }; //end to to depot
+
+
+
+}]); //end home controller
+
+
+myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$location', '$rootScope', function($scope, $http, passageFactory, $location, $rootScope) {
     console.log('In Depot Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
@@ -246,68 +246,68 @@ myApp.controller('depotController', ['$scope', '$http', 'passageFactory', '$loca
     $rootScope.depotInfo = true;
     $rootScope.userInfoBack = true;
 
-    $scope.getPassages = function (){
-      console.log('In get passages function');
-      $http({
-        method: 'GET',
-        url:'/getPassages'
-      }).then(function(response) {
-        console.log('Passages back from DB ->', response.data);
-        var toDepot = [];
-        var practice = [];
-        passageFactory.depotPassages = toDepot
-        passageFactory.practicePassages = practice;
-        var responses = response.data.passageToSend;
+    $scope.getPassages = function() {
+        console.log('In get passages function');
+        $http({
+            method: 'GET',
+            url: '/getPassages'
+        }).then(function(response) {
+            console.log('Passages back from DB ->', response.data);
+            var toDepot = [];
+            var practice = [];
+            passageFactory.depotPassages = toDepot
+            passageFactory.practicePassages = practice;
+            var responses = response.data.passageToSend;
 
-        responses.forEach(function(passage){
-          if (passage.depot === false) {
-            practice.push(passage)
-          } else {
-            toDepot.push(passage)
-          }
-        });//end for each
+            responses.forEach(function(passage) {
+                if (passage.depot === false) {
+                    practice.push(passage)
+                } else {
+                    toDepot.push(passage)
+                }
+            }); //end for each
 
-        $scope.passages = toDepot;
+            $scope.passages = toDepot;
 
-      });//end http get call
-    };//end get passages function
+        }); //end http get call
+    }; //end get passages function
 
-    $scope.toDepotInfo= function(id){
-      console.log('in to passage info');
-      console.log('id is this ->', id);
-      passageFactory.passageID = id
+    $scope.toDepotInfo = function(id) {
+        console.log('in to passage info');
+        console.log('id is this ->', id);
+        passageFactory.passageID = id
 
-      $http ({
-      method: 'GET',
-      url: '/getPassageByID/' + id
-    }).then (function (response){
-      console.log('response ->', response.data[0].title);
-      passageFactory.passageByID = response.data[0].passage;
-      passageFactory.authorByID = response.data[0].author;
-      passageFactory.titleByID = response.data[0].title;
-      passageFactory.sourceUrl = response.data[0].sourceUrl;
-      passageFactory.counter = response.data[0].recited;
-      passageFactory.imageUrl = response.data[0].imageUrl;
-      passageFactory.depot = response.data[0].depot;
-    });//end http
+        $http({
+            method: 'GET',
+            url: '/getPassageByID/' + id
+        }).then(function(response) {
+            console.log('response ->', response.data[0].title);
+            passageFactory.passageByID = response.data[0].passage;
+            passageFactory.authorByID = response.data[0].author;
+            passageFactory.titleByID = response.data[0].title;
+            passageFactory.sourceUrl = response.data[0].sourceUrl;
+            passageFactory.counter = response.data[0].recited;
+            passageFactory.imageUrl = response.data[0].imageUrl;
+            passageFactory.depot = response.data[0].depot;
+        }); //end http
 
-    console.log('author ->', passageFactory.titleByID);
+        console.log('author ->', passageFactory.titleByID);
 
-    $rootScope.practiceButton = true;
-    $location.path ('/depotInfo')
+        $rootScope.practiceButton = true;
+        $location.path('/depotInfo')
 
-  };//end to passage info
-
-
-
-    $scope.toHome = function () {
-      $location.path ('/home')
-    };//end to home
+    }; //end to passage info
 
 
-    $scope.init = function (){
-      $scope.getPassages();
-    };//end init function
+
+    $scope.toHome = function() {
+        $location.path('/home')
+    }; //end to home
+
+
+    $scope.init = function() {
+        $scope.getPassages();
+    }; //end init function
 
 
 
@@ -331,104 +331,104 @@ myApp.controller('depotInfoController', ['$scope', '$http', '$location', '$timeo
 
 
 
-    $scope.toPractice = function () {
-      $location.path ('/practice')
-    };//end to write
+    $scope.toPractice = function() {
+        $location.path('/practice')
+    }; //end to write
 
-    $scope.toPassageInfo = function () {
-      $location.path ('/passageInfo')
-    };//end to write
+    $scope.toPassageInfo = function() {
+        $location.path('/passageInfo')
+    }; //end to write
 
-    $scope.returnToPractice = function () {
+    $scope.returnToPractice = function() {
 
-      console.log('in return to practice');
+        console.log('in return to practice');
 
         var id = passageFactory.passageID
 
         var addToDepot = {
-          idToSend: id
+            idToSend: id
         };
 
-        $http ({
-          method: 'PUT',
-          url: '/returnToPractice',
-          data: addToDepot
-        }).then (function (response){
-          console.log('response ->', response);
+        $http({
+            method: 'PUT',
+            url: '/returnToPractice',
+            data: addToDepot
+        }).then(function(response) {
+            console.log('response ->', response);
         });
 
-        $location.path ('/home')
+        $location.path('/home')
 
-      };//end add to depot function
+    }; //end add to depot function
 
 
 
-    $scope.deletePassage = function () {
+    $scope.deletePassage = function() {
         var id = passageFactory.passageID
         console.log('id from factory ->', id);
 
-        $http ({
-        method: 'DELETE',
-        url: '/deletePassage/' + id
-      }).then (function (response){
-        console.log('response from delete ->', response);
-      });
+        $http({
+            method: 'DELETE',
+            url: '/deletePassage/' + id
+        }).then(function(response) {
+            console.log('response from delete ->', response);
+        });
 
-      console.log('passage facory true or false', passageFactory.depot );
+        console.log('passage facory true or false', passageFactory.depot);
 
-      if (passageFactory.depot == false){
-        $location.path ('/home')
-      } else {
-        $location.path ('/depot')
-      }
+        if (passageFactory.depot == false) {
+            $location.path('/home')
+        } else {
+            $location.path('/depot')
+        }
 
-    };//end delete passage
+    }; //end delete passage
 
 
 }]); //end depot info controlller
 
 
-myApp.controller ('addPassageController', ['$scope', '$http','$rootScope', '$location', function ($scope, $http, $rootScope, $location){
-  console.log('In add passage contoller');
-  $rootScope.hideIt = true;
-  $rootScope.hideBack = false;
-  $rootScope.hideNav = false;
-  $rootScope.hideFooter = false;
-  $rootScope.hideInfo = true;
-  $rootScope.hideAddToDepot = true;
-  $rootScope.hidePassage = false;
-  $rootScope.hideDepot = false;
-  $rootScope.hideNavTwo = false;
-  $rootScope.practiceButton = false;
-  $rootScope.practiceInfo = true;
-  $rootScope.hideUserInfo = false;
-  $rootScope.addPassageInfo = true;
+myApp.controller('addPassageController', ['$scope', '$http', '$rootScope', '$location', function($scope, $http, $rootScope, $location) {
+    console.log('In add passage contoller');
+    $rootScope.hideIt = true;
+    $rootScope.hideBack = false;
+    $rootScope.hideNav = false;
+    $rootScope.hideFooter = false;
+    $rootScope.hideInfo = true;
+    $rootScope.hideAddToDepot = true;
+    $rootScope.hidePassage = false;
+    $rootScope.hideDepot = false;
+    $rootScope.hideNavTwo = false;
+    $rootScope.practiceButton = false;
+    $rootScope.practiceInfo = true;
+    $rootScope.hideUserInfo = false;
+    $rootScope.addPassageInfo = true;
 
-$scope.addPassage = function (){
-  var passage = $scope.passage.split('\n');
+    $scope.addPassage = function() {
+        var passage = $scope.passage.split('\n');
 
-  console.log('each line in an array', passage);
+        console.log('each line in an array', passage);
 
-  var passage = {
-    title: $scope.title,
-    author: $scope.author,
-    sourceUrl: $scope.sourceUrl,
-    imageUrl: $scope.imageUrl,
-    passage: $scope.passage
-  };//end passage object
+        var passage = {
+            title: $scope.title,
+            author: $scope.author,
+            sourceUrl: $scope.sourceUrl,
+            imageUrl: $scope.imageUrl,
+            passage: $scope.passage
+        }; //end passage object
 
-  $http ({
-    method: 'POST',
-    url: '/addPassage',
-    data: passage
-  }).then (function (response){
-    console.log('response ->', response);
-  });
+        $http({
+            method: 'POST',
+            url: '/addPassage',
+            data: passage
+        }).then(function(response) {
+            console.log('response ->', response);
+        });
 
-  $location.path ('/home')
+        $location.path('/home')
 
-};//end add passage function
-}]);//end add passage controller
+    }; //end add passage function
+}]); //end add passage controller
 
 myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$location', '$timeout', '$rootScope', function($scope, $http, passageFactory, $location, $timeout, $rootScope) {
     console.log('In Practice Controller');
@@ -447,71 +447,71 @@ myApp.controller('practiceController', ['$scope', '$http', 'passageFactory', '$l
     $rootScope.hideAddPassage = true;
     $rootScope.hideUserInfo = true;
 
-    $scope.toRecite = function () {
-      $location.path ('/recite')
-    };//end to recite
+    $scope.toRecite = function() {
+        $location.path('/recite')
+    }; //end to recite
 
-    $scope.toWrite = function () {
-      $location.path ('/write')
-    };//end to write
+    $scope.toWrite = function() {
+        $location.path('/write')
+    }; //end to write
 
-    $scope.toWordByWord = function () {
-      $location.path ('/wordByWord')
-    };//end to word by word
+    $scope.toWordByWord = function() {
+        $location.path('/wordByWord')
+    }; //end to word by word
 
-    $scope.toPassageInfo = function () {
-      $location.path ('/passageInfo')
-    };//end to passageinfo
+    $scope.toPassageInfo = function() {
+        $location.path('/passageInfo')
+    }; //end to passageinfo
 
-    $scope.toLinebyLine = function () {
-      $location.path ('/lineByLine')
-    };//end to line by line
+    $scope.toLinebyLine = function() {
+        $location.path('/lineByLine')
+    }; //end to line by line
 
 
-    $scope.tofillInBlank = function () {
-      $location.path ('/fillInBlank')
-    };//end to fill in blank
+    $scope.tofillInBlank = function() {
+        $location.path('/fillInBlank')
+    }; //end to fill in blank
 
-    $scope.showPassageInfo = function (){
+    $scope.showPassageInfo = function() {
 
-      $scope.titleInfo = passageFactory.titleByID;
-      $scope.authorInfo = passageFactory.authorByID;
-      $scope.sourceUrlInfo = passageFactory.sourceUrl;
-      $scope.imageUrlInfo = passageFactory.imageUrl;
-      $scope.passageByID = passageFactory.passageByID;
+        $scope.titleInfo = passageFactory.titleByID;
+        $scope.authorInfo = passageFactory.authorByID;
+        $scope.sourceUrlInfo = passageFactory.sourceUrl;
+        $scope.imageUrlInfo = passageFactory.imageUrl;
+        $scope.passageByID = passageFactory.passageByID;
 
-    };//end show passage info
+    }; //end show passage info
 
 
 
     $scope.showPassageInfo();
 
-    $scope.deletePassage = function () {
+    $scope.deletePassage = function() {
         var id = passageFactory.passageID
         console.log('id from factory ->', id);
 
-        $http ({
-        method: 'DELETE',
-        url: '/deletePassage/' + id
-      }).then (function (response){
-        console.log('response from delete ->', response);
-      });
+        $http({
+            method: 'DELETE',
+            url: '/deletePassage/' + id
+        }).then(function(response) {
+            console.log('response from delete ->', response);
+        });
 
-      console.log('passage facory true or false', passageFactory.depot );
+        console.log('passage facory true or false', passageFactory.depot);
 
-      if (passageFactory.depot == false){
-        $location.path ('/home')
-      } else {
-        $location.path ('/depot')
-      }
+        if (passageFactory.depot == false) {
+            $location.path('/home')
+        } else {
+            $location.path('/depot')
+        }
 
-    };//end delete passage
+    }; //end delete passage
 
 }]); //end practice controlller
 
 
 
-myApp.controller('reciteController', ['$scope', '$http', 'passageFactory','$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
+myApp.controller('reciteController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
     console.log('In Recite Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
@@ -526,59 +526,59 @@ myApp.controller('reciteController', ['$scope', '$http', 'passageFactory','$root
     $rootScope.practiceInfo = false;
     $rootScope.hideAddPassage = true;
 
-    console.log('id from factory ->', passageFactory.passageID );
+    console.log('id from factory ->', passageFactory.passageID);
 
-    $scope.toPractice = function () {
-      $location.path ('/practice')
-    };//end to pracitce
+    $scope.toPractice = function() {
+        $location.path('/practice')
+    }; //end to pracitce
 
 
-    $scope.getCounter = function (){
+    $scope.getCounter = function() {
 
-      $scope.passageByID = passageFactory.passageByID;
-      $scope.titleInfo = passageFactory.titleByID;
-      $scope.authorInfo = passageFactory.authorByID;
+        $scope.passageByID = passageFactory.passageByID;
+        $scope.titleInfo = passageFactory.titleByID;
+        $scope.authorInfo = passageFactory.authorByID;
 
-      var id = passageFactory.passageID;
+        var id = passageFactory.passageID;
 
-    $http ({
-      method: 'GET',
-      url: '/getPassageByID/' + id
-    }).then (function (response){
-      console.log('response ->', response.data[0].passage);
-      $scope.counter = response.data[0].recited;
-      passageFactory.counter = response.data[0].recited
-    });//end http
+        $http({
+            method: 'GET',
+            url: '/getPassageByID/' + id
+        }).then(function(response) {
+            console.log('response ->', response.data[0].passage);
+            $scope.counter = response.data[0].recited;
+            passageFactory.counter = response.data[0].recited
+        }); //end http
 
-  };//end get counter
+    }; //end get counter
 
-    $scope.increment = function () {
-      var id = passageFactory.passageID;
+    $scope.increment = function() {
+        var id = passageFactory.passageID;
 
-      console.log('id in increment function ->', id);
+        console.log('id in increment function ->', id);
 
-      var counter = passageFactory.counter
+        var counter = passageFactory.counter
 
-      counter++;
+        counter++;
 
-      var counterToSend = {
-        counter: counter,
-        idToSend: id
-      };//end counter var
+        var counterToSend = {
+            counter: counter,
+            idToSend: id
+        }; //end counter var
 
-      console.log('counterToSend ->', counterToSend);
+        console.log('counterToSend ->', counterToSend);
 
-      $http ({
-        method: 'PUT',
-        url: '/addCounter',
-        data: counterToSend
-      }).then (function (response){
-        console.log('response ->', response);
-      });
+        $http({
+            method: 'PUT',
+            url: '/addCounter',
+            data: counterToSend
+        }).then(function(response) {
+            console.log('response ->', response);
+        });
 
-      $scope.getCounter();
+        $scope.getCounter();
 
-    };//end increment function
+    }; //end increment function
 
 
 }]); //end recite controlller
@@ -608,75 +608,75 @@ myApp.controller('wordByWordController', ['$scope', '$http', 'passageFactory', '
     var speed = 1000;
 
     if (speed == 1000) {
-      $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Second Per Word' + '</p>'
+        $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Second Per Word' + '</p>'
     } else {
-      $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Seconds Per Word' + '</p>'
+        $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Seconds Per Word' + '</p>'
     }
 
-    $scope.toPractice = function () {
-      $location.path ('/practice')
-    };//end to pracitce
+    $scope.toPractice = function() {
+        $location.path('/practice')
+    }; //end to pracitce
 
-    $scope.showOneWord = function () {
-      $scope.text = splitPassage[0];
+    $scope.showOneWord = function() {
+        $scope.text = splitPassage[0];
     }
 
-    $scope.addWord = function () {
+    $scope.addWord = function() {
         console.log('in add word ->', splitPassage);
 
         $scope.text += (splitPassage[index] + ' ');
         index++;
-        if (index > splitPassage.length){
-           index = 1;
-           $scope.text = splitPassage[0];
-         }
-      };//end add word
+        if (index > splitPassage.length) {
+            index = 1;
+            $scope.text = splitPassage[0];
+        }
+    }; //end add word
 
-      $scope.stop = function (){
+    $scope.stop = function() {
         $timeout.cancel(timer)
         speed = 1000;
-        $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' +  'Second Per Word' + '</p>'
+        $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Second Per Word' + '</p>'
         $scope.text = splitPassage[0];
         index = 1;
-      };
+    };
 
-      $scope.slowDown = function (){
+    $scope.slowDown = function() {
         speed = speed + 100;
         console.log('speed->', speed);
         if (speed == 1000) {
-          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' +  'Second Per Word' + '</p>'
+            $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Second Per Word' + '</p>'
         } else {
-          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Seconds Per Word' + '</p>'
+            $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Seconds Per Word' + '</p>'
         }
-      }
+    }
 
-      $scope.speedUp = function (){
+    $scope.speedUp = function() {
         speed = speed - 100;
         console.log('speed->', speed);
         if (speed == 1000) {
-          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Second Per Word' + '</p>'
+            $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Second Per Word' + '</p>'
         } else {
-          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Seconds Per Word' + '</p>'
+            $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Seconds Per Word' + '</p>'
         }
-      }
+    }
 
-      $scope.addTimedWord = function (){
+    $scope.addTimedWord = function() {
 
-        timer = $timeout(function (){
-        addWordTimeout();
-      }, speed);
-      }
+        timer = $timeout(function() {
+            addWordTimeout();
+        }, speed);
+    }
 
-      var addWordTimeout = function () {
+    var addWordTimeout = function() {
         var splitPassage = passage.split(" ")
         $scope.text += (splitPassage[index] + ' ');
         index++;
-        if (index > splitPassage.length){
-           index = 1;
-           $scope.text = splitPassage[0];
-         }
-         $scope.addTimedWord();
-      }
+        if (index > splitPassage.length) {
+            index = 1;
+            $scope.text = splitPassage[0];
+        }
+        $scope.addTimedWord();
+    }
 
 }]); //end word by word controlller
 
@@ -705,92 +705,92 @@ myApp.controller('lineByLineController', ['$scope', '$http', 'passageFactory', '
     var splitPassage = passage.split("\n")
 
     if (speed == 1000) {
-      $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Second Per Line' + '</p>'
+        $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Second Per Line' + '</p>'
     } else {
-      $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Seconds Per Line' + '</p>'
+        $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Seconds Per Line' + '</p>'
     }
 
-    $scope.toPractice = function () {
-      $location.path ('/practice')
-    };//end to pracitce
+    $scope.toPractice = function() {
+        $location.path('/practice')
+    }; //end to pracitce
 
-    $scope.showOneLine = function () {
-      splitPassage[0] = splitPassage[0] + '<br />'
-      $scope.text = splitPassage[0];
+    $scope.showOneLine = function() {
+        splitPassage[0] = splitPassage[0] + '<br />'
+        $scope.text = splitPassage[0];
     }
 
-    $scope.addLine = function () {
+    $scope.addLine = function() {
         console.log('in add line ->', splitPassage);
         for (var i = 0; i < splitPassage.length; i++) {
-          splitPassage[i] = splitPassage[i] + '<br />'
+            splitPassage[i] = splitPassage[i] + '<br />'
         }
         console.log('split with line break', splitPassage);
 
         $scope.text += (splitPassage[index] + ' ');
         index++;
-        if (index > splitPassage.length){
-           index = 1;
-           $scope.text = splitPassage[0];
-         }
-      };//end add line
+        if (index > splitPassage.length) {
+            index = 1;
+            $scope.text = splitPassage[0];
+        }
+    }; //end add line
 
-      $scope.stop = function (){
+    $scope.stop = function() {
         $timeout.cancel(timer)
         speed = 1000;
-        $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' +  'Second Per Line' + '</p>'
+        $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Second Per Line' + '</p>'
         $scope.text = splitPassage[0];
         index = 1;
-      };
+    };
 
-      $scope.slowDown = function (){
+    $scope.slowDown = function() {
         speed = speed + 100;
         console.log('speed->', speed);
         if (speed == 1000) {
-          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' +  'Second Per Line' + '</p>'
+            $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Second Per Line' + '</p>'
         } else {
-          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Seconds Per Line' + '</p>'
+            $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Seconds Per Line' + '</p>'
         }
-      }
+    }
 
-      $scope.speedUp = function (){
+    $scope.speedUp = function() {
         speed = speed - 100;
         console.log('speed->', speed);
         if (speed == 1000) {
-          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Second Per Line' + '</p>'
+            $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Second Per Line' + '</p>'
         } else {
-          $scope.speedOutput = '<p class = "seconds">' + (speed/1000).toFixed(2) + ' ' + 'Seconds Per Line' + '</p>'
+            $scope.speedOutput = '<p class = "seconds">' + (speed / 1000).toFixed(2) + ' ' + 'Seconds Per Line' + '</p>'
         }
-      }
+    }
 
-      $scope.addTimedLine = function (){
+    $scope.addTimedLine = function() {
 
-        timer = $timeout(function (){
-        addLineTimeout();
-      }, speed);
-      }
+        timer = $timeout(function() {
+            addLineTimeout();
+        }, speed);
+    }
 
-      var addLineTimeout = function () {
+    var addLineTimeout = function() {
         var splitPassage = passage.split("\n")
         console.log('in add line ->', splitPassage);
         for (var i = 0; i < splitPassage.length; i++) {
-          splitPassage[i] = splitPassage[i] + '<br />'
+            splitPassage[i] = splitPassage[i] + '<br />'
         }
         console.log('split with line break', splitPassage);
 
         $scope.text += (splitPassage[index] + ' ');
         index++;
-        if (index > splitPassage.length){
-           index = 1;
-           $scope.text = splitPassage[0];
-         }
-         $scope.addTimedLine();
-       }
+        if (index > splitPassage.length) {
+            index = 1;
+            $scope.text = splitPassage[0];
+        }
+        $scope.addTimedLine();
+    }
 
 }]); //end line by line controlller
 
 
 
-myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
+myApp.controller('writeController', ['$scope', '$http', 'passageFactory', '$rootScope', '$location', function($scope, $http, passageFactory, $rootScope, $location) {
     console.log('In write Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = true;
@@ -809,22 +809,22 @@ myApp.controller('writeController', ['$scope', '$http','passageFactory', '$rootS
     $scope.titleInfo = passageFactory.titleByID
     $scope.authorInfo = passageFactory.authorByID
 
-    $scope.toPractice = function () {
-      $location.path ('/practice')
-    };//end to pracitce
+    $scope.toPractice = function() {
+        $location.path('/practice')
+    }; //end to pracitce
 
-    $scope.compare = function(){
-      var passageOriginal = passageFactory.passageByID
-      var passageUser = $scope.passageFromUser
-      console.log('diffstring', diffString(passageUser, passageOriginal));
-      $scope.outputText = diffString(passageUser, passageOriginal);
-      $rootScope.hideText = true;
-    };//end compare
+    $scope.compare = function() {
+        var passageOriginal = passageFactory.passageByID
+        var passageUser = $scope.passageFromUser
+        console.log('diffstring', diffString(passageUser, passageOriginal));
+        $scope.outputText = diffString(passageUser, passageOriginal);
+        $rootScope.hideText = true;
+    }; //end compare
 
-    $scope.reset = function (){
-      $scope.outputText = '';
-      $scope.passageFromUser = '';
-      $rootScope.hideText = false;
+    $scope.reset = function() {
+        $scope.outputText = '';
+        $scope.passageFromUser = '';
+        $rootScope.hideText = false;
     };
 
 
@@ -850,15 +850,15 @@ myApp.controller('passageInfoController', ['$scope', '$http', 'passageFactory', 
 
     console.log('author->', passageFactory.titleByID);
 
-  $scope.showPassageInfo = function (){
+    $scope.showPassageInfo = function() {
 
-    $scope.titleInfo = passageFactory.titleByID;
-    $scope.authorInfo = passageFactory.authorByID;
-    $scope.sourceUrlInfo = passageFactory.sourceUrl;
-    $scope.imageUrlInfo = passageFactory.imageUrl;
-    $scope.passageByID= passageFactory.passageByID;
+        $scope.titleInfo = passageFactory.titleByID;
+        $scope.authorInfo = passageFactory.authorByID;
+        $scope.sourceUrlInfo = passageFactory.sourceUrl;
+        $scope.imageUrlInfo = passageFactory.imageUrl;
+        $scope.passageByID = passageFactory.passageByID;
 
-  };//end show passage info
+    }; //end show passage info
 
 }]); //end passage info controlller
 
@@ -881,27 +881,27 @@ myApp.controller('userInfoController', ['$scope', '$http', 'passageFactory', '$l
     $rootScope.userInfoBack = false;
     $rootScope.hideUserInfo = true;
 
-  var users = passageFactory.users
+    var users = passageFactory.users
 
 
 
 
-  var practices = passageFactory.practicePassages;
-  console.log('practices ->', practices);
-  var depots = passageFactory.depotPassages;
-  console.log('depots ->', depots);
-  var titlePracticePassages = [];
-  var titleDepotPassages = [];
-  $scope.practicePassages = titlePracticePassages;
-  $scope.depotPassages = titleDepotPassages;
+    var practices = passageFactory.practicePassages;
+    console.log('practices ->', practices);
+    var depots = passageFactory.depotPassages;
+    console.log('depots ->', depots);
+    var titlePracticePassages = [];
+    var titleDepotPassages = [];
+    $scope.practicePassages = titlePracticePassages;
+    $scope.depotPassages = titleDepotPassages;
 
 
-  practices.forEach(function(passage){
-    titlePracticePassages.push(passage.title)
-  });
-  depots.forEach(function(passage){
-    titleDepotPassages.push(passage.title)
-  });
+    practices.forEach(function(passage) {
+        titlePracticePassages.push(passage.title)
+    });
+    depots.forEach(function(passage) {
+        titleDepotPassages.push(passage.title)
+    });
     $scope.userFirst = passageFactory.userFirstName.toUpperCase();
     $scope.userLast = passageFactory.userLastName.toUpperCase();
     $scope.numberOne = passageFactory.practicePassages.length;
@@ -927,18 +927,18 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
     $rootScope.hideAddPassage = true;
     var counter = 0;
     var correct = 0;
-    var incorrect = 0;
-    var total = correct + incorrect
+    var total = 0;
+    var id = passageFactory.passageID
     console.log('total', total);
 
-    var percentage = (correct/total) * 100
+    var percentage = (correct / total) * 100
 
     $scope.show = '<p>' + correct + '/' + total + '</p>'
 
 
     $scope.showPercentage = '<p>' + percentage + '%' + '</p>'
 
-    console.log('passageByID', passageFactory.passageByID);
+
 
     $scope.authorInfo = passageFactory.authorByID;
     $scope.titleInfo = passageFactory.titleByID;
@@ -946,70 +946,114 @@ myApp.controller('fillInBlankController', ['$scope', '$http', 'passageFactory', 
 
     $scope.passageQuestions = [passageFactory.passageByID]
 
-    var randomIntFromInterval = function (min, max) {
+    var randomIntFromInterval = function(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     };
-    var init = function () {
+    var init = function() {
+
+      $http({
+          method: 'GET',
+          url: '/getPassageByID/' + id
+      }).then(function(response) {
+          console.log('response ->', response);
+
+      });
+
         $scope.randomQuestionNumber = randomIntFromInterval(0, $scope.passageQuestions.length - 1);
         $scope.passageArry = $scope.passageQuestions[$scope.randomQuestionNumber].split(' ');
         $scope.randomWordNumber = randomIntFromInterval(0, $scope.passageArry.length - 1);
         $scope.guess = '';
         var answer = $scope.passageArry[$scope.randomWordNumber].replace(' ', '').split('\n')
         if (answer.length == 2) {
-          $scope.showHintOne = '<p>' + 'The Answer Contains Two Words' + '</p>'
-          answer
+            $scope.showHintOne = '<p>' + 'The Answer Contains Two Words' + '</p>'
+            answer
         } else {
-          $scope.showHintOne = ''
+            $scope.showHintOne = ''
         }
     };
-    $scope.guessIt = function () {
-      console.log('guess', $scope.guess.toLowerCase());
-      console.log('word', $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',','').replace(':','').replace(';','').replace('.','').replace('-','').replace('!',''))
-      if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n',' ').replace(',','').replace(':','').replace(';','').replace('.','').replace('-','').replace('!','')) {
-          swal("Good job!", "You Guessed Correctly!", "success");
-          counter = 0;
-          $scope.guess = '';
-          $scope.reset();
-          correct++;
+    $scope.guessIt = function() {
+        console.log('guess', $scope.guess.toLowerCase());
+        console.log('word', $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',', '').replace(':', '').replace(';', '').replace('.', '').replace('-', '').replace('!', ''))
+        if ($scope.guess.toLowerCase() == $scope.passageArry[$scope.randomWordNumber].toLowerCase().replace('\n', ' ').replace(',', '').replace(':', '').replace(';', '').replace('.', '').replace('-', '').replace('!', '')) {
+            swal("Good job!", "You Guessed Correctly!", "success");
+            counter = 0;
+            correct++;
+            total++;
+
+            var objectToSend = {
+              correct: correct,
+              total: total,
+              id: id
+              }
+
+            $http({
+                method: 'PUT',
+                url: '/addStats',
+                data: objectToSend
+            }).then(function(response) {
+                console.log('response ->', response);
+            });
+
+            $scope.guess = '';
+            $scope.reset();
         } else if (counter == 0) {
-          console.log('in else if');
-          swal({
-          title: "Try Again!",
-          text: "See Hint 1!",
-          imageUrl: "./images/headTwo.jpg" });
-          $scope.showHintOne = '<p>' + 'Hint: The First Letter in Word is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + '</u>' + '<p>'
-          counter++;
-          $scope.guess = '';
-          incorrect++;
-        } else if (counter == 1){
-          swal({
-          title: "Try Again!",
-          text: "See Hint 2!",
-          imageUrl: "./images/headTwo.jpg" });
-          $scope.showHintOne = '<p>' + 'Hint: The First Two Letters are' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + $scope.passageArry[$scope.randomWordNumber][1].toUpperCase() + '</u>' + '<p>'
-          counter++;
-          $scope.guess = '';
-          incorrect++;
-        } else {
-          swal({
-            title: "Sorry, You Lose!",
-            text: "See Answer",
-            imageUrl: "./images/headTwo.jpg" });
+            console.log('in else if');
+            swal({
+                title: "Try Again!",
+                text: "See Hint 1!",
+                imageUrl: "./images/headTwo.jpg"
+            });
+
+            var objectToSend = {
+              correct: correct,
+              total: total,
+              id: id
+              }
+
+            $http({
+                method: 'PUT',
+                url: '/addStats',
+                data: objectToSend
+            }).then(function(response) {
+                console.log('response ->', response);
+            });
+
+            total++;
             counter++;
-            $scope.showHintOne = '<p>' + 'The Answer is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber].toUpperCase()  + '</u>' + '<p>'
+            $scope.showHintOne = '<p>' + 'Hint: The First Letter in Word is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + '</u>' + '<p>'
+            $scope.guess = '';
+        } else if (counter == 1) {
+            swal({
+                title: "Try Again!",
+                text: "See Hint 2!",
+                imageUrl: "./images/headTwo.jpg"
+            });
+            counter++;
+            total++;
+            $scope.showHintOne = '<p>' + 'Hint: The First Two Letters are' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber][0].toUpperCase() + $scope.passageArry[$scope.randomWordNumber][1].toUpperCase() + '</u>' + '<p>'
+
+            $scope.guess = '';
+        } else {
+            swal({
+                title: "Sorry, You Lose!",
+                text: "See Answer",
+                imageUrl: "./images/headTwo.jpg"
+            });
+            counter++;
+            $scope.showHintOne = '<p>' + 'The Answer is' + ' ' + '<u>' + $scope.passageArry[$scope.randomWordNumber].toUpperCase() + '</u>' + '<p>'
             counter = 0;
             $scope.guess = '';
             incorrect++;
-            $timeout(function () {
-               $scope.reset();
-           }, 5000);
+            $timeout(function() {
+                $scope.reset();
+            }, 5000);
         }
 
         console.log(counter);
     };
     init();
-    $scope.reset = function () {
-      counter = 0;
+    $scope.reset = function() {
+        counter = 0;
         init();
     };
 
@@ -1025,37 +1069,37 @@ myApp.controller('splashController', ['$scope', '$http', '$location', '$timeout'
     $rootScope.practiceButton = false;
 
 
-    $scope.init = function () {
-      addToDepot();
+    $scope.init = function() {
+        addToDepot();
     }
 
-  var addToDepot = function () {
+    var addToDepot = function() {
 
-    console.log('in add to depot');
+        console.log('in add to depot');
 
-      var id = passageFactory.passageID
+        var id = passageFactory.passageID
 
-      var addToDepot = {
-        idToSend: id
-      };
+        var addToDepot = {
+            idToSend: id
+        };
 
-      $http ({
-        method: 'PUT',
-        url: '/addToDepot',
-        data: addToDepot
-      }).then (function (response){
-        console.log('response ->', response);
-      });
+        $http({
+            method: 'PUT',
+            url: '/addToDepot',
+            data: addToDepot
+        }).then(function(response) {
+            console.log('response ->', response);
+        });
 
-    };//end add to depot function
+    }; //end add to depot function
 
-    $scope.init = function () {
-      addToDepot();
+    $scope.init = function() {
+        addToDepot();
     }
 
-    $timeout(function () {
-       $location.path ('/depot')
-   }, 1050);
+    $timeout(function() {
+        $location.path('/depot')
+    }, 1050);
 
 }]); //end splash controlller
 
@@ -1071,9 +1115,9 @@ myApp.controller('splashTwoController', ['$scope', '$http', '$location', '$timeo
     $rootScope.whiteBack = false;
 
 
-    $timeout(function () {
-       $location.path ('/login')
-   }, 2000);
+    $timeout(function() {
+        $location.path('/login')
+    }, 2000);
 
 }]); //end splash controlller
 
@@ -1091,25 +1135,25 @@ myApp.controller('splashThreeController', ['$scope', '$http', '$location', '$tim
     $scope.userFirst = passageFactory.userFirstName.toUpperCase();
     $scope.userLast = passageFactory.userLastName.toUpperCase();
 
-      $http({
+    $http({
         method: 'GET',
-        url:'/logout/logout'
-      }).then(function(response) {
+        url: '/logout/logout'
+    }).then(function(response) {
         console.log('response to log out', response);
 
-      });//end http get call
+    }); //end http get call
 
 
 
-    $timeout(function () {
-       $location.path ('/login')
-   }, 2000);
+    $timeout(function() {
+        $location.path('/login')
+    }, 2000);
 
 }]); //end splash three controlller
 
 
 
-myApp.controller('loginController', ['$scope', '$http', '$rootScope','$location', function($scope, $http, $rootScope, $location) {
+myApp.controller('loginController', ['$scope', '$http', '$rootScope', '$location', function($scope, $http, $rootScope, $location) {
     console.log('In Login Controller');
     $rootScope.hideIt = true;
     $rootScope.hideBack = false;
@@ -1119,21 +1163,21 @@ myApp.controller('loginController', ['$scope', '$http', '$rootScope','$location'
     $rootScope.practiceButton = false;
 
     $scope.login = function() {
-    console.log($scope.username, $scope.password);
+        console.log($scope.username, $scope.password);
 
-    var toSend = {
-      username: $scope.username,
-      password: $scope.password
+        var toSend = {
+            username: $scope.username,
+            password: $scope.password
+        };
+
+        $http({
+            method: 'POST',
+            url: '/login',
+            data: toSend
+        }).then(function(response) {
+            $location.path('/home')
+        });
     };
-
-    $http({
-      method: 'POST',
-      url: '/login',
-      data: toSend
-    }).then(function(response) {
-      $location.path ('/home')
-    });
-  };
 
 }]); //end login controlller
 
@@ -1160,8 +1204,8 @@ myApp.controller('registerController', ['$scope', '$http', '$rootScope', '$locat
             url: '/register',
             data: user
         }).then(function successCallback(response) {
-          console.log(response);
-          $location.path ('/login')
+            console.log(response);
+            $location.path('/login')
         }, function errorCallback(error) {
             console.log('error occurred!');
         }); //end http post
