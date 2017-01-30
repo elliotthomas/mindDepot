@@ -319,6 +319,7 @@ td {
 
 caption {
   text-decoration: underline;
+  text-align: center;
 }
 
 .depot-passage.head:focus {
