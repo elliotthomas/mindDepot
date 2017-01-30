@@ -303,6 +303,24 @@ h1.header-text {
   color: #8B0000;
 }
 
+table, th {
+    border: 1px solid black;
+    font-family: 'myFontThree', sans-serif;
+    font-size: 20px;
+    text-align: center;
+
+}
+
+td {
+  font-family: 'myFontFour', sans-serif;
+  font-size: 18px;
+  border: 1px solid black;
+}
+
+caption {
+  text-decoration: underline;
+}
+
 .depot-passage.head:focus {
   color: black;
 }

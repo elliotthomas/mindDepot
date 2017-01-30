@@ -889,12 +889,16 @@ myApp.controller('userInfoController', ['$scope', '$http', 'passageFactory', '$l
     }).then(function(response) {
         console.log('Passages back from DB ->', response);
         var passages = response.data.passageToSend
+        $scope.recited = response.data.passageToSend
         var correct = 0;
         var total = 0;
         var correctDepot = 0;
         var totalDepot = 0;
         var correctPractice = 0;
         var totalPractice = 0;
+
+
+
 
         for (var i = 0; i < passages.length; i++) {
           correct += passages[i].correct
@@ -909,13 +913,14 @@ myApp.controller('userInfoController', ['$scope', '$http', 'passageFactory', '$l
 
         }
 
-        $scope.showTotal = '<p>' + correct + '/' + total + '</p>'
-        $scope.showPractice = '<p>' + correctPractice + '/' + totalPractice + '</p>'
-        $scope.showDepot = '<p>' + correctDepot + '/' + totalDepot + '</p>'
+        $scope.showTotal = correct + '/' + total
+        $scope.showPractice = correctPractice + '/' + totalPractice
+        $scope.showDepot = correctDepot + '/' + totalDepot
 
-        $scope.showTotalPercentage = '<p>' + Math.round((correct/total) * 100)  + '%' + '</p>'
-        $scope.showPracticePercentage = '<p>' + Math.round((correctPractice/totalPractice) * 100)  + '%' + '</p>'
-        $scope.showDepotPercentage = '<p>' + Math.round((correctDepot/totalDepot) * 100)  + '%' + '</p>'
+
+        $scope.showTotalPercentage = Math.round((correct/total) * 100)  + '%'
+        $scope.showPracticePercentage = Math.round((correctPractice/totalPractice) * 100)  + '%'
+        $scope.showDepotPercentage = Math.round((correctDepot/totalDepot) * 100)  + '%'
 
       });
 
@@ -925,22 +930,11 @@ myApp.controller('userInfoController', ['$scope', '$http', 'passageFactory', '$l
 
 
 
-    var practices = passageFactory.practicePassages;
-    console.log('practices ->', practices);
-    var depots = passageFactory.depotPassages;
-    console.log('depots ->', depots);
-    var titlePracticePassages = [];
-    var titleDepotPassages = [];
-    $scope.practicePassages = titlePracticePassages;
-    $scope.depotPassages = titleDepotPassages;
+    $scope.practices = passageFactory.practicePassages;
+
+    $scope.depots = passageFactory.depotPassages;
 
 
-    practices.forEach(function(passage) {
-        titlePracticePassages.push(passage.title)
-    });
-    depots.forEach(function(passage) {
-        titleDepotPassages.push(passage.title)
-    });
     $scope.userFirst = passageFactory.userFirstName.toUpperCase();
     $scope.userLast = passageFactory.userLastName.toUpperCase();
     $scope.numberOne = passageFactory.practicePassages.length;

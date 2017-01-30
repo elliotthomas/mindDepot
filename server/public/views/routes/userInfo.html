@@ -3,56 +3,62 @@
 </div>
 <div class="row">
   <div class="col-md-6 col-xs-6 text-center">
-    <u><h4>Passages in Practice: <span class = 'number'>{{numberOne}}</span></h4></u>
-<div ng-repeat = 'title in practicePassages track by $index'>
-  <ul>
-    <li>{{title}}</li>
-  </ul>
-</div>
+    <table class ='text-center'>
+      <table align= 'center'>
+        <caption>In Practice</caption>
+        <tr class ='text-center'>
+          <th>Number: {{numberOne}}</th>
+        </tr>
+        <tr ng-repeat = 'passage in practices'>
+          <td>{{passage.title}}</td>
+        </tr>
+    </table>
 </div>
 <div class="col-md-6 col-xs-6 text-center">
-  <u><h4>Passages Memorized (In the Depot): <span class = 'number'>{{numberTwo}}</span></h4></u>
-<div ng-repeat = 'title in depotPassages track by $index'>
-  <ul>
-    <li>{{title}}</li>
-  </ul>
-</div>
+  <table class ='text-center'>
+    <table align= 'center'>
+      <caption>In Depot (Memorized)</caption>
+      <tr class ='text-center'>
+        <th>Number: {{numberTwo}}</th>
+      </tr>
+      <tr ng-repeat = 'passage in depots'>
+        <td>{{passage.title}}</td>
+      </tr>
+  </table>
 </div>
 </div>
 
 <div class="text-center">
-<h3 class ='box'>Fill In the Blank Stats</h3>
+  <table align='center'>
+    <caption class='text-center'>Fill In Blank Stats</caption>
+    <tr class= 'text-center'>
+      <th>Passages in Practice</th>
+      <th>Passages in Depot</th>
+      <th>Total</th>
+    </tr>
+    <tr>
+      <td>{{showPractice}}</td>
+      <td>{{showDepot}}</td>
+      <td>{{showTotal}}</td>
+    </tr>
+    <tr>
+      <td>{{showPracticePercentage}}</td>
+      <td>{{showDepotPercentage}}</td>
+      <td>{{showTotalPercentage}}</td>
+    </tr>
+  </table>
 </div>
-<div class="row">
-  <div class="col-md-4 text-center">
-    <h4>Total Passages</h4>
-    <div ng-bind-html = 'showTotal'>
-
-    </div>
-    <div ng-bind-html = 'showTotalPercentage'>
-
-    </div>
-
-
-  </div>
-  <div class="col-md-4 text-center">
-    <h4>Passages in Practice</h4>
-    <div ng-bind-html = 'showPractice'>
-
-    </div>
-    <div ng-bind-html = 'showPracticePercentage'>
-
-    </div>
-
-  </div>
-  <div class="col-md-4 text-center">
-    <h4>Passages in Depot</h4>
-    <div ng-bind-html = 'showDepot'>
-
-    </div>
-    <div ng-bind-html = 'showDepotPercentage'>
-
-    </div>
-
+  <div class= 'text-center'>
+    <table align= 'center'>
+      <caption class= 'text-center'>Recited Stats</caption>
+      <tr>
+        <th>Passage</th>
+        <th>Times Recited</th>
+      </tr>
+      <tr ng-repeat = 'passage in recited'>
+        <td>{{passage.title}}</td>
+        <td>{{passage.recited}}</td>
+      </tr>
+    </table>
   </div>
 </div>
