@@ -339,6 +339,14 @@ caption {
   font-size: 10px;
 }
 
+
+.ng-submitted .ng-invalid {
+    border: 2px solid red;
+}
+.ng-submitted .ng-valid {
+      border: 2px solid green;
+  }
+
 .btn-success {
   display: block;
   margin-left: auto;

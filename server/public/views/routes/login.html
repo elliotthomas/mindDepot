@@ -1,20 +1,20 @@
 <div class="container">
-<h1 class='text-center'>MIND DEPOT</h1>
+    <h1 class='text-center'>MIND DEPOT</h1>
 
-<form class = 'loginRegister'>
-    <div class="input-group">
-       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input ng-model="username" type="text" name="username" id="username" class="form-control" />
-    </div>
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        <input ng-model="password" type="password" name="password" id="password" class="form-control" />
-    </div>
-    <div>
-        <input ng-click="login()" type="submit" value="Login" class="btn btn-secondary btn-lg login-register"/>
-    </div>
+    <form ng-submit= "loginForm.$valid && login(); loginForm.setPristine()" class='loginRegister' name='loginForm' novalidate>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input ng-model="username" type="text" name="username" id="username" class="form-control" required />
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input ng-model="password" type="password" name="password" id="password" class="form-control" required />
+        </div>
+        <div>
+            <input type="submit" value="Login" class="btn btn-secondary btn-lg login-register" />
+        </div>
+    </form>
     <div class="text-center loginRegister">
-      <a href="#!register">Register</a>
+        <a href="#!register">Register</a>
     </div>
-</form>
 </div>
