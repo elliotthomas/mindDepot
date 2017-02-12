@@ -63,13 +63,14 @@ app.use('/', function(req, res) {
 });
 
 //set up server listening
-app.listen(3000, function() {
+app.set('port', process.env.PORT || 3000);
+app.listen(app.get('port'), function() {
   console.log("server running, check localhost:3000");
 });
 
 //set up MONGO DB
-var mongoURI = "mongodb://localhost:27017/mindDepotDatabase";
-// var mongoURI = "mongodb://heroku_x4pnw4mz:ki9dmbaktliijg0ifppud7ih6p@ds137139.mlab.com:37139/heroku_x4pnw4mz";
+// var mongoURI = "mongodb://localhost:27017/mindDepotDatabase";
+var mongoURI = "mongodb://heroku_x4pnw4mz:ki9dmbaktliijg0ifppud7ih6p@ds137139.mlab.com:37139/heroku_x4pnw4mz";
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 MongoDB.on('error', function (err) {
