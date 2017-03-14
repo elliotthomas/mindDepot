@@ -11,3 +11,16 @@ Recite’ feature tracks the number of times the passage has been recited aloud 
 The ‘Write’ feature allows the user to input text without seeing the original text and compare the two.
 
 ‘The Depot’ stores all the passages that the user memorizes by rote. The user is able to browse through all the passages in ‘The Depot.’ Mind Depot is intended for mobile use, so the user can practice whenever a cellular device is present.
+
+Installation
+-------------------------------------------------
+
+To run Eagle Reserve locally:
+
+Ensure that Node.js is installed
+
+Ensure that MongoDB is installed
+
+npm install dependencies
+
+Eagle Reserve requires a MongoDB DBMS, and a database URL at environmental variable DATABASE_URL. Eagle Reserve was developed using MongoDB and Mongoose.
