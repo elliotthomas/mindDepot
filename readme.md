@@ -3,11 +3,11 @@ Mind Depot is a full-stack web application to catalog text passages and accelera
 
 Mind Depot includes five games to accelerate the memorization process:
 
-* Recite game shows user how many times passage has been recited
-* Write game compares user's text to original text
-* Word by Word game displays the passage word by word
-* Line by Line game displays the passage line by line
-* Fill in the Blank game removes a random word from passage so user can guess it
+* _Recite_ shows user how many times passage has been recited
+* _Write_ compares user's text to original text
+* _Word by Word_ displays the passage word by word
+* _Line by Line_ displays the passage line by line
+* _Fill in the Blank_ removes a random word from passage so user can guess it
 
 The Depot stores all the passages that the user memorizes by rote. The user is able to browse through all the passages in The Depot. Mind Depot is intended for mobile use, so the user can practice whenever a cellular device is present.
 
