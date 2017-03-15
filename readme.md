@@ -20,6 +20,7 @@ To run Eagle Reserve locally:
 * Eagle Reserve requires a MongoDB DBMS, and a database URL at environmental variable `DATABASE_URL`. Eagle Reserve was developed using [MongoDB](https://www.mongodb.com/) and [Mongoose](http://mongoosejs.com/).
 
 ## Demo
+<h3 align= "center">Login</h3>
 <p align="center">
   <img src="server/public/images/login.gif"/>
 </p>
