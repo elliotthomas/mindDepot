@@ -1,15 +1,15 @@
 ## Mind Depot
 Mind Depot is a full-stack web application to catalog text passages and accelerate the process of memorizing them by rote. Mind Depot allows the user to input and save any passage from Shakespeare to a favorite quote or speech.
 
-Mind Depot includes features to accelerate the memorization process:
+Mind Depot includes five games to accelerate the memorization process:
 
-Word by Word’ feature displays the passage word by word
-Line by Line’ feature displays the passage line by line
-Scroll’ feature uses an interactive scroll bar to add or delete text
-Recite’ feature tracks the number of times the passage has been recited aloud by incrementing a counter button.
-The ‘Write’ feature allows the user to input text without seeing the original text and compare the two.
+* Recite game shows user how many times passage has been recited
+* Write game compares user's text to original text
+* Word by Word game displays the passage word by word
+* Line by Line game displays the passage line by line
+* Fill in the Blank game removes a random word from passage so user can guess it
 
-‘The Depot’ stores all the passages that the user memorizes by rote. The user is able to browse through all the passages in ‘The Depot.’ Mind Depot is intended for mobile use, so the user can practice whenever a cellular device is present.
+The Depot stores all the passages that the user memorizes by rote. The user is able to browse through all the passages in The Depot. Mind Depot is intended for mobile use, so the user can practice whenever a cellular device is present.
 
 ## Installation
 To run Eagle Reserve locally:
