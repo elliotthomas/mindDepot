@@ -69,8 +69,8 @@ app.listen(app.get('port'), function() {
 });
 
 //set up MONGO DB
-// var mongoURI = "mongodb://localhost:27017/mindDepotDatabase";
-var mongoURI = "mongodb://heroku_x4pnw4mz:ki9dmbaktliijg0ifppud7ih6p@ds137139.mlab.com:37139/heroku_x4pnw4mz";
+var mongoURI = "mongodb://localhost:27017/mindDepotDatabase";
+// var mongoURI = "mongodb://heroku_x4pnw4mz:ki9dmbaktliijg0ifppud7ih6p@ds137139.mlab.com:37139/heroku_x4pnw4mz";
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 MongoDB.on('error', function (err) {

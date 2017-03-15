@@ -1223,7 +1223,6 @@ myApp.controller('loginController', ['$scope', '$http', '$rootScope', '$location
             url: '/login',
             data: toSend
         }).then(function(response) {
-          console.log('response after log in->', response);
             $location.path('/home')
         });
     };
