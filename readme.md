@@ -12,12 +12,12 @@ Mind Depot includes five games to accelerate the memorization process:
 The Depot stores all the passages that the user memorizes by rote. The user is able to browse through all the passages in The Depot. Mind Depot is intended for mobile use, so the user can practice whenever a cellular device is present.
 
 ## Installation
-To run Eagle Reserve locally:
+To run Mind Depot locally:
 
 * Ensure that [Node.js](https://nodejs.org/en/) is installed
 * Ensure that [MongoDB](https://www.mongodb.com/) is installed
 * `npm install` dependencies
-* Eagle Reserve requires a MongoDB DBMS, and a database URL at environmental variable `DATABASE_URL`. Eagle Reserve was developed using [MongoDB](https://www.mongodb.com/) and [Mongoose](http://mongoosejs.com/).
+* Eagle Reserve requires a MongoDB DBMS, and a database URL at environmental variable `DATABASE_URL`. Mind Depot was developed using [MongoDB](https://www.mongodb.com/) and [Mongoose](http://mongoosejs.com/).
 
 ## Demo
 <h3 align= "center">Login</h3>
