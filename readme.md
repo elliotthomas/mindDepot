@@ -1,5 +1,4 @@
-MIND Depot
-----------------------------------------------
+## Mind Depot
 Mind Depot is a full-stack web application to catalog text passages and accelerate the process of memorizing them by rote. Mind Depot allows the user to input and save any passage from Shakespeare to a favorite quote or speech.
 
 Mind Depot includes features to accelerate the memorization process:
@@ -12,15 +11,28 @@ The ‘Write’ feature allows the user to input text without seeing the origina
 
 ‘The Depot’ stores all the passages that the user memorizes by rote. The user is able to browse through all the passages in ‘The Depot.’ Mind Depot is intended for mobile use, so the user can practice whenever a cellular device is present.
 
-Installation
--------------------------------------------------
-
+## Installation
 To run Eagle Reserve locally:
 
-Ensure that Node.js is installed
+* Ensure that [Node.js](https://nodejs.org/en/) is installed
+* Ensure that [MongoDB](https://www.mongodb.com/) is installed
+* `npm install` dependencies
+* Eagle Reserve requires a MongoDB DBMS, and a database URL at environmental variable `DATABASE_URL`. Eagle Reserve was developed using [MongoDB](https://www.mongodb.com/) and [Mongoose](http://mongoosejs.com/).
 
-Ensure that MongoDB is installed
+## Demo
+<p align="center">
+  <img src=/>
+</p>
 
-npm install dependencies
+## Technologies Used:
 
-Eagle Reserve requires a MongoDB DBMS, and a database URL at environmental variable DATABASE_URL. Eagle Reserve was developed using MongoDB and Mongoose.
+  * Node.js
+  * Express.js
+  * AngularJS
+  * MongoDB
+  * Mongoose
+  * Passport Local
+  * Bootstrap
+  * CSS3
+  * HTML5
+  * UI Bootstrap
