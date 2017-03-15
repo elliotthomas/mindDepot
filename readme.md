@@ -21,7 +21,7 @@ To run Eagle Reserve locally:
 
 ## Demo
 <p align="center">
-  <img src=/>
+  <img src="server/public/images/login.gif"/>
 </p>
 
 ## Technologies Used:
