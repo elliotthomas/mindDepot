@@ -17,7 +17,7 @@ To run Mind Depot locally:
 * Ensure that [Node.js](https://nodejs.org/en/) is installed
 * Ensure that [MongoDB](https://www.mongodb.com/) is installed
 * `npm install` dependencies
-* Eagle Reserve requires a MongoDB DBMS, and a database URL at environmental variable `DATABASE_URL`. Mind Depot was developed using [MongoDB](https://www.mongodb.com/) and [Mongoose](http://mongoosejs.com/).
+* Mind Depot requires a MongoDB DBMS, and a database URL at environmental variable `DATABASE_URL`. Mind Depot was developed using [MongoDB](https://www.mongodb.com/) and [Mongoose](http://mongoosejs.com/).
 
 ## Demo
 <h3 align= "center">Login</h3>
